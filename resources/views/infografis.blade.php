@@ -34,13 +34,14 @@
 }
 </style>
 
-<main class="pt-24 min-h-screen">
+<main class="pt-28 md:pt-32 min-h-screen">
 
 <!-- HEADER -->
-<header class="px-8 py-16 bg-primary-container mb-10">
-  <div class="max-w-7xl mx-auto">
-    <h1 class="text-4xl font-bold text-on-primary">Infografis</h1>
-    <p class="text-on-primary-container/80 mt-2"></p>
+<header class="px-6 md:px-8 py-16 bg-secondary mb-10">
+  <div class="max-w-7xl mx-auto text-center">
+    <span class="text-white/60 font-bold tracking-[0.14em] text-xs uppercase">Visualisasi Data</span>
+    <h1 class="font-serif text-3xl md:text-4xl text-white mt-2">Infografis</h1>
+    <p class="text-white/70 mt-3 max-w-xl mx-auto">Informasi visual seputar program dan kegiatan Puskesmas Marunggi.</p>
   </div>
 </header>
 <!-- FILTER -->
@@ -49,7 +50,7 @@
 <form method="GET" class="flex flex-wrap gap-3 items-center">
 
     <select name="pokja_id"
-        class="border px-4 py-2 rounded-lg focus:ring-2 focus:ring-primary">
+        class="border border-border px-4 py-2.5 rounded-full text-sm text-secondary focus:ring-2 focus:ring-primary focus:border-primary">
 
         <option value="">Semua Kategori</option>
 
@@ -62,7 +63,7 @@
 
     </select>
 
-    <button class="bg-primary text-white px-4 py-2 rounded-lg">
+    <button class="bg-primary text-white px-5 py-2.5 rounded-full text-sm font-semibold hover:bg-secondary transition-colors">
         Filter
     </button>
 
@@ -76,19 +77,19 @@
 
 @foreach($galeri as $index => $item)
 
-<div class="masonry-item bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition cursor-pointer"
+<div class="masonry-item bg-white rounded-xl overflow-hidden border border-border hover:shadow-lg transition cursor-pointer"
      onclick="openLightbox({{ $index }})">
 
-    <img src="{{ asset('storage/'.$item->foto) }}" class="w-full">
+    <img src="{{ asset('storage/'.$item->foto) }}" class="w-full" alt="{{ $item->judul_kegiatan }}">
 
     <div class="p-3">
       <p class="text-xs text-primary font-semibold">
         {{ $item->nama_pokja }}
     </p>
-        <h3 class="text-sm font-bold text-emerald-900 line-clamp-1">
+        <h3 class="text-sm font-bold text-secondary line-clamp-1 mt-1">
             {{ $item->judul_kegiatan }}
         </h3>
-        <p class="text-xs text-gray-500">
+        <p class="text-xs text-muted mt-1">
             {{ \Carbon\Carbon::parse($item->tanggal)->format('d M Y') }}
         </p>
     </div>
@@ -103,7 +104,7 @@
 
 <!-- LIGHTBOX -->
 <div id="lightbox"
-     class="fixed inset-0 bg-black/95 hidden items-center justify-center z-50">
+     class="fixed inset-0 bg-secondary/95 hidden items-center justify-center z-50">
 
     <!-- CLOSE -->
     <button onclick="closeLightbox()"

@@ -9,10 +9,34 @@
 
     <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
 
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@300;400;500;600;700;800&display=swap"
         rel="stylesheet">
 
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#006BE9",
+                        secondary: "#052049",
+                        tertiary: "#F2F3F4",
+                        neutral: "#FFFFFF",
+                        surface: "#F2F3F4",
+                        "on-surface": "#052049",
+                        border: "#E5E7EB",
+                        muted: "#6B7280",
+                        error: "#D92D20",
+                    },
+                    fontFamily: {
+                        serif: ["Fraunces", "serif"],
+                        sans: ["Inter", "sans-serif"],
+                    },
+                },
+            },
+        }
+    </script>
 
     <style>
         body {
@@ -27,9 +51,9 @@
             inset: 0;
             z-index: -2;
             background:
-                radial-gradient(circle at top left, #34d399 0%, transparent 30%),
-                radial-gradient(circle at bottom right, #10b981 0%, transparent 35%),
-                linear-gradient(135deg, #065f46, #047857, #065f46);
+                radial-gradient(circle at top left, #3b82f6 0%, transparent 30%),
+                radial-gradient(circle at bottom right, #006BE9 0%, transparent 35%),
+                linear-gradient(135deg, #052049, #0a3570, #052049);
         }
 
         .login-bg::before {
@@ -52,7 +76,7 @@
         .orb1 {
             width: 350px;
             height: 350px;
-            background: #6ee7b7;
+            background: #60a5fa;
             top: -120px;
             left: -120px;
             animation: move1 18s linear infinite;
@@ -61,7 +85,7 @@
         .orb2 {
             width: 450px;
             height: 450px;
-            background: #22c55e;
+            background: #006BE9;
             bottom: -180px;
             right: -180px;
             animation: move2 22s linear infinite;
@@ -104,6 +128,13 @@
             animation: fadeUp .8s ease;
         }
 
+        @media (max-width: 480px) {
+            .login-card {
+                padding: 28px 22px;
+                border-radius: 20px;
+            }
+        }
+
         @keyframes fadeUp {
 
             from {
@@ -115,21 +146,6 @@
                 opacity: 1;
                 transform: translateY(0);
             }
-        }
-
-        /* ================= LOGO ================= */
-
-        .logo-circle {
-            width: 95px;
-            height: 95px;
-            margin: auto;
-            border-radius: 999px;
-            background: linear-gradient(135deg,#16a34a,#15803d);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            box-shadow: 0 20px 40px rgba(22,163,74,.3);
         }
 
         /* ================= INPUT ================= */
@@ -144,7 +160,7 @@
     top:50%;
     transform:translateY(-50%);
     font-size:24px;
-    color:#16a34a;
+    color:#006BE9;
     pointer-events:none;
 }
 
@@ -165,21 +181,21 @@
 
         .form-input:focus {
             outline: none;
-            border-color: #16a34a;
+            border-color: #006BE9;
             background: white;
-            box-shadow: 0 0 0 4px rgba(22,163,74,.15);
+            box-shadow: 0 0 0 4px rgba(0,107,233,.15);
         }
 
         /* ================= BUTTON ================= */
 
         .login-btn {
-            background: linear-gradient(135deg,#16a34a,#15803d);
+            background: linear-gradient(135deg,#006BE9,#052049);
             transition: .3s;
         }
 
         .login-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 15px 30px rgba(22,163,74,.3);
+            box-shadow: 0 15px 30px rgba(0,107,233,.3);
         }
 
         /* ================= FOOTER ================= */
@@ -214,11 +230,11 @@
 
                 <div>
 
-                    <div class="font-bold text-green-900">
+                    <div class="font-bold text-secondary">
                         Puskesmas Marunggi
                     </div>
 
-                    <div class="text-xs text-gray-500">
+                    <div class="text-xs text-muted">
                         Kota Pariaman
                     </div>
 
@@ -246,18 +262,18 @@
 </div>
                 <div class="text-center mb-8">
 
-                    <h1 class="text-3xl font-bold text-gray-800">
+                    <h1 class="text-3xl font-bold text-secondary">
                         Selamat Datang
                     </h1>
 
-                    <p class="text-gray-500 mt-2">
+                    <p class="text-muted mt-2">
                         Silakan masuk ke Sistem Informasi Puskesmas
                     </p>
 
                 </div>
 
                 @if(session('status'))
-                    <div class="bg-green-100 text-green-700 rounded-lg p-3 text-sm mb-5">
+                    <div class="bg-primary/10 text-primary rounded-lg p-3 text-sm mb-5">
                         {{ session('status') }}
                     </div>
                 @endif
@@ -270,7 +286,7 @@
 
                     <div>
 
-                        <label class="text-sm font-medium text-gray-700">
+                        <label class="text-sm font-medium text-on-surface">
                             Email
                         </label>
 
@@ -292,7 +308,7 @@
                         </div>
 
                         @error('email')
-                            <p class="text-red-500 text-sm mt-2">
+                            <p class="text-error text-sm mt-2">
                                 {{ $message }}
                             </p>
                         @enderror
@@ -303,7 +319,7 @@
 
                     <div>
 
-                        <label class="text-sm font-medium text-gray-700">
+                        <label class="text-sm font-medium text-on-surface">
                             Password
                         </label>
 
@@ -323,7 +339,7 @@
                         </div>
 
                         @error('password')
-                            <p class="text-red-500 text-sm mt-2">
+                            <p class="text-error text-sm mt-2">
                                 {{ $message }}
                             </p>
                         @enderror
@@ -334,12 +350,12 @@
 
                     <div class="flex items-center justify-between text-sm">
 
-                        <label class="flex items-center gap-2 text-gray-600">
+                        <label class="flex items-center gap-2 text-muted">
 
                             <input
                                 type="checkbox"
                                 name="remember"
-                                class="rounded border-gray-300 text-green-600 focus:ring-green-500">
+                                class="rounded border-gray-300 text-primary focus:ring-primary">
 
                             Ingat Saya
 
@@ -348,7 +364,7 @@
                         @if(Route::has('password.request'))
 
                             <a href="{{ route('password.request') }}"
-                                class="text-green-600 hover:underline">
+                                class="text-primary hover:underline">
 
                                 Lupa Password?
 
