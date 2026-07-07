@@ -1,7 +1,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
 <!-- CTA Pengaduan sebelum footer -->
-<section class="bg-surface py-16 border-t border-border">
+<!-- <section class="bg-surface py-16 border-t border-border">
     <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
         <div>
             <h2 class="font-serif text-2xl md:text-3xl text-secondary font-medium">Ada masukan atau keluhan layanan?</h2>
@@ -11,7 +11,7 @@
             Buat Pengaduan
         </a>
     </div>
-</section>
+</section> -->
 
 <footer class="w-full bg-secondary text-white">
     <div class="max-w-7xl mx-auto px-6 py-16 grid grid-cols-1 md:grid-cols-12 gap-12">

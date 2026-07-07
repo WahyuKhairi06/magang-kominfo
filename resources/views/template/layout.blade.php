@@ -27,11 +27,11 @@
                       "secondary-container": "var(--secondary-container)",
                       "on-secondary-container": "var(--on-secondary-container)",
                       "surface": "var(--surface)",
-                      "on-surface": "#191c1d",
-                      "surface-variant": "#e1e3e4",
-                      "on-surface-variant": "#3f4941",
-                      "outline": "#6f7a71",
-                      "error": "#ba1a1a",
+                      "on-surface": "var(--on-surface)",
+                      "surface-variant": "var(--tertiary)",
+                      "on-surface-variant": "var(--muted)",
+                      "outline": "var(--border)",
+                      "error": "var(--error)",
               },
               "borderRadius": {
                       "DEFAULT": "0.25rem",
@@ -55,16 +55,21 @@
     overflow-y: auto !important;
 }
         :root {
-            --primary: #00502e;
-            --on-primary: #ffffff;
-            --primary-container: #006b3f;
-            --on-primary-container: #91e9b1;
-            --secondary: #775a19;
-            --on-secondary: #ffffff;
-            --secondary-container: #fed488;
-            --on-secondary-container: #785a1a;
-            --surface: #f8f9fa;
-            --bg-gradient: radial-gradient(circle at 0% 0%, rgba(0, 80, 46, 0.05) 0%, transparent 50%), radial-gradient(circle at 100% 100%, rgba(120, 90, 26, 0.05) 0%, transparent 50%);
+            --primary: #2D6A4F;
+            --on-primary: #FFFFFF;
+            --primary-container: #0B3D26;
+            --on-primary-container: #EEF3EF;
+            --secondary: #0B3D26;
+            --on-secondary: #FFFFFF;
+            --secondary-container: #D9E4DC;
+            --on-secondary-container: #0B3D26;
+            --tertiary: #EEF3EF;
+            --surface: #EEF3EF;
+            --on-surface: #0B3D26;
+            --muted: #6B7D72;
+            --border: #D9E4DC;
+            --error: #D92D20;
+            --bg-gradient: radial-gradient(circle at 0% 0%, rgba(45, 106, 79, 0.05) 0%, transparent 50%), radial-gradient(circle at 100% 100%, rgba(11, 61, 38, 0.05) 0%, transparent 50%);
         }
         body { font-family: 'Inter', sans-serif; transition: background 0.5s ease; }
         .glass-effect { backdrop-filter: blur(20px); }
@@ -267,7 +272,7 @@
 <div class="flex items-center gap-6 ml-4">
 <!-- Theme Switcher - Expanded to 12 as requested by visuals of grid, but providing 6 main variations here -->
 <div class="flex items-center gap-1.5 p-1.5 bg-slate-100 rounded-full">
-<button class="w-5 h-5 rounded-full bg-[#00502e] border-2 border-white shadow-sm hover:scale-110 transition-transform" onclick="setTheme('#00502e', '#ffffff', '#006b3f', '#91e9b1', '#775a19', '#ffffff', '#fed488', '#785a1a', '#f0fdf4')" title="Emerald"></button>
+<button class="w-5 h-5 rounded-full bg-[#2D6A4F] border-2 border-white shadow-sm hover:scale-110 transition-transform" onclick="setTheme('#2D6A4F', '#FFFFFF', '#0B3D26', '#EEF3EF', '#0B3D26', '#FFFFFF', '#D9E4DC', '#0B3D26', '#EEF3EF')" title="Clinical Academic"></button>
 <button class="w-5 h-5 rounded-full bg-[#0056b3] border-2 border-white shadow-sm hover:scale-110 transition-transform" onclick="setTheme('#0056b3', '#ffffff', '#004494', '#d1e4ff', '#003366', '#ffffff', '#cce5ff', '#004085', '#eff6ff')" title="Blue"></button>
 <button class="w-5 h-5 rounded-full bg-[#6b21a8] border-2 border-white shadow-sm hover:scale-110 transition-transform" onclick="setTheme('#6b21a8', '#ffffff', '#581c87', '#f3e8ff', '#4c1d95', '#ffffff', '#ede9fe', '#2e1065', '#faf5ff')" title="Purple"></button>
 <button class="w-5 h-5 rounded-full bg-[#c2410c] border-2 border-white shadow-sm hover:scale-110 transition-transform" onclick="setTheme('#c2410c', '#ffffff', '#9a3412', '#ffedd5', '#7c2d12', '#ffffff', '#ffedd5', '#431407', '#fff7ed')" title="Amber"></button>
@@ -334,7 +339,7 @@
 </button>
 <script>
         // Enhanced Theme Engine & Three.js Background Integration
-        let currentThemeColor = 0x00502e;
+        let currentThemeColor = 0x2D6A4F;
         let scene, camera, renderer, particles;
 
         function initThree() {

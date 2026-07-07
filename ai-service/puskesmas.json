@@ -1,0 +1,207 @@
+{
+  "profile": {
+    "nama": "Puskesmas Marunggi",
+    "alamat": "Jl. Marunggi No. 12, Kelurahan Marunggi, Kecamatan Pariaman Selatan, Kota Pariaman, Sumatera Barat",
+    "kode_pos": "25525",
+    "tahun_berdiri": 1998,
+    "status": "Puskesmas Rawat Jalan dengan layanan UGD 24 Jam",
+    "kepala_puskesmas": "dr. Hj. Yulita Sari, M.Kes",
+    "akreditasi": "Paripurna (Tahun 2023)",
+    "deskripsi": "Puskesmas Marunggi adalah fasilitas pelayanan kesehatan tingkat pertama milik Pemerintah Kota Pariaman yang melayani masyarakat di wilayah Kecamatan Pariaman Selatan dan sekitarnya dengan pelayanan kesehatan dasar, promotif, preventif, kuratif, dan rehabilitatif."
+  },
+
+  "vision_mission": {
+    "visi": "Menjadi Puskesmas dengan pelayanan kesehatan yang bermutu, merata, dan berkeadilan menuju masyarakat Kecamatan Pariaman Selatan yang sehat dan mandiri.",
+    "misi": [
+      "Meningkatkan mutu pelayanan kesehatan yang profesional dan terjangkau bagi masyarakat.",
+      "Mendorong kemandirian masyarakat untuk hidup sehat melalui promosi kesehatan.",
+      "Meningkatkan kompetensi dan kesejahteraan sumber daya manusia kesehatan.",
+      "Menjalin kerja sama lintas sektor dalam upaya peningkatan derajat kesehatan masyarakat.",
+      "Meningkatkan sistem informasi kesehatan yang akurat dan mudah diakses."
+    ],
+    "motto": "Melayani Sepenuh Hati, Sehat Bersama Marunggi"
+  },
+
+  "history": "Puskesmas Marunggi didirikan pada tahun 1998 sebagai puskesmas pembantu, kemudian ditingkatkan statusnya menjadi Puskesmas Induk pada tahun 2005 seiring bertambahnya jumlah penduduk di wilayah Pariaman Selatan. Sejak tahun 2015, Puskesmas Marunggi telah menerapkan sistem rekam medis semi-elektronik dan pada tahun 2023 berhasil meraih status Akreditasi Paripurna dari Kementerian Kesehatan RI.",
+
+  "operational_hours": {
+    "pelayanan_umum": {
+      "senin_kamis": "07.30 - 14.00 WIB",
+      "jumat": "07.30 - 11.00 WIB",
+      "sabtu": "08.00 - 12.30 WIB (layanan terbatas)",
+      "minggu_libur_nasional": "Tutup, kecuali UGD"
+    },
+    "ugd": "24 Jam setiap hari termasuk hari libur",
+    "loket_pendaftaran": {
+      "senin_kamis": "07.30 - 12.00 WIB",
+      "jumat": "07.30 - 10.30 WIB",
+      "sabtu": "08.00 - 11.30 WIB"
+    },
+    "catatan": "Pasien disarankan datang minimal 30 menit sebelum loket pendaftaran tutup untuk menghindari antrean panjang."
+  },
+
+  "contacts": {
+    "telepon": "(0751) 555-2211",
+    "whatsapp": "0812-6677-8899",
+    "email": "puskesmas.marunggi@pariamankota.go.id",
+    "instagram": "@puskesmasmarunggi.pariaman",
+    "facebook": "Puskesmas Marunggi Kota Pariaman",
+    "website": "https://puskesmasmarunggi.pariamankota.go.id"
+  },
+
+  "emergency_contact": {
+    "ugd_puskesmas": "(0751) 555-2211 ext. 1",
+    "ambulans": "0812-9900-1122",
+    "hotline_darurat_kota_pariaman": "119",
+    "pemadam_kebakaran": "113",
+    "kepolisian": "110",
+    "catatan": "Untuk kondisi gawat darurat yang mengancam nyawa, segera hubungi ambulans atau datang langsung ke UGD Puskesmas Marunggi yang buka 24 jam."
+  },
+
+  "location": {
+    "alamat_lengkap": "Jl. Marunggi No. 12, Kelurahan Marunggi, Kecamatan Pariaman Selatan, Kota Pariaman, Sumatera Barat 25525",
+    "patokan": "500 meter dari Kantor Camat Pariaman Selatan, sebelah SDN 07 Marunggi",
+    "google_maps": "https://maps.google.com/?q=Puskesmas+Marunggi+Pariaman",
+    "akses_transportasi": "Dapat diakses menggunakan angkutan kota jalur Pariaman Selatan - Pusat Kota, ojek online, atau kendaraan pribadi. Tersedia area parkir untuk roda dua dan roda empat."
+  },
+
+  "doctors": [
+    {
+      "nama": "dr. Hj. Yulita Sari, M.Kes",
+      "spesialisasi": "Dokter Umum / Kepala Puskesmas",
+      "poli": "Poli Umum"
+    },
+    {
+      "nama": "dr. Ahmad Fadillah",
+      "spesialisasi": "Dokter Umum",
+      "poli": "Poli Umum"
+    },
+    {
+      "nama": "drg. Rani Puspita",
+      "spesialisasi": "Dokter Gigi",
+      "poli": "Poli Gigi"
+    },
+    {
+      "nama": "dr. Muhammad Iqbal",
+      "spesialisasi": "Dokter Umum",
+      "poli": "Poli KIA (Kesehatan Ibu dan Anak)"
+    },
+    {
+      "nama": "Bidan Sri Wahyuni, S.Tr.Keb",
+      "spesialisasi": "Bidan Koordinator",
+      "poli": "Poli KIA dan KB"
+    },
+    {
+      "nama": "Ns. Deri Kurniawan, S.Kep",
+      "spesialisasi": "Perawat Penanggung Jawab UGD",
+      "poli": "UGD"
+    },
+    {
+      "nama": "Apt. Fitri Handayani, S.Farm",
+      "spesialisasi": "Apoteker",
+      "poli": "Apotek / Farmasi"
+    }
+  ],
+
+  "schedules": [
+    { "dokter": "dr. Hj. Yulita Sari, M.Kes", "poli": "Poli Umum", "hari": "Senin, Rabu, Jumat", "jam": "07.30 - 14.00 WIB" },
+    { "dokter": "dr. Ahmad Fadillah", "poli": "Poli Umum", "hari": "Selasa, Kamis, Sabtu", "jam": "07.30 - 14.00 WIB" },
+    { "dokter": "drg. Rani Puspita", "poli": "Poli Gigi", "hari": "Senin, Selasa, Kamis", "jam": "08.00 - 13.00 WIB" },
+    { "dokter": "dr. Muhammad Iqbal", "poli": "Poli KIA (Kesehatan Ibu dan Anak)", "hari": "Senin - Jumat", "jam": "08.00 - 12.00 WIB" },
+    { "dokter": "Bidan Sri Wahyuni, S.Tr.Keb", "poli": "Poli KIA dan KB", "hari": "Senin - Sabtu", "jam": "08.00 - 12.30 WIB" },
+    { "dokter": "Ns. Deri Kurniawan, S.Kep", "poli": "UGD", "hari": "Setiap Hari (Shift 24 Jam)", "jam": "24 Jam" }
+  ],
+
+  "polyclinic": [
+    { "nama_poli": "Poli Umum", "layanan": "Pemeriksaan kesehatan umum, konsultasi penyakit ringan, surat keterangan sehat" },
+    { "nama_poli": "Poli Gigi", "layanan": "Pemeriksaan gigi, tambal gigi, cabut gigi, scaling/pembersihan karang gigi" },
+    { "nama_poli": "Poli KIA (Kesehatan Ibu dan Anak)", "layanan": "Pemeriksaan kehamilan (ANC), imunisasi anak, tumbuh kembang balita" },
+    { "nama_poli": "Poli KB", "layanan": "Konsultasi dan pemasangan alat kontrasepsi" },
+    { "nama_poli": "Poli Gizi", "layanan": "Konsultasi gizi, penanganan stunting, edukasi pola makan sehat" },
+    { "nama_poli": "Poli Lansia", "layanan": "Pemeriksaan kesehatan khusus lanjut usia" },
+    { "nama_poli": "UGD", "layanan": "Penanganan kegawatdaruratan medis 24 jam" },
+    { "nama_poli": "Laboratorium", "layanan": "Pemeriksaan darah rutin, gula darah, kolesterol, asam urat, tes kehamilan" },
+    { "nama_poli": "Apotek / Farmasi", "layanan": "Penyediaan dan penyerahan obat sesuai resep dokter" }
+  ],
+
+  "services": [
+    { "nama_layanan": "Pemeriksaan Kesehatan Umum", "keterangan": "Layanan konsultasi dan pemeriksaan untuk keluhan kesehatan umum di Poli Umum." },
+    { "nama_layanan": "Pelayanan Kesehatan Gigi dan Mulut", "keterangan": "Meliputi pemeriksaan, tambal gigi, cabut gigi, dan scaling di Poli Gigi." },
+    { "nama_layanan": "Pelayanan KIA-KB", "keterangan": "Pemeriksaan kehamilan, persalinan normal (di jam kerja), imunisasi, dan layanan KB." },
+    { "nama_layanan": "Pelayanan Imunisasi", "keterangan": "Imunisasi dasar lengkap untuk bayi dan anak sesuai jadwal Kemenkes." },
+    { "nama_layanan": "Pelayanan Laboratorium Sederhana", "keterangan": "Tes darah rutin, gula darah, kolesterol, asam urat, dan tes kehamilan." },
+    { "nama_layanan": "Pelayanan Gawat Darurat (UGD)", "keterangan": "Penanganan pertama kasus gawat darurat, tersedia 24 jam." },
+    { "nama_layanan": "Pelayanan Farmasi", "keterangan": "Penyediaan obat-obatan sesuai resep dokter Puskesmas." },
+    { "nama_layanan": "Konsultasi Gizi", "keterangan": "Konsultasi gizi untuk balita, ibu hamil, dan penderita penyakit tidak menular." },
+    { "nama_layanan": "Posyandu Keliling", "keterangan": "Layanan kesehatan ibu dan anak yang dilakukan secara berkala di tiap RW." },
+    { "nama_layanan": "Homecare Lansia", "keterangan": "Kunjungan rumah untuk pasien lansia dengan mobilitas terbatas, dijadwalkan melalui pendaftaran." }
+  ],
+
+  "programs": [
+    { "nama_program": "Posyandu Balita", "deskripsi": "Kegiatan rutin bulanan untuk pemantauan tumbuh kembang balita, imunisasi, dan pemberian vitamin.", "jadwal": "Minggu ke-2 setiap bulan" },
+    { "nama_program": "Posbindu PTM", "deskripsi": "Pos Pembinaan Terpadu Penyakit Tidak Menular untuk deteksi dini hipertensi, diabetes, dan obesitas pada usia produktif.", "jadwal": "Minggu ke-3 setiap bulan" },
+    { "nama_program": "Program Cegah Stunting", "deskripsi": "Edukasi gizi dan pemantauan berkala terhadap balita berisiko stunting di wilayah kerja Puskesmas Marunggi.", "jadwal": "Berkelanjutan sepanjang tahun" },
+    { "nama_program": "Gerakan Masyarakat Hidup Sehat (Germas)", "deskripsi": "Kampanye pola hidup sehat melalui senam bersama, edukasi gizi seimbang, dan pemeriksaan kesehatan gratis.", "jadwal": "Setiap Jumat pagi" },
+    { "nama_program": "Program Kelas Ibu Hamil", "deskripsi": "Edukasi kehamilan, persalinan, dan perawatan bayi baru lahir bagi ibu hamil di wilayah kerja Puskesmas.", "jadwal": "Minggu ke-1 setiap bulan" }
+  ],
+
+  "announcements": [
+    { "judul": "Perubahan Jam Layanan Hari Raya", "isi": "Pelayanan pendaftaran pada H-1 dan H+1 hari raya keagamaan dibatasi hingga pukul 11.00 WIB. UGD tetap buka 24 jam.", "tanggal": "2026-06-01" },
+    { "judul": "Jadwal Vaksinasi Bulan Ini", "isi": "Vaksinasi imunisasi dasar untuk bayi dan anak dilaksanakan setiap hari Selasa dan Kamis di Poli KIA.", "tanggal": "2026-06-15" },
+    { "judul": "Pemeliharaan Sistem Antrean", "isi": "Sistem antrean online akan mengalami pemeliharaan pada hari Minggu, pendaftaran sementara dilakukan secara manual di loket.", "tanggal": "2026-06-20" }
+  ],
+
+  "articles": [
+    { "judul": "Pentingnya Imunisasi Dasar Lengkap bagi Bayi", "ringkasan": "Artikel membahas manfaat imunisasi dasar lengkap dalam mencegah penyakit menular berbahaya pada bayi dan anak." },
+    { "judul": "Mengenal Gejala dan Pencegahan Demam Berdarah", "ringkasan": "Artikel edukasi mengenai gejala awal DBD, langkah pencegahan 3M Plus, dan kapan harus segera ke fasilitas kesehatan." },
+    { "judul": "Tips Menjaga Kesehatan Gigi dan Mulut Anak", "ringkasan": "Panduan sederhana bagi orang tua untuk menjaga kesehatan gigi anak sejak dini dan mencegah karies." },
+    { "judul": "Pentingnya Pemeriksaan Kehamilan Rutin (ANC)", "ringkasan": "Artikel menjelaskan manfaat pemeriksaan kehamilan rutin bagi kesehatan ibu dan janin." },
+    { "judul": "Mengenal Posbindu PTM dan Manfaatnya", "ringkasan": "Penjelasan mengenai deteksi dini penyakit tidak menular seperti hipertensi dan diabetes melalui Posbindu." }
+  ],
+
+  "faq": [
+    { "pertanyaan": "Apakah Puskesmas Marunggi melayani pasien BPJS?", "jawaban": "Ya, Puskesmas Marunggi melayani pasien BPJS Kesehatan sebagai Fasilitas Kesehatan Tingkat Pertama (FKTP)." },
+    { "pertanyaan": "Apakah bisa berobat tanpa BPJS?", "jawaban": "Bisa, pasien umum tanpa BPJS dapat berobat dengan membayar biaya retribusi sesuai peraturan daerah yang berlaku." },
+    { "pertanyaan": "Bagaimana cara mendaftar berobat?", "jawaban": "Pasien dapat mendaftar langsung di loket pendaftaran dengan membawa KTP dan kartu BPJS (jika ada), atau melalui pendaftaran online jika tersedia." },
+    { "pertanyaan": "Apakah Puskesmas buka pada hari Minggu?", "jawaban": "Pelayanan umum tutup pada hari Minggu, namun UGD tetap buka 24 jam termasuk hari Minggu dan libur nasional." },
+    { "pertanyaan": "Apa saja syarat berobat menggunakan BPJS?", "jawaban": "Membawa kartu BPJS aktif atau KTP, serta pastikan Puskesmas Marunggi terdaftar sebagai FKTP pada kartu BPJS Anda." },
+    { "pertanyaan": "Apakah tersedia layanan vaksinasi?", "jawaban": "Ya, Puskesmas Marunggi menyediakan layanan imunisasi dasar untuk bayi dan anak setiap hari Selasa dan Kamis di Poli KIA." }
+  ],
+
+  "bpjs_information": {
+    "status_faskes": "Puskesmas Marunggi terdaftar sebagai Fasilitas Kesehatan Tingkat Pertama (FKTP) BPJS Kesehatan.",
+    "syarat_berobat_bpjs": [
+      "Kartu BPJS Kesehatan aktif atau KTP",
+      "Puskesmas Marunggi harus terdaftar sebagai FKTP pada kartu BPJS pasien",
+      "Datang pada jam pelayanan yang berlaku"
+    ],
+    "cara_pindah_faskes": "Perubahan FKTP dapat dilakukan melalui aplikasi Mobile JKN atau Kantor BPJS Kesehatan terdekat, minimal 3 bulan setelah faskes terakhir aktif.",
+    "catatan": "Untuk kasus tertentu yang memerlukan penanganan lebih lanjut, pasien BPJS akan dirujuk ke Rumah Sakit sesuai sistem rujukan berjenjang."
+  },
+
+  "administrative_requirements": {
+    "berobat_umum": ["KTP atau identitas lain", "Kartu berobat (jika sudah pernah terdaftar)"],
+    "berobat_bpjs": ["Kartu BPJS Kesehatan aktif", "KTP"],
+    "surat_keterangan_sehat": ["KTP", "Pemeriksaan fisik oleh dokter di Puskesmas"],
+    "rujukan_rumah_sakit": ["Kartu BPJS aktif (untuk rujukan berjenjang)", "Hasil pemeriksaan awal dari dokter Puskesmas"],
+    "pendaftaran_bayi_baru_lahir": ["Kartu Keluarga", "Surat keterangan lahir dari bidan/dokter"]
+  },
+
+  "ai_assistant_identity": {
+    "nama_asisten": "Asisten AI Puskesmas Marunggi",
+    "jenis": "AI Assistant / Asisten Virtual berbasis Google Gemini API",
+    "peran": "Membantu masyarakat mencari informasi resmi seputar layanan Puskesmas Marunggi, seperti jam pelayanan, jadwal dokter, poli, layanan, program, BPJS, dan informasi umum lainnya.",
+    "dikembangkan_untuk": "Website resmi Puskesmas Marunggi, Kota Pariaman, sebagai fitur AI Healthcare Assistant.",
+    "dasar_pengetahuan": "Asisten ini hanya menjawab berdasarkan data resmi Puskesmas Marunggi yang tersedia pada Knowledge Base, bukan pengetahuan umum dari internet.",
+    "keterbatasan": "Asisten ini bukan tenaga medis, tidak dapat melakukan diagnosis penyakit, tidak dapat memberikan resep obat, dan tidak dapat menggantikan konsultasi langsung dengan dokter di Puskesmas Marunggi.",
+    "sifat": "Ramah, sopan, profesional, dan hanya membahas topik seputar Puskesmas Marunggi.",
+    "cara_menyapa_diri": "Saya adalah Asisten AI Puskesmas Marunggi, siap membantu Anda mencari informasi seputar layanan kesehatan di Puskesmas Marunggi, Kota Pariaman."
+  },
+
+  "health_campaign": [
+    { "nama_kampanye": "3M Plus Cegah DBD", "deskripsi": "Kampanye Menguras, Menutup, Mendaur Ulang, dan penggunaan lotion anti nyamuk untuk mencegah demam berdarah." },
+    { "nama_kampanye": "Cuci Tangan Pakai Sabun (CTPS)", "deskripsi": "Edukasi rutin di sekolah-sekolah wilayah kerja Puskesmas untuk mencegah penyakit menular." },
+    { "nama_kampanye": "Gerakan Stop Stunting", "deskripsi": "Kampanye pemenuhan gizi seimbang bagi ibu hamil dan balita untuk mencegah stunting." },
+    { "nama_kampanye": "Bulan Imunisasi Anak Nasional (BIAN)", "deskripsi": "Kampanye tahunan untuk melengkapi status imunisasi anak yang belum lengkap." }
+  ]
+}

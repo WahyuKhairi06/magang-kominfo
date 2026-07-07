@@ -1,1 +1,80 @@
 @import "tailwindcss";
+
+@theme {
+  --color-primary: #2D6A4F;
+  --color-secondary: #0B3D26;
+  --color-tertiary: #EEF3EF;
+  --color-neutral: #FFFFFF;
+  --color-surface: #EEF3EF;
+  --color-on-surface: #0B3D26;
+  --color-border: #D9E4DC;
+  --color-muted: #6B7D72;
+  --color-error: #D92D20;
+
+  /* Sinkronisasi warna utama (hijau/biru/cyan/slate) dengan palet Puskesmas Clinical Academic */
+  --color-slate-50: #F5F8F6;
+  --color-slate-100: #EEF3EF;
+  --color-slate-200: #D9E4DC;
+  --color-slate-300: #B8C9C0;
+  --color-slate-400: #8FA397;
+  --color-slate-500: #6B7D72;
+  --color-slate-600: #4D6356;
+  --color-slate-700: #324A3D;
+  --color-slate-800: #0B3D26;
+  --color-slate-900: #072919;
+
+  --color-gray-50: #F5F8F6;
+  --color-gray-100: #EEF3EF;
+  --color-gray-200: #D9E4DC;
+  --color-gray-300: #B8C9C0;
+  --color-gray-400: #8FA397;
+  --color-gray-500: #6B7D72;
+  --color-gray-600: #4D6356;
+  --color-gray-700: #324A3D;
+  --color-gray-800: #0B3D26;
+  --color-gray-900: #072919;
+
+  --color-cyan-50: #EEF3EF;
+  --color-cyan-100: #D9E4DC;
+  --color-cyan-200: #B8C9C0;
+  --color-cyan-300: #8FA397;
+  --color-cyan-400: #4CA376;
+  --color-cyan-500: #2D6A4F;
+  --color-cyan-600: #21513C;
+  --color-cyan-700: #0B3D26;
+  --color-cyan-800: #072919;
+  --color-cyan-900: #04160E;
+
+  --color-green-50: #EEF3EF;
+  --color-green-100: #D9E4DC;
+  --color-green-200: #B8C9C0;
+  --color-green-300: #8FA397;
+  --color-green-400: #4CA376;
+  --color-green-500: #2D6A4F;
+  --color-green-600: #21513C;
+  --color-green-700: #0B3D26;
+  --color-green-800: #072919;
+  --color-green-900: #04160E;
+
+  --color-blue-50: #EEF3EF;
+  --color-blue-100: #D9E4DC;
+  --color-blue-200: #B8C9C0;
+  --color-blue-300: #8FA397;
+  --color-blue-400: #4CA376;
+  --color-blue-500: #2D6A4F;
+  --color-blue-600: #21513C;
+  --color-blue-700: #0B3D26;
+  --color-blue-800: #072919;
+  --color-blue-900: #04160E;
+
+  --color-red-50: #FCEAE8;
+  --color-red-100: #F8D0CD;
+  --color-red-200: #F1A8A3;
+  --color-red-300: #E97E77;
+  --color-red-400: #E2564C;
+  --color-red-500: #D92D20;
+  --color-red-600: #B12318;
+  --color-red-700: #871A12;
+  --color-red-800: #5F110C;
+  --color-red-900: #380906;
+}

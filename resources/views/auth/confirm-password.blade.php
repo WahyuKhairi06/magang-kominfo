@@ -19,14 +19,14 @@
             theme: {
                 extend: {
                     colors: {
-                        primary: "#006BE9",
-                        secondary: "#052049",
-                        tertiary: "#F2F3F4",
+                        primary: "#2D6A4F",
+                        secondary: "#0B3D26",
+                        tertiary: "#EEF3EF",
                         neutral: "#FFFFFF",
-                        surface: "#F2F3F4",
-                        "on-surface": "#052049",
-                        border: "#E5E7EB",
-                        muted: "#6B7280",
+                        surface: "#EEF3EF",
+                        "on-surface": "#0B3D26",
+                        border: "#D9E4DC",
+                        muted: "#6B7D72",
                         error: "#D92D20",
                     },
                     fontFamily: {
@@ -51,9 +51,9 @@
             inset: 0;
             z-index: -2;
             background:
-                radial-gradient(circle at top left, #3b82f6 0%, transparent 30%),
-                radial-gradient(circle at bottom right, #006BE9 0%, transparent 35%),
-                linear-gradient(135deg, #052049, #0a3570, #052049);
+                radial-gradient(circle at top left, #4CA376 0%, transparent 30%),
+                radial-gradient(circle at bottom right, #2D6A4F 0%, transparent 35%),
+                linear-gradient(135deg, #0B3D26, #072919, #0B3D26);
         }
 
         .login-bg::before {
@@ -76,7 +76,7 @@
         .orb1 {
             width: 350px;
             height: 350px;
-            background: #60a5fa;
+            background: #8FA397;
             top: -120px;
             left: -120px;
             animation: move1 18s linear infinite;
@@ -85,7 +85,7 @@
         .orb2 {
             width: 450px;
             height: 450px;
-            background: #006BE9;
+            background: #2D6A4F;
             bottom: -180px;
             right: -180px;
             animation: move2 22s linear infinite;
@@ -142,7 +142,7 @@
             top: 50%;
             transform: translateY(-50%);
             font-size: 24px;
-            color: #006BE9;
+            color: #2D6A4F;
             pointer-events: none;
         }
 
@@ -159,21 +159,21 @@
 
         .form-input:focus {
             outline: none;
-            border-color: #006BE9;
+            border-color: #2D6A4F;
             background: white;
-            box-shadow: 0 0 0 4px rgba(0,107,233,.15);
+            box-shadow: 0 0 0 4px rgba(45,106,79,.15);
         }
 
         /* ================= BUTTON ================= */
 
         .login-btn {
-            background: linear-gradient(135deg, #006BE9, #052049);
+            background: linear-gradient(135deg, #2D6A4F, #0B3D26);
             transition: .3s;
         }
 
         .login-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 15px 30px rgba(0,107,233,.3);
+            box-shadow: 0 15px 30px rgba(45,106,79,.3);
         }
 
         /* ================= FOOTER ================= */

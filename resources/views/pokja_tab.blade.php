@@ -5,7 +5,7 @@
         from { opacity: 0; transform: translateY(8px); }
         to { opacity: 1; transform: translateY(0); }
     }
-    .tab-btn.active-tab { background-color: #006BE9; color: #fff; }
+    .tab-btn.active-tab { background-color: #2D6A4F; color: #fff; }
 </style>
 
 <section class="py-24 bg-white">

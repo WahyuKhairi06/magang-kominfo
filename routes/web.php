@@ -690,5 +690,7 @@ Route::get('/landing/dokumen', [landinghalaman::class, 'dokumen']);
 Route::get('/landing/agenda', [landinghalaman::class, 'agenda']);
 Route::get('/download/{id}', [landinghalaman::class, 'downloadDokumen']);
 
-
-
+Route::get('/chat', function () {
+    $kategoris_halaman = \Illuminate\Support\Facades\DB::table('kategori_halamen')->get();
+    return view('chat', compact('kategoris_halaman'));
+})->name('chat');

@@ -14,7 +14,32 @@ $totalDays = Carbon::create($year, $month)->daysInMonth;
 @endphp
 
 <!-- ================= HERO ================= -->
-<section class="relative min-h-[92vh] md:min-h-screen flex items-end overflow-hidden pt-24 md:pt-32">
+<style>
+    /* Animasi Intro Fade In Up */
+    @keyframes fadeInUp {
+        0% { opacity: 0; transform: translateY(20px); }
+        100% { opacity: 1; transform: translateY(0); }
+    }
+    .animate-fade-in-up {
+        animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        opacity: 0;
+    }
+    .delay-100 { animation-delay: 100ms; }
+    .delay-400 { animation-delay: 400ms; }
+    .delay-500 { animation-delay: 500ms; }
+
+    /* Kursor Typewriter */
+    .typing-cursor::after {
+        content: '|';
+        animation: blink 1s step-start infinite;
+        color: #ffffff;
+        margin-left: 4px;
+        font-weight: 300;
+    }
+    @keyframes blink { 50% { opacity: 0; } }
+</style>
+
+<section class="relative min-h-[92vh] md:min-h-screen flex items-center justify-center overflow-hidden pt-24 md:pt-32">
     <div class="absolute inset-0 z-0">
         <div class="swiper heroBgSwiper w-full h-full">
             <div class="swiper-wrapper">
@@ -25,43 +50,88 @@ $totalDays = Carbon::create($year, $month)->daysInMonth;
                 @endforeach
             </div>
         </div>
-        <div class="absolute inset-0 bg-gradient-to-t from-secondary/90 via-secondary/30 to-secondary/10"></div>
+        <div class="absolute inset-0 bg-gradient-to-t from-secondary/90 via-secondary/60 to-secondary/20"></div>
     </div>
 
-    <div class="relative z-10 w-full max-w-7xl mx-auto px-6 pb-20">
-        <div class="max-w-2xl">
-            <span class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] text-white/80 mb-6">
-                <span class="w-6 h-px bg-primary"></span> Fasilitas Kesehatan Tingkat Pertama
+    <div class="relative z-10 w-full max-w-7xl mx-auto px-6 pb-10 flex flex-col items-center text-center">
+        <div class="max-w-4xl flex flex-col items-center">
+            
+            <span class="inline-flex items-center justify-center gap-3 text-xs md:text-sm font-extrabold uppercase tracking-[0.18em] text-white/90 mb-6 animate-fade-in-up delay-100">
+                <span class="w-8 h-px bg-primary"></span> 
+                Fasilitas Kesehatan Tingkat Pertama 
+                <span class="w-8 h-px bg-primary"></span>
             </span>
-            <h1 class="font-serif text-white text-4xl md:text-6xl leading-[1.05] tracking-tight mb-6">
-                Melayani dengan Hati,<br>Mengabdi untuk Kesehatan Kota Pariaman
+            
+            <h1 class="font-serif font-extrabold text-white text-4xl md:text-5xl lg:text-6xl leading-[1.15] md:leading-[1.15] tracking-tight mb-6 min-h-[96px] md:min-h-[140px] drop-shadow-md">
+                <span id="typewriter" class="typing-cursor"></span>
             </h1>
-            <p class="text-white/85 text-lg max-w-xl mb-10 leading-relaxed">
-                Puskesmas Marunggi &mdash; sahabat terbaik masyarakat dalam mewujudkan keluarga sehat,
-                masyarakat sehat, dan mandiri menuju Kota Pariaman Sehat.
+            
+            <p class="font-semibold text-white/90 text-base md:text-lg max-w-2xl mb-10 leading-relaxed animate-fade-in-up delay-400 drop-shadow">
+                Puskesmas Marunggi &mdash; sahabat terbaik masyarakat dalam mewujudkan keluarga sehat, masyarakat sehat, dan mandiri menuju Kota Pariaman Sehat.
             </p>
-            <div class="flex flex-wrap gap-4">
-                <a href="#layanan-unggulan" class="inline-flex items-center justify-center h-14 px-8 rounded-full bg-white text-secondary font-semibold hover:bg-primary hover:text-white transition-colors">
+            
+            <div class="flex flex-wrap items-center justify-center gap-4 animate-fade-in-up delay-500">
+                <a href="#layanan-unggulan" class="inline-flex items-center justify-center h-14 px-8 rounded-full bg-white text-secondary font-bold hover:bg-primary hover:text-white transition-colors duration-300 shadow-lg hover:shadow-xl hover:-translate-y-0.5 active:scale-95">
                     Layanan Kami
                 </a>
-                <a
-                    href="{{ route('pengaduan.form') }}"
-                    class="inline-flex items-center justify-center h-14 px-8 rounded-full
-                    bg-primary text-white font-semibold
-                    shadow-lg shadow-primary/20
-                    border border-
-                    transition-all duration-300
-                    hover:bg-secondary
-                    hover:border-secondary
-                    hover:shadow-xl hover:shadow-secondary/30
-                    hover:-translate-y-0.5
-                    active:scale-95">
+                <a href="{{ route('pengaduan.form') }}" class="inline-flex items-center justify-center h-14 px-8 rounded-full bg-primary text-white font-bold shadow-lg shadow-primary/20 border border-transparent transition-all duration-300 hover:bg-secondary hover:border-white/20 hover:shadow-xl hover:shadow-secondary/30 hover:-translate-y-0.5 active:scale-95">
                     Sampaikan Pengaduan
                 </a>
             </div>
+            
         </div>
     </div>
 </section>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const textElement = document.getElementById('typewriter');
+        const phrases = [
+            "Melayani dengan Hati,<br>Mengabdi untuk Kesehatan Pariaman",
+            "Mewujudkan Keluarga Sehat,<br>Menuju Masyarakat yang Mandiri",
+            "Pelayanan Profesional,<br>Kenyamanan Pasien Prioritas Kami"
+        ];
+        
+        let phraseIndex = 0;
+        let tokenIndex = 0;
+        let isDeleting = false;
+        
+        // Tokenizer otomatis: Memisahkan karakter biasa dan tag HTML seperti <br> menjadi array komponen
+        let tokens = phrases[phraseIndex].match(/<[^>]+>|[^<]/g) || [];
+
+        const typeWriter = () => {
+            if (!isDeleting) {
+                // Mode Mengetik
+                if (tokenIndex < tokens.length) {
+                    tokenIndex++;
+                    textElement.innerHTML = tokens.slice(0, tokenIndex).join('');
+                    setTimeout(typeWriter, Math.random() * 40 + 40);
+                } else {
+                    // Selesai mengetik, beri jeda baca 3 detik
+                    setTimeout(() => { isDeleting = true; typeWriter(); }, 3000);
+                }
+            } else {
+                // Mode Menghapus
+                if (tokenIndex > 0) {
+                    tokenIndex--;
+                    textElement.innerHTML = tokens.slice(0, tokenIndex).join('');
+                    setTimeout(typeWriter, 20); // Kecepatan hapus konstan & cepat
+                } else {
+                    // Selesai menghapus, ganti ke kalimat berikutnya
+                    isDeleting = false;
+                    phraseIndex = (phraseIndex + 1) % phrases.length;
+                    tokens = phrases[phraseIndex].match(/<[^>]+>|[^<]/g) || [];
+                    setTimeout(typeWriter, 400); // Jeda sebelum mulai mengetik lagi
+                }
+            }
+        };
+
+        // Delay inisiasi pertama saat halaman dimuat
+        setTimeout(typeWriter, 800);
+    });
+</script>
+
+
 
 <!-- ================= QUICK INFO PANEL (hero-panel, putih, mengambang) ================= -->
 <section class="relative z-20 -mt-10 md:-mt-12">

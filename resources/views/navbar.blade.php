@@ -32,14 +32,14 @@
         theme: {
             extend: {
                 colors: {
-                    primary: "#006BE9",      // biru UCSF - CTA, link, aksen interaktif
-                    secondary: "#052049",    // navy dalam - wordmark, headline, otoritas
-                    tertiary: "#F2F3F4",     // abu pucat - surface/card
+                    primary: "#2D6A4F",
+                    secondary: "#0B3D26",
+                    tertiary: "#EEF3EF",
                     neutral: "#FFFFFF",
-                    surface: "#F2F3F4",
-                    "on-surface": "#052049",
-                    border: "#E5E7EB",
-                    muted: "#6B7280",
+                    surface: "#EEF3EF",
+                    "on-surface": "#0B3D26",
+                    border: "#D9E4DC",
+                    muted: "#6B7D72",
                     error: "#D92D20",
                 },
                 fontFamily: {
@@ -122,6 +122,9 @@
             <a class="hover:text-primary transition-colors" href="{{ url('landing/dokumen') }}">Dokumen</a>
             <a class="hover:text-primary transition-colors" href="{{ route('pengaduan.form') }}">Pengaduan</a>
             <a class="hover:text-primary transition-colors" href="{{ route('faq') }}">FAQ</a>
+            <a class="text-primary font-bold transition-colors mt-2" href="{{ route('chat') }}">
+                <span class="flex items-center gap-2"><span class="material-symbols-outlined">smart_toy</span> Chat Bot AI</span>
+            </a>
         </div>
     </div>
 </div>
@@ -130,8 +133,8 @@
 <div class="hidden md:block bg-secondary text-white text-xs">
     <div class="max-w-7xl mx-auto px-6 h-9 flex items-center justify-between">
         <div class="flex items-center gap-6">
-            <span class="flex items-center gap-1.5"><span class="material-symbols-outlined text-[14px]">call</span> (0751) 123-456</span>
-            <span class="flex items-center gap-1.5"><span class="material-symbols-outlined text-[14px]">mail</span> info@puskesmasmarunggi.pariamankota.go.id</span>
+            <!-- <span class="flex items-center gap-1.5"><span class="material-symbols-outlined text-[14px]">call</span> (0751) 123-456</span>
+            <span class="flex items-center gap-1.5"><span class="material-symbols-outlined text-[14px]">mail</span> info@puskesmasmarunggi.pariamankota.go.id</span> -->
         </div>
     </div>
 </div>
@@ -177,6 +180,9 @@
         </div>
 
         <div class="flex items-center gap-4">
+            <a href="{{ route('chat') }}" class="hidden lg:inline-flex items-center h-11 px-6 rounded-full bg-primary text-white font-semibold text-sm hover:bg-secondary transition-colors shadow-sm gap-2">
+                Chat Bot <span class="material-symbols-outlined text-[18px]">smart_toy</span>
+            </a>
             <a href="{{ route('pengaduan.form') }}" class="hidden lg:inline-flex items-center h-11 px-6 rounded-full border border-primary text-primary font-semibold text-sm hover:bg-primary hover:text-white transition-colors">
                 Pengaduan
             </a>
