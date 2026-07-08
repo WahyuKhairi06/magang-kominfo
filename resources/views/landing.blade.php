@@ -58,7 +58,7 @@ $totalDays = Carbon::create($year, $month)->daysInMonth;
             
             <span class="inline-flex items-center justify-center gap-3 text-xs md:text-sm font-extrabold uppercase tracking-[0.18em] text-white/90 mb-6 animate-fade-in-up delay-100">
                 <span class="w-8 h-px bg-primary"></span> 
-                Fasilitas Kesehatan Tingkat Pertama 
+                SIAP MELAYANI MASYARAKAT DENGAN CINTA
                 <span class="w-8 h-px bg-primary"></span>
             </span>
             
@@ -66,9 +66,9 @@ $totalDays = Carbon::create($year, $month)->daysInMonth;
                 <span id="typewriter" class="typing-cursor"></span>
             </h1>
             
-            <p class="font-semibold text-white/90 text-base md:text-lg max-w-2xl mb-10 leading-relaxed animate-fade-in-up delay-400 drop-shadow">
-                Puskesmas Marunggi &mdash; sahabat terbaik masyarakat dalam mewujudkan keluarga sehat, masyarakat sehat, dan mandiri menuju Kota Pariaman Sehat.
-            </p>
+            <!-- <p class="font-semibold text-white/90 text-base md:text-lg max-w-2xl mb-10 leading-relaxed animate-fade-in-up delay-400 drop-shadow">
+                PUSKESMAS MARUNGGI &mdash; sahabat terbaik masyarakat dalam mewujudkan keluarga sehat, masyarakat sehat, dan mandiri menuju Kota Pariaman Sehat.
+            </p> -->
             
             <div class="flex flex-wrap items-center justify-center gap-4 animate-fade-in-up delay-500">
                 <a href="#layanan-unggulan" class="inline-flex items-center justify-center h-14 px-8 rounded-full bg-white text-secondary font-bold hover:bg-primary hover:text-white transition-colors duration-300 shadow-lg hover:shadow-xl hover:-translate-y-0.5 active:scale-95">
@@ -87,9 +87,11 @@ $totalDays = Carbon::create($year, $month)->daysInMonth;
     document.addEventListener('DOMContentLoaded', () => {
         const textElement = document.getElementById('typewriter');
         const phrases = [
-            "Melayani dengan Hati,<br>Mengabdi untuk Kesehatan Pariaman",
-            "Mewujudkan Keluarga Sehat,<br>Menuju Masyarakat yang Mandiri",
-            "Pelayanan Profesional,<br>Kenyamanan Pasien Prioritas Kami"
+            "<span class='uppercase'>Melayani dengan Hati,</span><br><strong><span class='uppercase font-extrabold text-amber-300 drop-shadow-[0_2px_8px_rgba(0,0,0,0.6)]'>Mengabdi untuk Kesehatan Pariaman</span></strong>",
+
+            "<span class='uppercase'>Mewujudkan Keluarga Sehat,</span><br><strong><span class='uppercase font-extrabold text-amber-300 drop-shadow-[0_2px_8px_rgba(0,0,0,0.6)]'>Menuju Masyarakat yang Mandiri</span></strong>",
+
+            "<span class='uppercase'>Pelayanan Profesional,</span><br><strong><span class='uppercase font-extrabold text-amber-300 drop-shadow-[0_2px_8px_rgba(0,0,0,0.6)]'>Kenyamanan Pasien Prioritas Kami</span></strong>"
         ];
         
         let phraseIndex = 0;

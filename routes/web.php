@@ -694,3 +694,5 @@ Route::get('/chat', function () {
     $kategoris_halaman = \Illuminate\Support\Facades\DB::table('kategori_halamen')->get();
     return view('chat', compact('kategoris_halaman'));
 })->name('chat');
+
+Route::post('/chat/send', [\App\Http\Controllers\ChatbotController::class, 'send'])->name('chat.send');

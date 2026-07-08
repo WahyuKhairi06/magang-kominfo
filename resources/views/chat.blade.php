@@ -166,10 +166,32 @@
             typingIndicator.classList.add('flex');
             scrollToBottom();
 
-            // 3. Simulasi balasan bot (Bisa dihubungkan dengan API backend nanti)
-            setTimeout(() => {
-                addBotMessage("Maaf, saat ini saya sedang dalam tahap pengembangan dan belum dapat merespons pertanyaan Anda secara real-time. Silakan gunakan menu Pengaduan atau hubungi nomor telepon kami.");
-            }, 1500);
+            // 3. Panggil API backend untuk mendapatkan balasan bot
+            fetch('{{ route('chat.send') }}', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                },
+                body: JSON.stringify({ message: message })
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                if (data.status === 'success') {
+                    addBotMessage(data.answer);
+                } else {
+                    addBotMessage("Maaf, terjadi kesalahan: " + (data.message || "Unknown error"));
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                addBotMessage("Maaf, gagal terhubung ke asisten virtual saat ini. Silakan coba beberapa saat lagi.");
+            });
         });
     });
 </script>
