@@ -1,58 +1,239 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 🏥 Puskesmas Marunggi Information System
 
 <p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+    <strong>Sistem Informasi Website Puskesmas Marunggi</strong><br>
+    Kabupaten/Kota Pariaman<br>
+    Dibangun menggunakan Laravel 13 & Tailwind CSS
 </p>
 
-## About Laravel
+---
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+# 📖 Tentang Project
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Website Puskesmas Marunggi merupakan sistem informasi berbasis web yang dirancang untuk meningkatkan kualitas pelayanan informasi kesehatan kepada masyarakat.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Website ini menyediakan berbagai layanan digital seperti informasi pelayanan, jadwal dokter, berita kesehatan, pengaduan masyarakat, serta akan dikembangkan dengan fitur **Artificial Intelligence (AI Healthcare Assistant)** sebagai asisten virtual resmi Puskesmas.
 
-## Learning Laravel
+Project ini dikembangkan sebagai bagian dari kegiatan **Praktik Kerja Lapangan (PKL)** di Dinas Komunikasi dan Informatika Kota Pariaman.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+---
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+# 🚀 Teknologi
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
+- Laravel 13
+- PHP 8.3+
+- Tailwind CSS 4
+- Alpine.js
+- Vite
+- MySQL
+- Google Gemini API (Upcoming)
+- Python 3.13 (AI Service)
 
-## Agentic Development
+---
 
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+# ✨ Fitur Website
 
-```bash
-composer require laravel/boost --dev
+## 🏠 Landing Page
 
-php artisan boost:install
+- Hero Section
+- Profil Puskesmas
+- Visi & Misi
+- Statistik
+- Program Unggulan
+- Artikel Kesehatan
+- Kontak
+
+---
+
+## 🩺 Informasi Pelayanan
+
+- Jam Operasional
+- Jadwal Dokter
+- Poli Pelayanan
+- Persyaratan Administrasi
+- Informasi BPJS
+- Informasi Rawat Jalan
+
+---
+
+## 📰 Informasi Publik
+
+- Berita
+- Artikel
+- Pengumuman
+- Agenda
+- Galeri
+
+---
+
+## 📢 Pengaduan Masyarakat
+
+- Form Pengaduan Online
+- Tracking Pengaduan
+- Upload Lampiran
+- Status Pengaduan
+
+---
+
+## 🤖 AI Healthcare Assistant *(Coming Soon)*
+
+AI Assistant berbasis Google Gemini yang dirancang khusus untuk membantu masyarakat memperoleh informasi seputar layanan Puskesmas.
+
+### Kemampuan AI
+
+- Menjawab FAQ
+- Informasi Jam Pelayanan
+- Jadwal Dokter
+- Informasi Poli
+- Persyaratan Administrasi
+- Program Puskesmas
+- Kontak
+- Informasi BPJS
+- Pengumuman
+
+### Batasan AI
+
+AI hanya menjawab berdasarkan informasi resmi Puskesmas.
+
+AI tidak dapat:
+
+- Diagnosis penyakit
+- Memberikan resep
+- Menggantikan tenaga medis
+- Mengakses data pasien
+- Menjawab di luar konteks Puskesmas
+
+---
+
+# 📁 Struktur Project
+
+```
+app/
+bootstrap/
+config/
+database/
+public/
+resources/
+routes/
+storage/
+vendor/
+
+ai-service/ (Upcoming)
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+---
 
-## Contributing
+# ⚙️ Instalasi
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Clone repository
 
-## Code of Conduct
+```bash
+git clone https://github.com/username/project.git
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Masuk ke folder
 
-## Security Vulnerabilities
+```bash
+cd project
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Install Composer
 
-## License
+```bash
+composer install
+```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Copy Environment
+
+```bash
+cp .env.example .env
+```
+
+Generate Key
+
+```bash
+php artisan key:generate
+```
+
+Migrasi Database
+
+```bash
+php artisan migrate
+```
+
+Install Node Modules
+
+```bash
+npm install
+```
+
+Jalankan Vite
+
+```bash
+npm run dev
+```
+
+Jalankan Laravel
+
+```bash
+php artisan serve
+```
+
+Website akan berjalan di
+
+```
+http://127.0.0.1:8000
+```
+
+---
+
+# 🛠 Requirement
+
+- PHP 8.3+
+- Composer 2
+- Node.js 22+
+- MySQL 8
+- Laravel 13
+
+---
+
+# 🎯 Roadmap
+
+### ✅ Phase 1
+
+- Landing Page
+- Informasi Pelayanan
+- Pengaduan
+- Artikel
+
+### 🚧 Phase 2
+
+- Dashboard Admin
+- Manajemen Berita
+- Manajemen Dokter
+- Manajemen Pengaduan
+
+### 🤖 Phase 3
+
+- AI Healthcare Assistant
+- Google Gemini Integration
+- AI Context Retrieval
+- Chatbot Website
+
+---
+
+# 👨‍💻 Developer
+
+**Wahyu Khairi**
+
+Praktik Kerja Lapangan (PKL)
+
+Dinas Komunikasi dan Informatika Kota Pariaman
+
+---
+
+# 📄 License
+
+Project ini dikembangkan untuk keperluan pendidikan dan implementasi Sistem Informasi Puskesmas Marunggi.
+
+© 2026 Puskesmas Marunggi - Kota Pariaman
