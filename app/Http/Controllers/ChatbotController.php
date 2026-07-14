@@ -19,10 +19,14 @@ class ChatbotController extends Controller
         // Path to the python script
         $scriptPath = base_path('ai-service/chat_api.py');
         
+        $chatbotSetting = \Illuminate\Support\Facades\DB::table('chatbot_settings')->first();
+        $aiName = $chatbotSetting->ai_name ?? 'Asisten Puskesmas';
+        $puskesmasName = $chatbotSetting->puskesmas_display_name ?? 'Puskesmas Marunggi';
+
         // Execute python using Process
         // On Windows, the python command might be 'python' or 'py'. 
         // We will assume 'python' is in PATH since they already ran it before.
-        $process = new Process(['python', $scriptPath, $message]);
+        $process = new Process(['python', $scriptPath, $message, $aiName, $puskesmasName]);
         $process->setTimeout(60); // Timeout up to 60 seconds for API call
         $process->run();
         

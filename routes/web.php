@@ -675,6 +675,12 @@ Route::post('/upload-ckeditor', [HalamanpokjaController::class, 'upload']);
 
 
 
+// AI Chatbot Setting
+Route::get('/admin/chatbot-setting', [\App\Http\Controllers\Admin\ChatbotSettingController::class, 'index'])
+    ->name('chatbot-setting.index');
+Route::put('/admin/chatbot-setting', [\App\Http\Controllers\Admin\ChatbotSettingController::class, 'update'])
+    ->name('chatbot-setting.update');
+
 });
 
 require __DIR__.'/auth.php';
@@ -692,7 +698,8 @@ Route::get('/download/{id}', [landinghalaman::class, 'downloadDokumen']);
 
 Route::get('/chat', function () {
     $kategoris_halaman = \Illuminate\Support\Facades\DB::table('kategori_halamen')->get();
-    return view('chat', compact('kategoris_halaman'));
+    $chatbotSetting = \Illuminate\Support\Facades\DB::table('chatbot_settings')->first();
+    return view('chat', compact('kategoris_halaman', 'chatbotSetting'));
 })->name('chat');
 
 Route::post('/chat/send', [\App\Http\Controllers\ChatbotController::class, 'send'])->name('chat.send');

@@ -210,6 +210,11 @@
 <span class="font-medium text-sm">FAQ</span>
 </a>
 
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 hover:bg-primary/10 hover:text-primary rounded-xl transition-all duration-150 scale-95 hover:scale-100" href="{{ url('admin/chatbot-setting') }}">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">smart_toy</span>
+<span class="font-medium text-sm">Setting AI Chatbot</span>
+</a>
+
 </div>
 
 <button class="w-full flex items-center gap-3 px-4 py-2 text-error text-sm hover:bg-error/5 rounded-lg transition-colors" onclick="openModal('logout-modal')">

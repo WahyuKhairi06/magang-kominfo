@@ -26,7 +26,7 @@ try:
     from main import build_corpus, load_knowledge_base, retrieve_context, load_api_key, load_model_name, init_gemini_client, ask_gemini
     from prompt import build_prompt
 
-    def process_chat(user_message):
+    def process_chat(user_message, ai_name, puskesmas_name):
         api_key = load_api_key()
         model_name = load_model_name()
         knowledge_base = load_knowledge_base()
@@ -34,7 +34,7 @@ try:
         client = init_gemini_client(api_key)
 
         context = retrieve_context(user_message, corpus)
-        full_prompt = build_prompt(user_message, context)
+        full_prompt = build_prompt(user_message, context, ai_name, puskesmas_name)
         
         answer = ask_gemini(client, model_name, full_prompt)
         return {"status": "success", "answer": answer}
@@ -45,7 +45,9 @@ try:
             sys.exit(1)
             
         user_message = sys.argv[1]
-        result = process_chat(user_message)
+        ai_name = sys.argv[2] if len(sys.argv) > 2 else "Asisten AI Puskesmas"
+        puskesmas_name = sys.argv[3] if len(sys.argv) > 3 else "Puskesmas Marunggi"
+        result = process_chat(user_message, ai_name, puskesmas_name)
         
         # Pastikan hanya print json string
         print(json.dumps(result))
