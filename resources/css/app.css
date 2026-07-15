@@ -1,15 +1,34 @@
 @import "tailwindcss";
 
 @theme {
-  --color-primary: #2D6A4F;
-  --color-secondary: #0B3D26;
-  --color-tertiary: #EEF3EF;
+  --color-primary: var(--primary, #2D6A4F);
+  --color-on-primary: var(--on-primary, #FFFFFF);
+  --color-primary-container: var(--primary-container, #0B3D26);
+  --color-on-primary-container: var(--on-primary-container, #EEF3EF);
+  --color-secondary: var(--secondary, #0B3D26);
+  --color-on-secondary: var(--on-secondary, #FFFFFF);
+  --color-secondary-container: var(--secondary-container, #D9E4DC);
+  --color-on-secondary-container: var(--on-secondary-container, #0B3D26);
+  --color-surface: var(--surface, #EEF3EF);
+  --color-on-surface: var(--on-surface, #0B3D26);
+  --color-tertiary: var(--tertiary, #EEF3EF);
   --color-neutral: #FFFFFF;
-  --color-surface: #EEF3EF;
-  --color-on-surface: #0B3D26;
-  --color-border: #D9E4DC;
-  --color-muted: #6B7D72;
-  --color-error: #D92D20;
+  --color-border: var(--border, #D9E4DC);
+  --color-muted: var(--muted, #6B7D72);
+  --color-error: var(--error, #D92D20);
+
+  --font-serif: "Fraunces", serif;
+  --font-sans: "Inter", sans-serif;
+
+  --radius-none: 0px;
+  --radius-sm: 4px;
+  --radius-DEFAULT: 4px;
+  --radius-md: 8px;
+  --radius-lg: 16px;
+  --radius-xl: 32px;
+  --radius-full: 9999px;
+
+  --tracking-tightest: -0.04em;
 
   /* Sinkronisasi warna utama (hijau/biru/cyan/slate) dengan palet Puskesmas Clinical Academic */
   --color-slate-50: #F5F8F6;

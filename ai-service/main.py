@@ -30,14 +30,20 @@ from rich.console import Console
 from rich.panel import Panel
 from rich.prompt import Prompt
 
-from prompt import build_prompt, OUT_OF_CONTEXT_MESSAGE
+from prompt import build_prompt
 
 # ==================================================
 # KONFIGURASI DASAR
 # ==================================================
 
 BASE_DIR = Path(__file__).resolve().parent
-KNOWLEDGE_PATH = BASE_DIR / "knowledge" / "puskesmas.json"
+# Di-deaktifkan sementara sesuai permintaan user (tidak dihapus)
+# KNOWLEDGE_PATH = BASE_DIR / "knowledge" / "puskesmas.json"
+KNOWLEDGE_PATH = BASE_DIR / "knowledge" / "database_knowledge.json"
+
+# Jika file database_knowledge.json belum digenerate oleh Laravel, fallback ke puskesmas.json
+if not KNOWLEDGE_PATH.exists():
+    KNOWLEDGE_PATH = BASE_DIR / "knowledge" / "puskesmas.json"
 
 EXIT_COMMANDS = {"exit", "quit", "keluar"}
 
@@ -56,31 +62,39 @@ STOPWORDS = {
 # karena beberapa nama field JSON tidak selalu memuat kata yang lazim
 # digunakan oleh pengguna awam.
 CATEGORY_KEYWORDS = {
-    "profile": ["profil", "tentang puskesmas", "puskesmas apa"],
-    "vision_mission": ["visi", "misi", "motto"],
-    "history": ["sejarah", "berdiri", "histori"],
-    "operational_hours": ["jam", "operasional", "buka", "tutup", "waktu", "loket", "pelayanan"],
-    "contacts": ["kontak", "telepon", "nomor", "wa", "whatsapp", "email", "instagram", "facebook", "website"],
-    "emergency_contact": ["darurat", "emergency", "ambulans", "gawat", "kecelakaan"],
-    "location": ["lokasi", "alamat", "dimana", "peta", "maps", "arah"],
-    "doctors": ["dokter", "nama dokter"],
-    "schedules": ["jadwal", "praktik", "hari praktik", "kapan"],
-    "polyclinic": ["poli", "poliklinik"],
-    "services": ["layanan", "pelayanan", "fasilitas"],
-    "programs": ["program", "kegiatan", "posyandu", "posbindu"],
-    "announcements": ["pengumuman", "info terbaru", "perubahan"],
-    "articles": ["artikel", "berita", "edukasi"],
-    "faq": ["faq", "tanya jawab", "pertanyaan umum"],
-    "bpjs_information": ["bpjs", "jkn", "faskes"],
-    "administrative_requirements": ["syarat", "administrasi", "berkas", "dokumen", "persyaratan"],
-    "health_campaign": ["kampanye", "gerakan", "stunting", "dbd", "cuci tangan"],
+    "profile": [
+        "profil", "tentang puskesmas", "puskesmas apa", "sambutan", "kepala", "motto"
+    ],
+    "halaman_informasi": [
+        "visi", "misi", "sejarah", "berdiri", "program pokok", "struktur", 
+        "organisasi", "jadwal pelayanan", "jam buka", "operasional", "hari buka",
+        "poli", "poliklinik", "layanan", "pelayanan", "fasilitas"
+    ],
+    "acara_mendatang": [
+        "agenda", "acara", "kegiatan mendatang", "bulan", "kalender", "rencana", "jadwal kegiatan"
+    ],
+    "berita": [
+        "berita", "kabar", "artikel", "info terbaru", "edukasi", "bacaan"
+    ],
+    "infografis": [
+        "infografis", "gambar", "foto kegiatan", "dokumentasi", "galeri"
+    ],
+    "dokumen_publik": [
+        "dokumen", "syarat", "administrasi", "file", "download", "unduh", "laporan", "sk", "sop", "kak"
+    ],
+    "faqs": [
+        "faq", "tanya jawab", "pertanyaan umum", "cara berobat", "bpjs", "umum", "pendaftaran"
+    ],
+    "inovasi_program": [
+        "inovasi", "pinter", "sahabat obat", "jempol ckg", "program baru", "terobosan"
+    ],
     "ai_assistant_identity": [
         "siapa kamu", "kamu siapa", "siapa anda", "anda siapa",
         "kamu apa", "anda apa", "namamu siapa", "nama kamu siapa",
         "kamu robot", "kamu bot", "apakah kamu ai", "apakah kamu manusia",
         "kamu ai", "identitas kamu", "tentang asisten ini", "asisten ini apa",
         "kamu dibuat oleh", "siapa yang membuat kamu", "kamu buatan siapa",
-        "perkenalkan dirimu", "kenalkan dirimu",
+        "perkenalkan dirimu", "kenalkan dirimu"
     ],
 }
 
@@ -279,7 +293,7 @@ def ask_gemini(client, model_name: str, full_prompt: str) -> str:
     try:
         response = client.models.generate_content(
             model=model_name,
-            contents=full_prompt,
+            contents=[full_prompt],
         )
 
         answer = getattr(response, "text", None)

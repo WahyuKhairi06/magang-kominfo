@@ -5,8 +5,6 @@
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Puskesmas Marunggi Kota Pariaman - Website Resmi</title>
 <meta name="description" content="Website resmi Puskesmas Marunggi, Kota Pariaman. Informasi layanan kesehatan, jadwal, berita, dan informasi publik.">
-<script src="{{ asset('tailwind.min.js') }}"></script>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link rel="icon" type="image/png" href="{{ asset('logo.png') }}">
 
 <!-- Fonts: Fraunces (headline serif editorial) + Inter (sans utilitas) -->
@@ -26,42 +24,48 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 
-<script id="tailwind-config">
-    tailwind.config = {
-        darkMode: "class",
-        theme: {
-            extend: {
-                colors: {
-                    primary: "#2D6A4F",
-                    secondary: "#0B3D26",
-                    tertiary: "#EEF3EF",
-                    neutral: "#FFFFFF",
-                    surface: "#EEF3EF",
-                    "on-surface": "#0B3D26",
-                    border: "#D9E4DC",
-                    muted: "#6B7D72",
-                    error: "#D92D20",
-                },
-                fontFamily: {
-                    serif: ["Fraunces", "serif"],
-                    sans: ["Inter", "sans-serif"],
-                },
-                borderRadius: {
-                    none: "0px",
-                    sm: "4px",
-                    DEFAULT: "4px",
-                    md: "8px",
-                    lg: "16px",
-                    xl: "32px",
-                    full: "9999px",
-                },
-                letterSpacing: {
-                    tightest: "-0.04em",
+@if (file_exists(public_path('build/manifest.json')) || file_exists(public_path('hot')))
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+@else
+    <script src="{{ asset('tailwind.min.js') }}"></script>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#2D6A4F",
+                        secondary: "#0B3D26",
+                        tertiary: "#EEF3EF",
+                        neutral: "#FFFFFF",
+                        surface: "#EEF3EF",
+                        "on-surface": "#0B3D26",
+                        border: "#D9E4DC",
+                        muted: "#6B7D72",
+                        error: "#D92D20",
+                    },
+                    fontFamily: {
+                        serif: ["Fraunces", "serif"],
+                        sans: ["Inter", "sans-serif"],
+                    },
+                    borderRadius: {
+                        none: "0px",
+                        sm: "4px",
+                        DEFAULT: "4px",
+                        md: "8px",
+                        lg: "16px",
+                        xl: "32px",
+                        full: "9999px",
+                    },
+                    letterSpacing: {
+                        tightest: "-0.04em",
+                    },
                 },
             },
-        },
-    }
-</script>
+        }
+    </script>
+@endif
 <style>
     html { scroll-behavior: smooth; }
     body { font-family: 'Inter', sans-serif; }

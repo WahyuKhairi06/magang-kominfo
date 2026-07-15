@@ -68,15 +68,17 @@ ATURAN UTAMA (WAJIB DIPATUHI):
 9. IDENTITAS DIRI: Jika pengguna bertanya siapa/apa Anda (misalnya "kamu siapa?",
    "apakah kamu AI?", "kamu robot ya?", "siapa yang membuat kamu?"), pertanyaan
    ini SELALU dianggap masih dalam konteks {puskesmas_name} (BUKAN pertanyaan
-   di luar topik). Jawab dengan jujur bahwa Anda adalah {ai_name}, sebuah AI Assistant berbasis Google Gemini API yang dikembangkan
+   di luar topik). Jawab dengan jujur bahwa Anda adalah {ai_name}, sebuah AI Assistant yang dikembangkan
    untuk membantu masyarakat mencari informasi resmi seputar layanan {puskesmas_name}. Tegaskan bahwa Anda bukan manusia dan bukan tenaga medis, sehingga
    tidak dapat melakukan diagnosis atau memberi resep obat. Gunakan informasi
    pada KONTEKS bagian identitas asisten (jika tersedia) sebagai acuan, namun
    sampaikan dengan gaya bahasa yang ramah dan alami.
+10. TAUTAN DAN LINK TOMBOL: Jika pada KONTEKS tersedia field "url" atau tautan terkait informasi yang ditanyakan (seperti jadwal pelayanan, detail berita, dokumen publik, inovasi, dll.), Anda HARUS menyertakan tautan tersebut secara jelas di bagian akhir jawaban Anda dengan menggunakan format markdown: `[Nama Tombol/Link](url)` (misalnya: `[Buka Halaman Jadwal Pelayanan](http://...)`). Ini agar sistem dapat mengubahnya menjadi tombol navigasi bagi pengguna.
+11. BACA DAN GARIS BESAR BERITA: Jika pengguna menanyakan tentang berita atau artikel tertentu, Anda HARUS membaca seluruh isi berita yang disediakan di KONTEKS dan memberikan rangkuman/garis besar (outline) informasi penting dari berita tersebut secara terstruktur dan informatif, serta menyertakan tautan untuk membaca berita lengkapnya jika tersedia.
 """
 
 
-def build_prompt(user_question: str, context: str, ai_name: str, puskesmas_name: str) -> str:
+def build_prompt(user_question: str, context: str, ai_name: str = "Asisten AI Puskesmas", puskesmas_name: str = "Puskesmas Marunggi") -> str:
     """
     Menyusun prompt akhir yang akan dikirim ke Gemini API.
 
@@ -94,6 +96,14 @@ def build_prompt(user_question: str, context: str, ai_name: str, puskesmas_name:
     Returns:
         String prompt lengkap yang siap dikirim ke Gemini.
     """
+    import datetime
+    BULAN = {
+        1: "Januari", 2: "Februari", 3: "Maret", 4: "April", 5: "Mei", 6: "Juni",
+        7: "Juli", 8: "Agustus", 9: "September", 10: "Oktober", 11: "November", 12: "Desember"
+    }
+    now = datetime.datetime.now()
+    today_str = f"{now.day} {BULAN[now.month]} {now.year}"
+
     if context.strip():
         context_block = context
     else:
@@ -105,6 +115,11 @@ def build_prompt(user_question: str, context: str, ai_name: str, puskesmas_name:
         )
 
     prompt = f"""{get_system_instruction(ai_name, puskesmas_name)}
+
+==================================================
+WAKTU SEKARANG (WIB)
+==================================================
+Hari/Tanggal: {today_str}
 
 ==================================================
 KONTEKS (Sumber Informasi Resmi {puskesmas_name})

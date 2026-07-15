@@ -8,6 +8,11 @@ export default defineConfig({
             input: ['resources/css/app.css', 'resources/js/app.js'],
             refresh: true,
         }),
-            tailwindcss(),
+        tailwindcss(),
     ],
+    server: {
+        watch: {
+            ignored: ['**/ai-service/**'],
+        },
+    },
 });

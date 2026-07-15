@@ -29,10 +29,13 @@ class HalamanController extends Controller
 
     public function store(Request $request)
     {
+        $isiOcr = $this->extractOcrFromHtml($request->isi);
+
         DB::table('halamen')->insert([
             'judul' => $request->judul,
             'kategori_halaman_id' => $request->kategori_halaman_id,
             'isi' => $request->isi,
+            'isi_ocr' => $isiOcr,
             'created_at' => now(),
             'updated_at' => now(),
         ]);
@@ -51,10 +54,13 @@ class HalamanController extends Controller
 
     public function update(Request $request, $id)
     {
+        $isiOcr = $this->extractOcrFromHtml($request->isi);
+
         DB::table('halamen')->where('id', $id)->update([
             'judul' => $request->judul,
             'kategori_halaman_id' => $request->kategori_halaman_id,
             'isi' => $request->isi,
+            'isi_ocr' => $isiOcr,
             'updated_at' => now(),
         ]);
 
@@ -98,14 +104,50 @@ class HalamanController extends Controller
 
     public function hapus($id)
     {
+        DB::table('halamen')->where('id', $id)->delete();
 
-           $hapus= DB::table('halamen')->where('id', $id)->first();
-           $hapus->delete();
+        Alert::success('Berhasil','Data Berhasil Dihapus');
+        return redirect('halaman');
+    }
 
-           Alert::success('Berhasil','Data Berhasil Dihapus');
-           return redirect('halaman');
+    private function extractOcrFromHtml($html)
+    {
+        if (empty($html)) {
+            return null;
+        }
 
+        preg_match_all('/<img[^>]+src="([^">]+)"/i', $html, $matches);
+        if (empty($matches[1])) {
+            return null;
+        }
 
+        $ocrTexts = [];
+        foreach ($matches[1] as $url) {
+            $filename = basename(urldecode($url));
+            $imagePath = public_path('uploads/' . $filename);
 
+            if (file_exists($imagePath)) {
+                try {
+                    $process = new \Symfony\Component\Process\Process(['python', base_path('ai-service/extract_ocr.py'), $imagePath]);
+                    $process->setTimeout(60);
+                    $process->run();
+
+                    if ($process->isSuccessful()) {
+                        $res = json_decode($process->getOutput(), true);
+                        if (isset($res['status']) && $res['status'] === 'success') {
+                            $ocrTexts[] = $res['ocr_text'];
+                        } else {
+                            \Illuminate\Support\Facades\Log::error('OCR Python returned error: ' . ($res['message'] ?? 'Unknown error'));
+                        }
+                    } else {
+                        \Illuminate\Support\Facades\Log::error('OCR Python execution failed: ' . $process->getErrorOutput());
+                    }
+                } catch (\Exception $e) {
+                    \Illuminate\Support\Facades\Log::error('OCR Exception: ' . $e->getMessage());
+                }
+            }
+        }
+
+        return !empty($ocrTexts) ? implode("\n\n---\n\n", $ocrTexts) : null;
     }
 }

@@ -106,31 +106,11 @@
                     </div>
                     <div class="bg-white border border-border rounded-2xl rounded-tl-sm px-5 py-3.5 shadow-sm max-w-[85%] sm:max-w-[75%]">
                         <p class="text-slate-700 text-[15px] leading-relaxed">
-                            {{ $greeting }}
-                        </p>
-                    </div>
-                </div>
-
-                <!-- Example User Message -->
-                <div class="flex items-start gap-4 flex-row-reverse">
-                    <div class="w-10 h-10 rounded-full chat-primary flex items-center justify-center shrink-0">
-                        <span class="material-symbols-outlined text-[20px] chat-primary-text-contrast">person</span>
-                    </div>
-                    <div class="rounded-2xl rounded-tr-sm px-5 py-3.5 shadow-sm max-w-[85%] sm:max-w-[75%] chat-primary">
-                        <p class="text-[15px] leading-relaxed chat-primary-text-contrast">
-                            Jam berapa layanan poli gigi buka besok?
-                        </p>
-                    </div>
-                </div>
-
-                <!-- Example Bot Response -->
-                <div class="flex items-start gap-4">
-                    <div class="w-10 h-10 rounded-full chat-primary-bg-10 flex items-center justify-center shrink-0">
-                        <span class="material-symbols-outlined chat-primary-text text-[20px]">smart_toy</span>
-                    </div>
-                    <div class="bg-white border border-border rounded-2xl rounded-tl-sm px-5 py-3.5 shadow-sm max-w-[85%] sm:max-w-[75%]">
-                        <p class="text-slate-700 text-[15px] leading-relaxed">
-                            Layanan Poli Gigi buka setiap hari <strong>Senin - Sabtu</strong> mulai pukul <strong>08.00 WIB hingga 14.00 WIB</strong>. Pastikan Anda membawa kartu berobat atau BPJS Kesehatan saat mendaftar.
+                            Halo! Saya <strong>{{ $aiName }}</strong>, asisten virtual resmi <strong>{{ $puskesmasName }}</strong>. Saya siap membantu Anda mendapatkan informasi seputar layanan <strong>{{ $puskesmasName }}</strong>.
+                            <br><br>
+                            Sebagai AI Assistant berbasis Google Gemini API, saya dikembangkan untuk membantu masyarakat mencari informasi resmi seputar <strong>{{ $puskesmasName }}</strong>. Saya bukan manusia dan bukan tenaga medis, sehingga tidak dapat melakukan diagnosis penyakit atau memberikan resep obat.
+                            <br><br>
+                            Ada yang bisa saya bantu terkait layanan <strong>{{ $puskesmasName }}</strong>?
                         </p>
                     </div>
                 </div>

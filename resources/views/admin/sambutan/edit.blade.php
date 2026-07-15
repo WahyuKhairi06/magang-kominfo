@@ -31,9 +31,9 @@
 
         <div>
             <label class="block font-semibold mb-2">Foto Sekarang</label>
-            <img src="{{ asset('storage/'.$data->foto) }}" class="w-32 rounded mb-3">
+            <img id="preview-foto" src="{{ $data->foto ? asset('storage/'.$data->foto) : asset('no-image.png') }}" class="w-32 rounded mb-3 object-cover max-h-48">
 
-            <input type="file" name="foto" class="w-full border rounded-lg px-4 py-2">
+            <input type="file" name="foto" onchange="previewFoto(event)" class="w-full border rounded-lg px-4 py-2">
         </div>
 
         <button class="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700">
@@ -42,4 +42,17 @@
     </form>
 </div>
 
+<script>
+function previewFoto(event) {
+    const input = event.target;
+    const preview = document.getElementById('preview-foto');
+    if (input.files && input.files[0]) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            preview.src = e.target.result;
+        }
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+</script>
 @endsection
