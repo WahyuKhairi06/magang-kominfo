@@ -128,8 +128,7 @@
             <a class="hover:text-primary transition-colors" href="{{ route('faq') }}">FAQ</a>
             <a class="text-primary font-bold transition-colors mt-2" href="{{ route('chat') }}">
                 <span class="flex items-center gap-2"><span class="material-symbols-outlined">smart_toy</span> Chat Bot AI</span>
-            </a>
-        </div>
+            </a>        </div>
     </div>
 </div>
 

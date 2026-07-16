@@ -48,24 +48,19 @@
               <div class="space-y-5">
                 <div>
                   <label class="block text-sm font-medium text-slate-700 mb-1">Nama AI (Virtual Assistant)</label>
-                  <input type="text" name="ai_name" x-model="aiName" class="w-full rounded-xl border-slate-200 focus:border-primary focus:ring-primary shadow-sm text-sm" placeholder="Contoh: Asisten Puskesmas" required>
+                  <input type="text" name="ai_name" x-model="aiName" class="w-full rounded-xl border border-slate-200 px-4 py-2.5 focus:border-primary focus:ring-primary focus:ring-2 shadow-sm text-sm" placeholder="Contoh: Asisten Puskesmas" required>
                   <p class="text-xs text-slate-400 mt-1">Nama yang akan tampil sebagai pengirim pesan bot</p>
                   @error('ai_name') <p class="text-xs text-red-500 mt-1">{{ $message }}</p> @enderror
                 </div>
 
                 <div>
                   <label class="block text-sm font-medium text-slate-700 mb-1">Nama Puskesmas</label>
-                  <input type="text" name="puskesmas_display_name" x-model="puskesmasName" class="w-full rounded-xl border-slate-200 focus:border-primary focus:ring-primary shadow-sm text-sm" placeholder="Contoh: Puskesmas Marunggi" required>
+                  <input type="text" name="puskesmas_display_name" x-model="puskesmasName" class="w-full rounded-xl border border-slate-200 px-4 py-2.5 focus:border-primary focus:ring-primary focus:ring-2 shadow-sm text-sm" placeholder="Contoh: Puskesmas Marunggi" required>
                   <p class="text-xs text-slate-400 mt-1">Nama Puskesmas yang muncul di judul chatbot & system prompt AI</p>
                   @error('puskesmas_display_name') <p class="text-xs text-red-500 mt-1">{{ $message }}</p> @enderror
                 </div>
 
-                <div>
-                  <label class="block text-sm font-medium text-slate-700 mb-1">Pesan Sambutan (Greeting)</label>
-                  <textarea name="greeting_message" x-model="greeting" rows="3" class="w-full rounded-xl border-slate-200 focus:border-primary focus:ring-primary shadow-sm text-sm resize-none" placeholder="Halo! Ada yang bisa saya bantu?"></textarea>
-                  <p class="text-xs text-slate-400 mt-1">Pesan pertama yang dikirimkan bot saat chat dibuka</p>
-                  @error('greeting_message') <p class="text-xs text-red-500 mt-1">{{ $message }}</p> @enderror
-                </div>
+
               </div>
             </div>
 
@@ -97,7 +92,7 @@
                     <div class="flex items-center gap-4">
                       <input type="color" x-model="primaryColor" class="h-10 w-20 rounded cursor-pointer border border-slate-200">
                       <div class="flex-1">
-                        <input type="text" name="primary_color" x-model="primaryColor" class="w-full rounded-xl border-slate-200 focus:border-primary focus:ring-primary shadow-sm text-sm font-mono" placeholder="#000000">
+                        <input type="text" name="primary_color" x-model="primaryColor" class="w-full rounded-xl border border-slate-200 px-4 py-2.5 focus:border-primary focus:ring-primary focus:ring-2 shadow-sm text-sm font-mono" placeholder="#000000">
                       </div>
                     </div>
 
@@ -195,7 +190,8 @@
                   <div class="w-6 h-6 rounded-full flex items-center justify-center shrink-0 overflow-hidden" :style="`background-color: ${primaryColor}20; color: ${primaryColor}`">
                      <span class="material-symbols-outlined text-[14px]">smart_toy</span>
                   </div>
-                  <div class="bg-white p-3 rounded-xl rounded-tl-sm shadow-sm border border-slate-100 text-[11px] text-slate-600 leading-relaxed max-w-[85%]" x-text="greeting">
+                  <div class="bg-white p-3 rounded-xl rounded-tl-sm shadow-sm border border-slate-100 text-[11px] text-slate-600 leading-relaxed max-w-[85%]">
+                     Halo! Saya adalah <strong x-text="aiName"></strong>, asisten virtual resmi Puskesmas <strong x-text="puskesmasName"></strong>. Saya siap membantu Anda mendapatkan informasi seputar layanan Puskesmas <strong x-text="puskesmasName"></strong>.<br><br>Sebagai AI Assistant yang dikembangkan membantu masyarakat mencari informasi resmi seputar Puskesmas <strong x-text="puskesmasName"></strong>. Saya bukan manusia dan bukan tenaga medis, sehingga tidak dapat melakukan diagnosis penyakit atau memberikan resep obat.<br><br>Ada yang bisa saya bantu terkait layanan Puskesmas <strong x-text="puskesmasName"></strong>?
                   </div>
                 </div>
                 <!-- User Msg -->
@@ -204,7 +200,7 @@
                      <span class="material-symbols-outlined text-[14px]">person</span>
                   </div>
                   <div class="p-3 rounded-xl rounded-tr-sm shadow-sm text-[11px] leading-relaxed max-w-[85%]" :style="`background-color: ${primaryColor}; color: ${contrastColor}`">
-                    Halo, jam berapa pendaftaran poli dibuka hari ini?
+                    Halo, Saya mau menanyakan apakah bisa berobat BPJS di Puskesmas?
                   </div>
                 </div>
               </div>

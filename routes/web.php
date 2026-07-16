@@ -70,6 +70,12 @@ Route::post('/pengaduan', [LandingpageController::class, 'pengaduanStore'])->nam
 Route::get('/admin/pengaduan', [\App\Http\Controllers\Admin\PengaduanController::class, 'index'])
     ->name('pengaduan.index');
 
+Route::get('/admin/pengaduan/{id}/edit', [\App\Http\Controllers\Admin\PengaduanController::class, 'edit'])
+    ->name('admin.pengaduan.edit');
+
+Route::patch('/admin/pengaduan/{id}/klasifikasi', [\App\Http\Controllers\Admin\PengaduanController::class, 'updateKlasifikasi'])
+    ->name('admin.pengaduan.klasifikasi.update');
+
 Route::delete('/admin/pengaduan/{id}', [\App\Http\Controllers\Admin\PengaduanController::class, 'destroy'])
     ->name('pengaduan.delete');
 

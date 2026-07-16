@@ -18,6 +18,12 @@ Modul ini dikembangkan untuk memberikan fleksibilitas kepada Administrator Puske
   - **Validasi Format Real-time**: Menampilkan lencana validasi langsung di bawah input warna jika format HEX yang diketikkan valid atau tidak valid.
 - **Status Layanan**:
   - Tombol radio untuk mengaktifkan atau menonaktifkan chatbot untuk sementara waktu (pemeliharaan). Jika dinonaktifkan, halaman chat pengunjung akan menampilkan pemberitahuan bahwa layanan sedang tidak aktif.
+- **Widget Chatbot Melayang (Floating Button)**:
+  - **Tombol Melayang (FAB)** di sudut kanan bawah situs dengan pesan sapaan (nudge tooltip) otomatis setelah 3 detik.
+  - **Jendela Chat Pop-up** mini yang mendukung interaksi langsung di halaman manapun secara real-time.
+  - **Sinkronisasi Riwayat Chat (sessionStorage)**: Percakapan disinkronkan secara otomatis sehingga tidak hilang saat pengguna beralih halaman atau menekan tombol Maximize (`open_in_full`) untuk membuka tampilan penuh.
+  - **Bersihkan Percakapan**: Tombol tempat sampah untuk mereset riwayat percakapan.
+  - **Akses Ganda (Dual Entry Points)**: Tautan Chatbot tetap dipertahankan di navbar utama (desktop & mobile) untuk navigasi langsung ke halaman penuh `/chat`, sedangkan tombol melayang (FAB) berfungsi sebagai pintasan interaktif cepat di halaman manapun.
 
 ---
 
@@ -52,6 +58,8 @@ Data pengaturan disimpan dalam tabel tunggal `chatbot_settings` dengan struktur 
    - `app/Http/Controllers/Admin/ChatbotSettingController.php`
 5. **View Admin**:
    - `resources/views/admin/chatbot-setting/index.blade.php`
+6. **View Widget Melayang**:
+   - `resources/views/chatbot-widget.blade.php`
 
 ### B. Berkas yang Dimodifikasi (Modified)
 1. **Routes**:
@@ -64,6 +72,10 @@ Data pengaturan disimpan dalam tabel tunggal `chatbot_settings` dengan struktur 
    - `app/Http/Controllers/ChatbotController.php`
 5. **Python AI Scripts**:
    - `ai-service/chat_api.py` dan `ai-service/prompt.py`
+6. **Global Footer Layout**:
+   - `resources/views/footer.blade.php`
+7. **Navigation Bar Layout**:
+   - `resources/views/navbar.blade.php`
 
 ---
 

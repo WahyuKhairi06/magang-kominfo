@@ -32,6 +32,15 @@ from rich.prompt import Prompt
 
 from prompt import build_prompt
 
+# FastAPI Integration for internal admin tools
+try:
+    from fastapi import FastAPI
+    from classify_complaint import router as complaint_router
+    app = FastAPI(title="AI Healthcare Assistant Services")
+    app.include_router(complaint_router)
+except ImportError:
+    app = None
+
 # ==================================================
 # KONFIGURASI DASAR
 # ==================================================

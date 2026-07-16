@@ -4,7 +4,10 @@
     // Ambil setting chatbot (fallback ke default jika belum ada)
     $aiName = $chatbotSetting->ai_name ?? 'Asisten Puskesmas';
     $puskesmasName = $chatbotSetting->puskesmas_display_name ?? 'Puskesmas Marunggi';
-    $greeting = $chatbotSetting->greeting_message ?? 'Halo! Saya adalah Asisten Virtual Puskesmas. Ada yang bisa saya bantu hari ini?';
+    
+    $defaultGreeting = "Halo! Saya adalah **" . $aiName . "**, asisten virtual resmi Puskesmas **" . $puskesmasName . "**. Saya siap membantu Anda mendapatkan informasi seputar layanan Puskesmas **" . $puskesmasName . "**.\n\nSebagai AI Assistant yang dikembangkan membantu masyarakat mencari informasi resmi seputar Puskesmas **" . $puskesmasName . "**. Saya bukan manusia dan bukan tenaga medis, sehingga tidak dapat melakukan diagnosis penyakit atau memberikan resep obat.\n\nAda yang bisa saya bantu terkait layanan Puskesmas **" . $puskesmasName . "**?";
+    
+    $greeting = $chatbotSetting->greeting_message ?? $defaultGreeting;
     $primaryColor = $chatbotSetting->primary_color ?? '#1e6b4d';
     $logoChatbot = isset($chatbotSetting->logo_chatbot) && $chatbotSetting->logo_chatbot ? asset($chatbotSetting->logo_chatbot) : null;
     $chatbotStatus = $chatbotSetting->status ?? 'active';
@@ -86,10 +89,15 @@
                     <h4 class="font-bold text-sm leading-tight chat-primary-text-contrast">{{ $aiName }}</h4>
                     <p class="text-[10px] opacity-80 chat-primary-text-contrast">{{ $puskesmasName }}</p>
                 </div>
-                <span class="flex items-center gap-1.5">
-                    <span class="w-2 h-2 rounded-full bg-green-300 animate-pulse shadow-sm"></span>
-                    <span class="text-[10px] font-medium chat-primary-text-contrast">Online</span>
-                </span>
+                <div class="flex items-center gap-3">
+                    <button id="chat-clear-btn" class="p-1.5 hover:bg-black/10 rounded transition-colors text-white/90 hover:text-white focus:outline-none" title="Bersihkan Percakapan">
+                        <span class="material-symbols-outlined text-[18px]">delete</span>
+                    </button>
+                    <span class="flex items-center gap-1.5">
+                        <span class="w-2 h-2 rounded-full bg-green-300 animate-pulse shadow-sm"></span>
+                        <span class="text-[10px] font-medium chat-primary-text-contrast">Online</span>
+                    </span>
+                </div>
             </div>
 
             <!-- Chat Area -->
@@ -106,11 +114,7 @@
                     </div>
                     <div class="bg-white border border-border rounded-2xl rounded-tl-sm px-5 py-3.5 shadow-sm max-w-[85%] sm:max-w-[75%]">
                         <p class="text-slate-700 text-[15px] leading-relaxed">
-                            Halo! Saya <strong>{{ $aiName }}</strong>, asisten virtual resmi <strong>{{ $puskesmasName }}</strong>. Saya siap membantu Anda mendapatkan informasi seputar layanan <strong>{{ $puskesmasName }}</strong>.
-                            <br><br>
-                            Sebagai AI Assistant berbasis Google Gemini API, saya dikembangkan untuk membantu masyarakat mencari informasi resmi seputar <strong>{{ $puskesmasName }}</strong>. Saya bukan manusia dan bukan tenaga medis, sehingga tidak dapat melakukan diagnosis penyakit atau memberikan resep obat.
-                            <br><br>
-                            Ada yang bisa saya bantu terkait layanan <strong>{{ $puskesmasName }}</strong>?
+                            {!! preg_replace('/\*\*(.*?)\*\*/', '<strong>$1</strong>', nl2br(e($greeting))) !!}
                         </p>
                     </div>
                 </div>
@@ -138,9 +142,6 @@
             <!-- Input Area -->
             <div class="p-4 bg-white border-t border-border">
                 <form id="chat-form" class="relative flex items-center gap-3">
-                    <button type="button" class="w-10 h-10 rounded-full text-muted hover:bg-surface hover:text-secondary transition-colors flex items-center justify-center shrink-0" title="Lampirkan File (Opsional)">
-                        <span class="material-symbols-outlined">attach_file</span>
-                    </button>
                     <input 
                         type="text" 
                         id="chat-input"
@@ -173,6 +174,7 @@
         aiName: @json($aiName),
         primaryColor: @json($primaryColor),
         logoChatbot: @json($logoChatbot),
+        greeting: @json(nl2br(e($greeting))).replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\*([^\*]+)\*/g, '<em>$1</em>'),
     };
 
     document.addEventListener('DOMContentLoaded', () => {
@@ -180,6 +182,11 @@
         const chatInput = document.getElementById('chat-input');
         const chatMessages = document.getElementById('chat-messages');
         const typingIndicator = document.getElementById('typing-indicator');
+        const clearBtn = document.getElementById('chat-clear-btn');
+
+        const STORAGE_KEY = 'puskesmas_chatbot_messages';
+        const aiName = CHATBOT_CONFIG.aiName;
+        const logoChatbot = CHATBOT_CONFIG.logoChatbot;
 
         if (!chatForm || !chatInput || !chatMessages) return; // Guard for inactive state
 
@@ -188,8 +195,8 @@
             chatMessages.scrollTop = chatMessages.scrollHeight;
         };
 
-        // Add user message
-        const addUserMessage = (text) => {
+        // Add user message to UI
+        const renderUserMessage = (text) => {
             const html = `
                 <div class="flex items-start gap-4 flex-row-reverse animate-fade-in-up" style="animation-duration: 0.3s">
                     <div class="w-10 h-10 rounded-full chat-primary flex items-center justify-center shrink-0">
@@ -204,10 +211,10 @@
             scrollToBottom();
         };
 
-        // Add bot message
-        const addBotMessage = (text) => {
-            const avatarHtml = CHATBOT_CONFIG.logoChatbot
-                ? `<img src="${CHATBOT_CONFIG.logoChatbot}" alt="${CHATBOT_CONFIG.aiName}" class="w-full h-full object-cover">`
+        // Add bot message to UI
+        const renderBotMessage = (text) => {
+            const avatarHtml = logoChatbot
+                ? `<img src="${logoChatbot}" alt="${aiName}" class="w-full h-full object-cover">`
                 : `<span class="material-symbols-outlined chat-primary-text text-[20px]">smart_toy</span>`;
 
             const html = `
@@ -220,11 +227,78 @@
                     </div>
                 </div>
             `;
-            typingIndicator.classList.remove('flex');
-            typingIndicator.classList.add('hidden');
             chatMessages.insertAdjacentHTML('beforeend', html);
             scrollToBottom();
         };
+
+        // Default greeting html content matching initial layout
+        const getDefaultGreetingHTML = () => `
+            <div class="flex items-start gap-4">
+                <div class="w-10 h-10 rounded-full chat-primary-bg-10 flex items-center justify-center shrink-0 overflow-hidden">
+                    ${logoChatbot ? `<img src="${logoChatbot}" alt="${aiName}" class="w-full h-full object-cover">` : `<span class="material-symbols-outlined chat-primary-text text-[20px]">smart_toy</span>`}
+                </div>
+                <div class="bg-white border border-border rounded-2xl rounded-tl-sm px-5 py-3.5 shadow-sm max-w-[85%] sm:max-w-[75%]">
+                    <p class="text-slate-700 text-[15px] leading-relaxed">
+                        ${CHATBOT_CONFIG.greeting}
+                    </p>
+                </div>
+            </div>
+        `;
+
+        // Load messages from sessionStorage
+        const loadMessages = () => {
+            chatMessages.innerHTML = '';
+            chatMessages.appendChild(typingIndicator); // put typing indicator back
+
+            const history = sessionStorage.getItem(STORAGE_KEY);
+            if (history) {
+                try {
+                    const parsed = JSON.parse(history);
+                    if (parsed && parsed.length > 0) {
+                        parsed.forEach(msg => {
+                            if (msg.sender === 'user') {
+                                renderUserMessage(msg.text);
+                            } else {
+                                renderBotMessage(msg.text);
+                            }
+                        });
+                        scrollToBottom();
+                        return;
+                    }
+                } catch(e) {
+                    console.error('Failed parsing chat history:', e);
+                }
+            }
+
+            // Fallback default message
+            chatMessages.insertAdjacentHTML('afterbegin', getDefaultGreetingHTML());
+            scrollToBottom();
+        };
+
+        const saveMessage = (sender, text) => {
+            let history = [];
+            const raw = sessionStorage.getItem(STORAGE_KEY);
+            if (raw) {
+                try {
+                    history = JSON.parse(raw);
+                } catch(e) {}
+            }
+            history.push({ sender, text });
+            sessionStorage.setItem(STORAGE_KEY, JSON.stringify(history));
+        };
+
+        // Initialize view
+        loadMessages();
+
+        // Clear button event
+        if (clearBtn) {
+            clearBtn.addEventListener('click', () => {
+                if (confirm('Bersihkan riwayat percakapan?')) {
+                    sessionStorage.removeItem(STORAGE_KEY);
+                    loadMessages();
+                }
+            });
+        }
 
         // Handle Submit
         chatForm.addEventListener('submit', (e) => {
@@ -232,7 +306,8 @@
             const message = chatInput.value.trim();
             if (!message) return;
 
-            addUserMessage(message);
+            renderUserMessage(message);
+            saveMessage('user', message);
             chatInput.value = '';
             
             chatMessages.appendChild(typingIndicator);
@@ -255,15 +330,26 @@
                 return response.json();
             })
             .then(data => {
+                typingIndicator.classList.remove('flex');
+                typingIndicator.classList.add('hidden');
+
                 if (data.status === 'success') {
-                    addBotMessage(data.answer);
+                    renderBotMessage(data.answer);
+                    saveMessage('bot', data.answer);
                 } else {
-                    addBotMessage("Maaf, terjadi kesalahan: " + (data.message || "Unknown error"));
+                    const errMsg = "Maaf, terjadi kesalahan: " + (data.message || "Unknown error");
+                    renderBotMessage(errMsg);
+                    saveMessage('bot', errMsg);
                 }
             })
             .catch(error => {
                 console.error('Error:', error);
-                addBotMessage("Maaf, gagal terhubung ke asisten virtual saat ini. Silakan coba beberapa saat lagi.");
+                typingIndicator.classList.remove('flex');
+                typingIndicator.classList.add('hidden');
+                
+                const errMsg = "Maaf, gagal terhubung ke asisten virtual saat ini. Silakan coba beberapa saat lagi.";
+                renderBotMessage(errMsg);
+                saveMessage('bot', errMsg);
             });
         });
     });

@@ -50,6 +50,10 @@
                             Tanggal
                         </th>
 
+                        <th class="px-4 py-4 text-left text-sm font-bold text-gray-700">
+                            Klasifikasi
+                        </th>
+
                         <th class="px-4 py-4 text-center text-sm font-bold text-gray-700">
                             Aksi
                         </th>
@@ -91,25 +95,38 @@
                                 {{ $item->created_at }}
                             </td>
 
+                            {{-- KLASIFIKASI --}}
+                            <td class="px-4 py-4 text-sm text-gray-600">
+                                @include('admin.pengaduan._badge_klasifikasi', ['pengaduan' => $item])
+                            </td>
+
                             {{-- AKSI --}}
                             <td class="px-4 py-4 text-center">
 
-                                <form id="delete{{ $item->id }}"
-                                      action="{{ route('pengaduan.delete', $item->id) }}"
-                                      method="POST">
+                                <div class="flex items-center justify-center gap-2">
+                                    <a href="{{ route('admin.pengaduan.edit', $item->id) }}"
+                                       class="bg-[#2D6A4F] hover:bg-[#0B3D26] text-white px-4 py-2 rounded-xl text-sm shadow">
+                                        Detail
+                                    </a>
 
-                                    @csrf
-                                    @method('DELETE')
+                                    <form id="delete{{ $item->id }}"
+                                          action="{{ route('pengaduan.delete', $item->id) }}"
+                                          method="POST"
+                                          class="inline">
 
-                                    <button type="button"
-                                            onclick="hapus({{ $item->id }})"
-                                            class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-xl text-sm shadow">
+                                        @csrf
+                                        @method('DELETE')
 
-                                        Hapus
+                                        <button type="button"
+                                                onclick="hapus({{ $item->id }})"
+                                                class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-xl text-sm shadow">
 
-                                    </button>
+                                            Hapus
 
-                                </form>
+                                        </button>
+
+                                    </form>
+                                </div>
 
                             </td>
 
@@ -118,7 +135,7 @@
                     @empty
 
                         <tr>
-                            <td colspan="6" class="text-center py-10 text-gray-500">
+                            <td colspan="7" class="text-center py-10 text-gray-500">
                                 Belum ada data pengaduan.
                             </td>
                         </tr>

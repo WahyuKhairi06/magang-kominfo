@@ -1,116 +1,101 @@
-{{-- resources/views/admin/inovasipokja1/edit.blade.php --}}
-
 @extends('template.layout')
 
 @section('content')
 
-<div class="max-w-4xl mx-auto p-4">
+<div class="max-w-5xl mx-auto p-4 md:p-6 space-y-6">
 
-    <div class="mb-6">
-
-        <h1 class="text-2xl font-bold text-gray-800">
-            Edit Inovasi Pokja
-        </h1>
-
+    {{-- HEADER --}}
+    <div class="flex items-center gap-4 border-b border-slate-100 pb-5">
+        <a href="{{ route('pengaduan.index') }}" class="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-white border border-slate-200 hover:border-slate-300 text-slate-600 hover:text-slate-800 hover:bg-slate-50 transition shadow-sm">
+            <span class="material-symbols-outlined text-xl">arrow_back</span>
+        </a>
+        <div>
+            <h1 class="text-2xl font-black text-slate-800 tracking-tight">Detail Pengaduan</h1>
+            <p class="text-sm text-slate-500 font-medium">Keluhan Warga & Sistem Triage Otomatis AI</p>
+        </div>
     </div>
 
-    <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
-
-        <form action="{{ route('inovasipokja1.update',$data->id) }}"
-              method="POST"
-              enctype="multipart/form-data">
-
-            @csrf
-            @method('PUT')
-
-            <div class="p-6 space-y-6">
-
-                {{-- POKJA --}}
-                <!-- <div>
-
-                    <label class="block mb-2 font-semibold text-gray-700">
-                        Pokja ID
-                    </label>
-
-                    <input type="number"
-                           name="pokja_id"
-                           value="{{ old('pokja_id',$data->pokja_id) }}"
-                           class="w-full border border-gray-300 rounded-xl p-3">
-
-                </div> -->
-
-                {{-- KETERANGAN --}}
-                <div>
-
-                    <label class="block mb-2 font-semibold text-gray-700">
-                        Keterangan
-                    </label>
-
-                    <textarea name="keterangan"
-                              rows="5"
-                              class="w-full border border-gray-300 rounded-xl p-3">{{ old('keterangan',$data->keterangan) }}</textarea>
-
+    {{-- GRID SYSTEM --}}
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        
+        {{-- LEFT COLUMN: DETAIL CONTENT --}}
+        <div class="lg:col-span-2 space-y-6">
+            
+            {{-- REPORT CARD --}}
+            <div class="bg-white rounded-3xl shadow-sm border border-slate-100 overflow-hidden">
+                
+                {{-- CARD HEADER --}}
+                <div class="px-6 py-5 border-b border-slate-50 bg-slate-50/50 flex items-center gap-3">
+                    <span class="material-symbols-outlined text-[#2D6A4F] text-2xl">description</span>
+                    <h3 class="font-bold text-slate-800">Isi Laporan Masuk</h3>
                 </div>
 
-                {{-- FILE LAMA --}}
-                @if($data->file)
+                {{-- CARD BODY --}}
+                <div class="p-6 space-y-6">
+                    
+                    {{-- SENDER PROFILE & DATE --}}
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 border-b border-slate-100 pb-5">
+                        <div class="space-y-1">
+                            <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">Nama Pelapor</span>
+                            <div class="flex items-center gap-2">
+                                <span class="material-symbols-outlined text-slate-400 text-lg">person</span>
+                                <p class="text-base font-bold text-slate-800">{{ $pengaduan->nama }}</p>
+                            </div>
+                        </div>
 
-                <div>
+                        <div class="space-y-1">
+                            <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">Tanggal Masuk</span>
+                            <div class="flex items-center gap-2">
+                                <span class="material-symbols-outlined text-slate-400 text-lg">calendar_today</span>
+                                <p class="text-sm text-slate-600 font-medium">{{ \Carbon\Carbon::parse($pengaduan->created_at)->translatedFormat('d F Y - H:i') }}</p>
+                            </div>
+                        </div>
+                    </div>
 
-                    <label class="block mb-2 font-semibold text-gray-700">
-                        File Saat Ini
-                    </label>
+                    {{-- WHATSAPP CONTACT --}}
+                    <div class="space-y-2 border-b border-slate-100 pb-5">
+                        <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">Nomor HP / Kontak</span>
+                        <div>
+                            <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $pengaduan->no_hp) }}" target="_blank" class="inline-flex items-center gap-2 bg-emerald-50 text-emerald-700 px-4 py-2.5 rounded-2xl hover:bg-emerald-100 transition border border-emerald-100/50 text-sm font-semibold">
+                                <i class="bi bi-whatsapp text-base"></i>
+                                <span>Hubungi via WhatsApp</span>
+                                <span class="text-emerald-400 font-normal">({{ $pengaduan->no_hp }})</span>
+                            </a>
+                        </div>
+                    </div>
 
-                    <a href="{{ asset('storage/inovasi/'.$data->file) }}"
-                       target="_blank"
-                       class="inline-flex items-center gap-2 bg-green-100 text-green-700 px-4 py-2 rounded-xl hover:bg-green-200">
-
-                        📄 Lihat File
-
-                    </a>
-
-                </div>
-
-                @endif
-
-                {{-- FILE BARU --}}
-                <div>
-
-                    <label class="block mb-2 font-semibold text-gray-700">
-                        Upload File Baru
-                    </label>
-
-                    <input type="file"
-                           name="file"
-                           class="w-full border border-gray-300 rounded-xl p-3">
-
-                    <p class="text-sm text-gray-500 mt-2">
-                        Kosongkan jika tidak ingin mengganti file.
-                    </p>
+                    {{-- COMPLAINT TEXT --}}
+                    <div class="space-y-2">
+                        <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">Isi Keluhan Warga</span>
+                        <div class="bg-slate-50 border border-slate-100 rounded-2xl p-5 text-slate-700 leading-relaxed text-sm whitespace-pre-wrap font-medium">{{ trim($pengaduan->isi_pengaduan) }}</div>
+                    </div>
 
                 </div>
 
             </div>
 
-            <div class="bg-gray-50 px-6 py-4 flex justify-end gap-3">
+        </div>
 
-                <a href="{{ route('inovasipokja1.index') }}"
-                   class="px-5 py-2 rounded-xl border border-gray-300">
+        {{-- RIGHT COLUMN: AI TRIAGE --}}
+        <div class="lg:col-span-1">
+            
+            {{-- CLASSIFICATION CARD --}}
+            <div class="bg-white rounded-3xl shadow-sm border border-slate-100 overflow-hidden sticky top-24">
+                
+                {{-- HEADER --}}
+                <div class="px-6 py-5 border-b border-slate-50 bg-slate-50/50 flex items-center gap-3">
+                    <span class="material-symbols-outlined text-[#2D6A4F] text-2xl">analytics</span>
+                    <h3 class="font-bold text-slate-800">Triage & Klasifikasi</h3>
+                </div>
 
-                    Kembali
-
-                </a>
-
-                <button type="submit"
-                        class="px-6 py-2 rounded-xl bg-yellow-500 hover:bg-yellow-600 text-white font-semibold">
-
-                    Update Data
-
-                </button>
+                {{-- BODY --}}
+                <div class="p-6">
+                    @include('admin.pengaduan._klasifikasi_chip', ['pengaduan' => $pengaduan])
+                </div>
 
             </div>
 
-        </form>
+        </div>
 
     </div>
 

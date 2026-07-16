@@ -54,6 +54,6 @@ try:
 
 except SystemExit as e:
     # Error dari load_api_key dll yang panggil sys.exit
-    print(json.dumps({"status": "error", "message": "Setup AI Service tidak valid. Cek .env atau knowledge base."}))
+    print(json.dumps({"status": "error", "message": "Setup AI Service tidak valid. Cek .env atau knowledge base. Code: " + str(e), "trace": traceback.format_exc()}))
 except Exception as e:
     print(json.dumps({"status": "error", "message": str(e), "trace": traceback.format_exc()}))

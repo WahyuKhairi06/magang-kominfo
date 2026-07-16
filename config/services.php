@@ -35,4 +35,9 @@ return [
         ],
     ],
 
+    'ai' => [
+        'base_url' => env('AI_SERVICE_URL', 'http://127.0.0.1:8001'),
+        'internal_key' => env('AI_SERVICE_INTERNAL_KEY', 'marunggi-ai-internal-key-12345'),
+    ],
+
 ];

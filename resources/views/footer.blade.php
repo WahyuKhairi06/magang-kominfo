@@ -75,5 +75,9 @@
     </div>
 </footer>
 
+@if(!Request::is('chat') && !Request::is('admin*') && !Request::is('login') && !Request::is('register') && !Request::is('password/*'))
+    @include('chatbot-widget')
+@endif
+
 </body>
 </html>

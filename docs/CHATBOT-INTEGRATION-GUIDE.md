@@ -66,7 +66,10 @@ Jika Anda ingin menduplikasi/mengkloning fitur chatbot ini agar berjalan secara 
   - Salin `app/Http/Controllers/Admin/ChatbotSettingController.php` (untuk panel admin).
 
 ### 3. Salin Halaman Antarmuka (Views)
-- **Tampilan Publik**: Salin `resources/views/chat.blade.php`.
+- **Tampilan Publik**: 
+  - Salin `resources/views/chat.blade.php` (untuk halaman chat penuh).
+  - Salin `resources/views/chatbot-widget.blade.php` (untuk widget obrolan melayang / pop-up).
+  - Integrasikan `@include('chatbot-widget')` pada file footer global (seperti `resources/views/footer.blade.php`). Tautan menu chatbot di `resources/views/navbar.blade.php` juga dapat dipertahankan guna memfasilitasi akses ganda.
 - **Tampilan Admin**: Salin folder `resources/views/admin/chatbot-setting/`.
 - Daftarkan route-route yang sesuai di `routes/web.php` pada website baru seperti yang ada di website Puskesmas Marunggi saat ini.
 

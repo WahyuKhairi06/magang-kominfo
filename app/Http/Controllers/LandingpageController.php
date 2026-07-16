@@ -32,13 +32,15 @@ public function pengaduanStore(Request $request)
         'isi_pengaduan' => 'required',
     ]);
 
-    DB::table('pengaduans')->insert([
+    $id = DB::table('pengaduans')->insertGetId([
         'nama' => $request->nama,
         'no_hp' => $request->no_hp,
         'isi_pengaduan' => $request->isi_pengaduan,
         'created_at' => now(),
         'updated_at' => now(),
     ]);
+
+    \App\Jobs\ClassifyPengaduanJob::dispatch($id);
 
     return back()->with('success', 'Pengaduan berhasil dikirim');
 }
