@@ -687,6 +687,12 @@ Route::get('/admin/chatbot-setting', [\App\Http\Controllers\Admin\ChatbotSetting
 Route::put('/admin/chatbot-setting', [\App\Http\Controllers\Admin\ChatbotSettingController::class, 'update'])
     ->name('chatbot-setting.update');
 
+// General Puskesmas Setting
+Route::get('/admin/puskesmas-setting', [\App\Http\Controllers\Admin\PuskesmasSettingController::class, 'index'])
+    ->name('puskesmas-setting.index');
+Route::put('/admin/puskesmas-setting', [\App\Http\Controllers\Admin\PuskesmasSettingController::class, 'update'])
+    ->name('puskesmas-setting.update');
+
 });
 
 require __DIR__.'/auth.php';

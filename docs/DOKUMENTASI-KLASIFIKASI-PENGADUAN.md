@@ -35,15 +35,11 @@ Setiap pengaduan/keluhan warga yang dikirimkan melalui form publik (`/pengaduan`
   - [_badge_klasifikasi.blade.php](file:///c:/laragon/www/marunggi/sitariktageh/resources/views/admin/pengaduan/_badge_klasifikasi.blade.php): Desain badge status di list.
   - [_klasifikasi_chip.blade.php](file:///c:/laragon/www/marunggi/sitariktageh/resources/views/admin/pengaduan/_klasifikasi_chip.blade.php): Desain chip interaktif AJAX (AlpineJS).
 
-### B. Sisi AI Service (Python & FastAPI)
-* **API Entrypoint ([main.py](file:///c:/laragon/www/marunggi/sitariktageh/ai-service/main.py)):**
-  Diintegrasikan dengan FastAPI app sehingga file ini bisa dijalankan sebagai HTTP Server port `8001` sekaligus CLI Chatbot biasa.
-* **Endpoint Klasifikasi ([classify_complaint.py](file:///c:/laragon/www/marunggi/sitariktageh/ai-service/classify_complaint.py)):**
-  Berisi logika POST `/api/v1/admin/classify-complaint` menggunakan official Google Gemini SDK (`google-genai`) dengan pengamanan API Key.
-* **Prompt Engine ([prompt_classify.py](file:///c:/laragon/www/marunggi/sitariktageh/ai-service/prompt_classify.py)):**
-  Membentuk prompt khusus Gemini untuk tugas klasifikasi teks.
-* **Taksonomi & Schema ([taxonomy.py](file:///c:/laragon/www/marunggi/sitariktageh/ai-service/taxonomy.py)):**
-  Sumber kebenaran tunggal (*Single Source of Truth*) daftar Kategori, Urgensi, dan skema validasi keluaran JSON Gemini.
+### B. Sisi AI Service (Python)
+* **Chatbot Engine ([chat_api.py](file:///c:/laragon/www/marunggi/sitariktageh/ai-service/chat_api.py)):**
+  Menggunakan SDK resmi Google Gemini untuk memproses obrolan interaktif asisten Puskesmas. Script ini dipanggil langsung oleh Laravel `ChatbotController` menggunakan `Process` Symfony (CLI Execution), sehingga tidak memerlukan server web FastAPI (`uvicorn`) yang aktif terus-menerus.
+* **Knowledge Base ([database_knowledge.json](file:///c:/laragon/www/marunggi/sitariktageh/ai-service/knowledge/database_knowledge.json)):**
+  Daftar informasi Puskesmas dinamis yang digenerate otomatis oleh Laravel dari database MySQL sebagai database pengetahuan asisten.
 
 ---
 
@@ -69,9 +65,8 @@ Setiap pengaduan/keluhan warga yang dikirimkan melalui form publik (`/pengaduan`
 
 ### A. `.env` di Laravel Root
 ```env
-# URL API Python FastAPI
-AI_SERVICE_URL=http://127.0.0.1:8001
-AI_SERVICE_INTERNAL_KEY=marunggi-ai-internal-key-12345
+# API Key Resmi Google Gemini (Digunakan langsung oleh Laravel untuk klasifikasi)
+GEMINI_API_KEY=<API_KEY_GEMINI_ANDA>
 
 # Queue Connection (harus database)
 QUEUE_CONNECTION=database
@@ -79,26 +74,22 @@ QUEUE_CONNECTION=database
 
 ### B. `.env` di `ai-service/`
 ```env
-INTERNAL_API_KEY=marunggi-ai-internal-key-12345
-GEMINI_CLASSIFY_MODEL=gemini-2.5-flash
+# API Key Resmi Google Gemini (Digunakan oleh script chatbot Python)
+GEMINI_API_KEY=<API_KEY_GEMINI_ANDA>
+GEMINI_MODEL=gemini-2.5-flash
 ```
 
 ---
 
 ## 5. Cara Menjalankan untuk Pengembangan (Local Dev)
 
-Agar fitur ini berjalan secara real-time, Anda perlu menjalankan **tiga komponen** berikut secara bersamaan:
+Karena klasifikasi otomatis pengaduan sekarang berjalan secara langsung via REST API dari Laravel, Anda **tidak perlu lagi menjalankan server FastAPI uvicorn**. Anda hanya perlu menjalankan **dua komponen** berikut:
 
 1. **Server Web Laravel (PHP):**
    ```bash
    php artisan serve
    ```
-2. **Server Background API Python (FastAPI):**
-   Di folder `ai-service/`, jalankan:
-   ```bash
-   uvicorn main:app --port 8001 --reload
-   ```
-3. **Queue Worker Laravel (Background Listener):**
+2. **Queue Worker Laravel (Background Listener):**
    ```bash
    php artisan queue:work
    ```

@@ -6,7 +6,7 @@
             "judul": "SELAMAT DATANG",
             "motto": "SUKSES MUDAH KALAU ADA ORANG DALAM",
             "isi": "halo semuanya selamat datang ya ges ya",
-            "url": "http://localhost"
+            "url": "http://127.0.0.1:8000"
         }
     },
     "halaman_informasi": [
@@ -15,42 +15,42 @@
             "judul": "Visi dan Misi",
             "isi": "Tes Visi Misi",
             "isi_ocr": "Berikut adalah ekstraksi detail dari gambar yang diberikan dalam format terstruktur:\n\n---\n\n**Judul Utama:** VISI, MISI & PROGRAM UNGGULAN WALI KOTA & WAKIL WALI KOTA PARIAMAN\n**Periode:** 2020-2025\n\n**Gambar Visual Konteks:** Poster/Banner resmi yang menampilkan visi, misi, dan program unggulan dari Wali Kota dan Wakil Wali Kota Pariaman untuk periode 2020-2025, disertai foto kedua pejabat dan logo-logo terkait (pemerintahan dan BerAKHLAK).\n\n---\n\n### **VISI**\nTERWUJUDNYA PARIAMAN KOTA WISATA YANG MAJU, KREATIF, BERDAYA SAING & BERBUDAYA\n\n---\n\n### **MISI**\n1.  MEMBANGUN SUMBER DAYA MANUSIA UNGGUL, SEHAT & BERDAYA SAING SERTA BERAKHLAK MULIA\n2.  MENINGKATKAN PERTUMBUHAN EKONOMI YANG ADIL & MERATA SERTA BERBASIS EKONOMI KREATIF, INOVATIF & KOMPETITIF\n3.  MEWUJUDKAN INFRASTRUKTUR BERBASIS KOTA CERDAS BERLANDASKAN TATA RUANG & LINGKUNGAN YANG BERKELANJUTAN\n4.  MEWUJUDKAN TATA KELOLA PEMERINTAHAN YANG PROFESIONAL, TRANSPARAN, AKUNTABEL & BERSIH SERTA PELAYANAN PUBLIK YANG PRIMA\n5.  MEWUJUDKAN KETAHANAN BUDAYA & PARIWISATA YANG BERLANDASKAN NILAI-NILAI ISLAMI\n\n---\n\n### **PEJABAT**\n\n**Wali Kota:**\n*   **Nama:** GENIUS UMAR, S.Si, M.Si\n*   (Foto pria berseragam di sisi kiri)\n\n**Wakil Wali Kota:**\n*   **Nama:** MARDISON MAHYUDDIN, S.E., M.M\n*   (Foto pria berseragam di sisi kanan)\n\n---\n\n### **PROGRAM UNGGULAN**\n\n*   PARIAMAN SEHAT, PINTAR, BERAKHLAK, SATU KELUARGA\n*   SATU HAFIS, SATU RUMAH, SATU PENGUSAHA\n*   AKSFLERASI KESEHATAN DAN KESEJAHTERAAN KELUARGA AKIBAT / KEMISKINAN DENGAN KESADARAN DAN KETERLIBATAN MASYARAKAT\n*   BISA MASUK KOTA\n*   MEMBANGUN SEKOLAH BERBASIS SEKOLAH GRATIS GURU TIDAK MAMPU\n*   MEMBANGUN GURU UNGGUL\n*   PELAYANAN KESEHATAN DAN PENDIDIKAN GRATIS\n*   INOVASI ASET DAERAH\n*   PENGADAAN KAPAL CEPAT UNTUK NELAYAN\n*   PEMBANGUNAN WISATA PANCING KAMPUNG WISATA PERKAPUNGAN\n*   PENINGKATAN PELAYANAN AIR MINUM KOTA PARIAMAN\n*   PENGEMBANGAN DAN PELESTARIAN BUDAYA MASYARAKAT\n*   PARIAMAN BERSERI\n*   PENGEMBANGAN EKONOMI KREATIF BERBASIS KOTA WISATA BERKELANJUTAN\n\n---",
-            "url": "http://localhost/landing/halaman/eyJpdiI6IjJ3QzVqQlpGZkVyZytydTkwZnJHNnc9PSIsInZhbHVlIjoiNzNrRThLckhHejRnRkRsYmJxYnF0QT09IiwibWFjIjoiM2Y3YjVkOGUyMTZiNzE2NjE1YzFmMWYzZjMyNDdjZGY4ZThhZDAyNGQ5NzEzNzI0MzlmZGE3ZWQ0NGY0NzMyMCIsInRhZyI6IiJ9"
+            "url": "http://127.0.0.1:8000/landing/halaman/eyJpdiI6ImNxd09BckxWSmNQY2dudkZ3MHBvMlE9PSIsInZhbHVlIjoiaVhEaDUyRmptUXV6L2o2UFZUdFdRUT09IiwibWFjIjoiZTNiYjA5ZTkzMzA1ZWI3NGVlMGMxYmMwNjUyZGRjYmQxYzMzMWUxZjk1MGYyOTllYjY0NjE3NzdiNjJjMjQyNyIsInRhZyI6IiJ9"
         },
         {
             "kategori": "Visi dan Misi",
             "judul": "Misi",
             "isi": "Meningkatkan mental spiritual, perilaku hidup dengan menghayati dan mengamalkan Pancasila serta meningkatkan Pelaksanaan hak dan kewajiban sesuai dengan Hak Azazi Manusia (HAM), Demokrasi, Meningkatkan Kesetiakawanan Sosial dan Kegotongroyongan serta Pembentukan Watak Bangsa yang selaras, serasi dan seimbang.Meningkatkan Pendidikan dan Keterampilan yang diperlukan, dalam upaya Mencerdaskan Kehidupan Bangsa serta Pendapatan Keluarga.Meningkatkan Kualitas dan Kuantitas Pangan Keluarga serta Upaya Peningkatan Pemanfaatan Pekarangan melalui Halaman Asri, Teratur, Indah, dan Nyaman (HATINYA) PKK, Sandang dan Perumahan serta Tata Laksana Rumah Tangga yang sehat.Meningkatkan Derajat Kesehatan, Kelestarian Lingkungan Hidup serta membiasakan Hidup Berencana dalam semua Aspek Kehidupan dan Perencanaan Ekonomi Keluarga dengan membiasakan Menabung.Meningkatkan Pengelolaan Gerakan PKK Baik Kegiatan Pengorganisasian maupun Pelaksanaan Program-Programnya yang disesuaikan dengan situasi dan Kondisi Masyarakat setempat.",
             "isi_ocr": null,
-            "url": "http://localhost/landing/halaman/eyJpdiI6IjBLMHhkT2hxSDExUll4RW13UkJScUE9PSIsInZhbHVlIjoiaDByWThFSHViN2tLclE0K0I1d3ptUT09IiwibWFjIjoiNmI1ZTY4ZWVkNTYzNDNiMGE0YWJlNTNlMjdhNTIwN2EyMzgyZGY5MDdkNTZhNzE0MTJmOTUzYWRmNThkZWU0MiIsInRhZyI6IiJ9"
+            "url": "http://127.0.0.1:8000/landing/halaman/eyJpdiI6IlRVRXQ5L1A5QlZ4VVVLRTk0bWlGb2c9PSIsInZhbHVlIjoicnUyK1RtTDR6OTcwcVNsa1JrYnc5QT09IiwibWFjIjoiM2FjMTI3NDg2NTk2Mzc3NWMxNmY5MDFkNTQ4ODk4YzUxM2QzYzRmZmY3NmI0ZWYzYWIyM2Y2ZGMxNGZmMDZmZSIsInRhZyI6IiJ9"
         },
         {
             "kategori": "Sejarah",
             "judul": "sejarah puskesmas",
             "isi": "sejarah puskesmas ini adalah itu aja sih",
             "isi_ocr": null,
-            "url": "http://localhost/landing/halaman/eyJpdiI6Ik52K0pQa3BtWFIvMFhTYXJCaFBGUFE9PSIsInZhbHVlIjoidjVpKzZMZytaYzV1UGVBREFYOVZJZz09IiwibWFjIjoiYWY2NDIzZTNlMzBkMTUzMjM1ZGEzZWU4YTU0NTE3MGNkY2I2NmRhMjAyODU0Y2U4M2YwOTdlNTAyNWFmNTIyNiIsInRhZyI6IiJ9"
+            "url": "http://127.0.0.1:8000/landing/halaman/eyJpdiI6Ikt0YnJvMXpOSFFnYzZjWS81ZkhMS3c9PSIsInZhbHVlIjoiQUJCY2xuVFFEVEliMjNJbXVPamtGZz09IiwibWFjIjoiMDMzNWZhMjQyZDljZGNmMzUyM2I2NGZiODgwMTdmOWJkOTFkYzQ3MWRlN2E5NzgwODU3MDc3MTdiYmE1ZDVhMiIsInRhZyI6IiJ9"
         },
         {
             "kategori": "Program Pokok",
             "judul": "Program Pokok puskesmas",
             "isi": "hai semuanya apa kabarTesting",
             "isi_ocr": "Berdasarkan analisis gambar, tidak ada teks atau informasi tertulis yang dapat diekstraksi menggunakan OCR. Gambar tersebut adalah sebuah ikon atau avatar pengganti (placeholder) standar yang menggambarkan siluet seseorang.\n\nBerikut adalah deskripsi visual dari gambar:\n\n*   **Tipe Gambar:** Ikon profil/avatar pengganti.\n*   **Latar Belakang:** Warna abu-abu muda solid.\n*   **Subjek Utama:** Siluet seorang individu (kemungkinan pria atau gender netral) berwarna putih, menghadap ke depan.\n*   **Detail Siluet:**\n    *   Tampak bagian kepala dan sebagian kecil dari bahu atau dada atas.\n    *   Rambut pada siluet menunjukkan gaya rambut pendek dengan sedikit poni atau bagian depan yang terangkat di atas dahi.\n    *   Telinga terlihat jelas di kedua sisi kepala.\n    *   Tidak ada fitur wajah yang detail (mata, hidung, mulut) karena ini adalah siluet.\n\nKarena tidak ada teks yang terdeteksi, tidak ada informasi lebih lanjut seperti jadwal, tanggal, jam, lokasi, kontak, atau daftar yang dapat diekstraksi dari gambar ini.",
-            "url": "http://localhost/landing/halaman/eyJpdiI6ImpiWFhSSTJZL1g4ci95S3RrR05tcFE9PSIsInZhbHVlIjoiT0lhVjdyOFJWRTBIUnVYRFpCcDJNZz09IiwibWFjIjoiZmU4MTI3ZWYyYWI2NmI1Y2EwN2UzZTkxNmJlNTY2MTU1NWJhMjU0MWQ4Yzg3ZWMxMjY3MGEzYzhmNzk4NDA2OSIsInRhZyI6IiJ9"
+            "url": "http://127.0.0.1:8000/landing/halaman/eyJpdiI6ImpIdXdrVHBmSDF2cnBVYThYdHcyUlE9PSIsInZhbHVlIjoiTEtpVXN0L0RjUlBkaWlEaW4xNDBWZz09IiwibWFjIjoiMGEwZDA5YWUzYTk1NWEzNzdmNmUzYWQ5MDUxMjdiMGUzYWFlY2QxYmNhM2RiZjg0YTdlOWE5ZjNmMmViN2NmYyIsInRhZyI6IiJ9"
         },
         {
             "kategori": "Struktur Organisasi",
             "judul": "Struktur Organisasi",
             "isi": "",
             "isi_ocr": "Berikut adalah ekstraksi detail dari gambar yang diberikan dalam format terstruktur dan kontekstual:\n\n# SUSUNAN PENGURUS\n## TIM PENGGERAK PEMBERDAYAAN DAN KESEJAHTERAAN KELUARGA (TP – PKK)\n### DESA TALAGO SARIAK\n### MASA BAKTI 2022 – 2030\n\n---\n\n### Struktur Organisasi\n\n*   **KETUA PEMBINA TP-PKK:**\n    *   AHMAD FAHMI S.Pd\n\n*   **KETUA TP PKK:**\n    *   Ny. SILVIA AHMAD FAHMI\n\n*   **WAKIL KETUA:**\n    *   YULI ANGGRIANI\n\n*   **SEKRETARIS:**\n    *   SINTA FARDILA\n\n*   **WAKIL SEKRETARIS:**\n    *   FITRI NELDA\n\n*   **BENDAHARA:**\n    *   EFRIYENI\n\n---\n\n### Kelompok Kerja (POKJA)\n\nBerikut adalah daftar anggota untuk setiap Kelompok Kerja (POKJA):\n\n#### POKJA I\n*   **KETUA:** ZULASMA\n*   **WAKIL KETUA:** YENITA\n*   **SEKRETARIS:** SRIYUS OKTAVIA\n*   **ANGGOTA:**\n    *   YULIDARTI\n    *   BAINAR\n\n#### POKJA II\n*   **KETUA:** ELIDA WAHYUNI\n*   **WAKIL KETUA:** ELFITA\n*   **SEKRETARIS:** DELVA YENNI\n*   **ANGGOTA:**\n    *   MIRA AR PUTRI\n    *   EMI HIDAYAT\n\n#### POKJA III\n*   **KETUA:** MASYURITA\n*   **WAKIL KETUA:** YUSTINA\n*   **SEKRETARIS:** EVA YANTI\n*   **ANGGOTA:**\n    *   ASMAUL HUSNA\n    *   SURYANI\n\n#### POKJA IV\n*   **KETUA:** FITRI HANDAYANI TANJUNG\n*   **WAKIL KETUA:** BETRI MURNI\n*   **SEKRETARIS:** SASIKA WARDANI\n*   **ANGGOTA:**\n    *   RITA PELWIRA\n    *   SATRIANIS AKBAR\n\n---\n\n### Keterangan Garis\n\n*   **Garis Tugas:** (Garis lurus penuh)\n*   **Garis Koordinasi:** (Garis putus-putus)\n*   **Garis Konsultasi:** (Garis titik-titik)",
-            "url": "http://localhost/landing/halaman/eyJpdiI6IndVNkVFM2RSVGxxZUhtTU9hOGRvR2c9PSIsInZhbHVlIjoidzlQeXExUWh2bjg0MzB0aFQ2UUhwUT09IiwibWFjIjoiMmU4NWU3NzFjYmE4ZjdjM2RmMzVhOGIxMDY1OTE0MmQ3OThkMzhiNGQxY2VmNGE3MzEzZmE3ZjcyZGQyMDQzZCIsInRhZyI6IiJ9"
+            "url": "http://127.0.0.1:8000/landing/halaman/eyJpdiI6IkhTaEU2NmFMRGtkcDNSMVhBNkExVVE9PSIsInZhbHVlIjoiOHU2R1QvSWxLdFhxZXR0bXkxbjk2Zz09IiwibWFjIjoiMTAxOWY2MjE2MzkyNmI2NmFlZjRiYTRiNTQwZDkyOWFlM2Y2ZWVkYWExMjliYTY4MWM2ODgwNjZmZjRmZDQxYiIsInRhZyI6IiJ9"
         },
         {
             "kategori": "Jadwal Pelayanan",
             "judul": "jadwal",
             "isi": "",
             "isi_ocr": "Berikut adalah ekstraksi detail dari gambar \"Jadwal Pelayanan Puskesmas Marunggi\" dalam format terstruktur:\n\n---\n\n# JADWAL PELAYANAN PUSKESMAS MARUNGGI\n\n**Instansi:** UPTD PUSKESMAS MARUNGGI\n\n**Informasi Umum Pelayanan:**\n*   **Status Operasional:** BUKA setiap hari **SENIN** s.d **SABTU**.\n*   **Pengecualian:** Kecuali tanggal merah / libur nasional.\n*   **Hari Libur:** MINGGU LIBUR.\n\n## Jadwal Pelayanan Pendaftaran (Rawat Jalan)\n\n| HARI             | JAM PENDAFTARAN |\n| :--------------- | :-------------- |\n| SENIN s.d KAMIS  | 08.00 - 12.00 WIB |\n| JUMAT            | 08.00 - 10.30 WIB |\n| SABTU            | 08.00 - 11.00 WIB |\n\n## Jadwal Pelayanan Gawat Darurat / IGD\n\n| HARI             | JAM PELAYANAN IGD |\n| :--------------- | :---------------- |\n| SENIN s.d KAMIS  | 08.00 - 14.30 WIB |\n| JUMAT            | 08.00 - 12.00 WIB |\n| SABTU            | 08.00 - 13.00 WIB |\n\n## Komitmen Pelayanan\n\nKami siap melayani masyarakat dengan **C.I.N.T.A**:\n\n*   **C**ERMAT: Pelayanan yang teliti dan cermat.\n*   **I**NOVATIF: Selalu berinovasi dalam pelayanan.\n*   **N**YAMAN: Menyediakan lingkungan pelayanan yang nyaman.\n*   **T**ANGGAP: Memberikan respons cepat dan sigap.\n*   **A**MANAH: Pelayanan yang dapat dipercaya dan bertanggung jawab.\n\n**Motto:** Sehat Bersama, Keluarga Bahagia\n\n---",
-            "url": "http://localhost/landing/halaman/eyJpdiI6IjlCOWhFSm1PZFVzODJ2Q3FVd2JVQ2c9PSIsInZhbHVlIjoiM0c5bUxuOC9QTDdVRE45YjhNb0lsZz09IiwibWFjIjoiMDA3MDY0YzZmNTIwZjQ1NDQ2OWIxNTliZTVkMmJmMTlkYWRmZjQ3Mzg3YzM0NDU5YWYwZTVkOWRlNWIxOTJjMSIsInRhZyI6IiJ9"
+            "url": "http://127.0.0.1:8000/landing/halaman/eyJpdiI6Ik5nbXlzbXZsYlFkR3YwWnVLTzhBbGc9PSIsInZhbHVlIjoiTTIwWG5VcnZjc01od2lQbGVkNkxIUT09IiwibWFjIjoiZWJmZjM4MTJiZWE0MzgzODkxMjc3MmMxOTE4ZDllM2I3ZDExNDg1NzMzNjYwYWZjY2QwMjg5ZmMxZTYyZjc3YSIsInRhZyI6IiJ9"
         }
     ],
     "acara_mendatang": [
@@ -61,7 +61,7 @@
             "lokasi": "Balaikota",
             "deskripsi": "Goro Bersama",
             "penyelenggara": "Gabungan",
-            "url": "http://localhost/landing/agenda"
+            "url": "http://127.0.0.1:8000/landing/agenda"
         },
         {
             "nama_kegiatan": "rapat 2",
@@ -70,7 +70,7 @@
             "lokasi": "walikota",
             "deskripsi": "RAPAT",
             "penyelenggara": "BAPPEDA",
-            "url": "http://localhost/landing/agenda"
+            "url": "http://127.0.0.1:8000/landing/agenda"
         },
         {
             "nama_kegiatan": "RAPAT 3",
@@ -79,7 +79,7 @@
             "lokasi": "KOMINFO",
             "deskripsi": "RAPAT",
             "penyelenggara": "KOMINFO",
-            "url": "http://localhost/landing/agenda"
+            "url": "http://127.0.0.1:8000/landing/agenda"
         }
     ],
     "berita": [
@@ -87,38 +87,38 @@
             "judul_berita": "Test Judul Berita 3",
             "isi_berita": "<p>Test ckeditor</p>",
             "tanggal_publish": "2026-06-11",
-            "url": "http://localhost/landing/berita/eyJpdiI6IkN2VmQrNzR3QVd2SEpOeGxYRG9IUlE9PSIsInZhbHVlIjoiTldSSVpCYWMwYkVLTVdWU3l4VnpEdz09IiwibWFjIjoiYmRkZDZkNjM2MjlmOTI3NzI0MDk1MTgzMTI1MGMwMjA0MzAxNjk4NGM1ODA2NjU3MjNlNGMzYjE3ZDU0OTVkNSIsInRhZyI6IiJ9"
+            "url": "http://127.0.0.1:8000/landing/berita/eyJpdiI6Ilp6YStPOTB0U0tDUGZ4S2dwVHZnUUE9PSIsInZhbHVlIjoiQkd3c1U3RTJ2WUFiTXo5aUhnRlhLQT09IiwibWFjIjoiMTVlYTFmZDk1NGRmNTRlODFmMTlmNDRlOWQwZWVjNWRkOTBlMDZlNGU3YjQxMzE3YzMxMzU4ZjM4ZTFiNWY1MiIsInRhZyI6IiJ9"
         },
         {
             "judul_berita": "Tes Judul Berita 2",
             "isi_berita": "<p>Tes Isi Berita</p>",
             "tanggal_publish": "2026-06-15",
-            "url": "http://localhost/landing/berita/eyJpdiI6Ik5mUlF0NFVwTTd2MHczTVZsYXdZL0E9PSIsInZhbHVlIjoiN29PWUZ4QzA1cUxNZ0lJS2QxdVhIZz09IiwibWFjIjoiMjEwOWUxYTdiODYzNzZjZGNlZWI2MzRjMDNlNzI2NjczMjQyZTUzYWQ3Y2UzMGIxNTQxYjc5NTUyOWI2ODc1ZSIsInRhZyI6IiJ9"
+            "url": "http://127.0.0.1:8000/landing/berita/eyJpdiI6IlNvUktaTDFNUkVwc3Y2TFhZR05UNmc9PSIsInZhbHVlIjoicC81Rml2dnRTUFFwKysrL1l2V2N4QT09IiwibWFjIjoiZDk0ZjRkNDE4ZWYwNTI5ZTRkYTZjZmMwOTEyZWEzMGJmYjViOTg3MTU5ZTM4YjY3M2JlZDhlOTdkOTg0ZmRhYSIsInRhZyI6IiJ9"
         },
         {
             "judul_berita": "berita 1 testing ya",
             "isi_berita": "<p>hal semua apa kabar hari ini&nbsp;</p>",
             "tanggal_publish": "2026-07-02",
-            "url": "http://localhost/landing/berita/eyJpdiI6Imo2eU5waTF6U25IdGNlSUZ1WnMzamc9PSIsInZhbHVlIjoiTm9tcDdFSWpta1lLUU15NmZXV1hDdz09IiwibWFjIjoiOTNjZDFmNTVjN2QyNTJhOTRjMGM5MjJmZjk3YTk4M2VjZTQ5MThkMTc3ODI5NmQ1NmU1ZjY3YTg1Y2NjMmVjYSIsInRhZyI6IiJ9"
+            "url": "http://127.0.0.1:8000/landing/berita/eyJpdiI6Ii91Z2IxSno1VjMrdXA2RFhNZzYwaWc9PSIsInZhbHVlIjoiVWRwRUNqSVVnamlaSDFIcnlxZDY4Zz09IiwibWFjIjoiODQ1NWZjM2Y3ZmQ1NDZiNjNjMjU2YjkxY2IyZDI1NDQ4ZTNkNjNhOTI3NTMwMzQ5MTU3ZGFlNGYxMWU3ZGE2MCIsInRhZyI6IiJ9"
         }
     ],
     "infografis": [
         {
             "nama": "reet",
             "keterangan": "trt",
-            "url": "http://localhost/landing/infografis"
+            "url": "http://127.0.0.1:8000/landing/infografis"
         },
         {
             "nama": "Test Judul Infografis 1",
             "keterangan": "Tes Deskripsi Infografis",
             "lokasi": "Tes Lokasi Infografis",
-            "url": "http://localhost/landing/infografis"
+            "url": "http://127.0.0.1:8000/landing/infografis"
         },
         {
             "nama": "Test Puskesmas",
             "keterangan": "hahaha",
             "lokasi": "bukik",
-            "url": "http://localhost/landing/infografis"
+            "url": "http://127.0.0.1:8000/landing/infografis"
         }
     ],
     "dokumen_publik": [
@@ -126,37 +126,37 @@
             "judul": "Tes Judul Dokumen",
             "kategori": "Form",
             "deskripsi": "Tes Deskripsi",
-            "url": "http://localhost/landing/dokumen"
+            "url": "http://127.0.0.1:8000/landing/dokumen"
         },
         {
             "judul": "BERITA 2",
             "kategori": "LAPORAN",
             "deskripsi": "laporan dinas",
-            "url": "http://localhost/landing/dokumen"
+            "url": "http://127.0.0.1:8000/landing/dokumen"
         },
         {
             "judul": "laporan 2",
             "kategori": "laporan",
             "deskripsi": "laporan kuliah",
-            "url": "http://localhost/landing/dokumen"
+            "url": "http://127.0.0.1:8000/landing/dokumen"
         },
         {
             "judul": "laporan 2",
             "kategori": "laporan",
             "deskripsi": "laporan kuliah",
-            "url": "http://localhost/landing/dokumen"
+            "url": "http://127.0.0.1:8000/landing/dokumen"
         }
     ],
     "faqs": [
         {
             "pertanyaan": "tes tanya",
             "jawaban": "tes jawab",
-            "url": "http://localhost/faq"
+            "url": "http://127.0.0.1:8000/faq"
         },
         {
             "pertanyaan": "haloo gaiss hdsd",
             "jawaban": "yeaah yeaa",
-            "url": "http://localhost/faq"
+            "url": "http://127.0.0.1:8000/faq"
         }
     ],
     "inovasi_program": [
@@ -164,25 +164,25 @@
             "judul_inovasi": "SIPINTER ILP (Sistem Informasi P1, P2, P3 Terintegrasi Berbasis Integrasi Layanan Primer)",
             "deskripsi": "SIPINTER ILP merupakan inovasi digital Puskesmas yang mengintegrasikan informasi pelayanan kesehatan primer secara terpadu mulai dari Promotif (P1), Preventif (P2), hingga Pelayanan Kuratif dan Tindak Lanjut (P3) dalam satu sistem informasi yang mudah diakses oleh masyarakat.\r\n\r\nMelalui inovasi ini, masyarakat dapat memperoleh informasi mengenai program kesehatan, jadwal kegiatan, edukasi kesehatan, layanan pemeriksaan, serta tindak lanjut pelayanan yang dipublikasikan secara resmi melalui website Puskesmas.",
             "tahun": "2024",
-            "url": "http://localhost/landing/inovasi1"
+            "url": "http://127.0.0.1:8000/landing/inovasi1"
         },
         {
             "judul_inovasi": "SAHABAT OBAT (Sistem Antar Obat Bagi Pasien Sulit Akses dan Terbatas)",
             "deskripsi": "SAHABAT OBAT merupakan inovasi pelayanan Puskesmas yang bertujuan membantu pasien dengan keterbatasan akses untuk memperoleh obat yang telah diresepkan oleh tenaga kesehatan tanpa harus kembali datang ke Puskesmas.\r\n\r\nLayanan ini diperuntukkan bagi pasien yang memenuhi kriteria tertentu, seperti lansia, penyandang disabilitas, pasien dengan keterbatasan mobilitas, atau masyarakat yang mengalami kendala transportasi, sesuai dengan kebijakan Puskesmas.\r\n\r\nMelalui inovasi ini diharapkan pelayanan kefarmasian menjadi lebih mudah dijangkau, meningkatkan kepatuhan pengobatan, dan memberikan pelayanan kesehatan yang lebih inklusif.",
             "tahun": "2021",
-            "url": "http://localhost/landing/inovasi1"
+            "url": "http://127.0.0.1:8000/landing/inovasi1"
         },
         {
             "judul_inovasi": "JEMPOL CKG (Jemput Bola Cek Kesehatan Gratis)",
             "deskripsi": "JEMPOL CKG (Jemput Bola Cek Kesehatan Gratis) merupakan inovasi pelayanan Puskesmas yang bertujuan memperluas akses masyarakat terhadap Program Cek Kesehatan Gratis (CKG) melalui pendekatan jemput bola. Tim Puskesmas hadir langsung ke tengah masyarakat, seperti sekolah, kantor pemerintahan, posyandu, tempat ibadah, komunitas, maupun lokasi kegiatan masyarakat untuk memberikan layanan skrining kesehatan dasar.\r\n\r\nInovasi ini bertujuan meningkatkan deteksi dini faktor risiko penyakit, memperluas cakupan pelayanan kesehatan preventif, serta meningkatkan kesadaran masyarakat akan pentingnya pemeriksaan kesehatan secara berkala.",
             "tahun": "2015",
-            "url": "http://localhost/landing/inovasi1"
+            "url": "http://127.0.0.1:8000/landing/inovasi1"
         },
         {
             "judul_inovasi": "INOVASI - bpjs",
             "deskripsi": "BPJS Online Care merupakan inovasi layanan digital yang memudahkan masyarakat dalam memperoleh informasi dan pelayanan administrasi BPJS Kesehatan secara lebih cepat, mudah, dan efisien tanpa harus datang langsung ke loket Puskesmas.",
             "tahun": "2026",
-            "url": "http://localhost/landing/inovasi1"
+            "url": "http://127.0.0.1:8000/landing/inovasi1"
         }
     ],
     "ai_assistant_identity": {

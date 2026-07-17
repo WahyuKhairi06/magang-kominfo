@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Puskesmas Marunggi Kota Pariaman - Website Resmi</title>
-<meta name="description" content="Website resmi Puskesmas Marunggi, Kota Pariaman. Informasi layanan kesehatan, jadwal, berita, dan informasi publik.">
-<link rel="icon" type="image/png" href="{{ asset('logo.png') }}">
+<title>{{ $puskesmasSetting->nama_puskesmas }} {{ $puskesmasSetting->kabupaten_kota }} - Website Resmi</title>
+<meta name="description" content="Website resmi {{ $puskesmasSetting->nama_puskesmas }}, {{ $puskesmasSetting->kabupaten_kota }}. Informasi layanan kesehatan, jadwal, berita, dan informasi publik.">
+<link rel="icon" type="image/png" href="{{ $puskesmasSetting->logo ? asset($puskesmasSetting->logo) : asset('logo.png') }}">
 
 <!-- Fonts: Fraunces (headline serif editorial) + Inter (sans utilitas) -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -102,8 +102,8 @@
     <div class="flex flex-col h-full p-8 overflow-y-auto no-scrollbar">
         <div class="flex justify-between items-center mb-12">
             <div class="text-lg font-bold tracking-tight text-white flex items-center gap-3">
-                <img src="{{ asset('puskesmas.png') }}" class="w-10 h-10 rounded-md bg-white p-1" alt="Logo">
-                <span>Puskesmas Marunggi</span>
+                <img src="{{ $puskesmasSetting->logo ? asset($puskesmasSetting->logo) : asset('puskesmas.png') }}" class="w-10 h-10 rounded-md bg-white p-1" alt="Logo">
+                <span>{{ $puskesmasSetting->nama_puskesmas }}</span>
             </div>
             <button class="text-white" id="closeMenu" aria-label="Tutup menu">
                 <span class="material-symbols-outlined text-3xl">close</span>
@@ -153,10 +153,10 @@
     <div :class="scrolled ? 'py-2' : 'py-3'"
          class="flex justify-between items-center w-full px-6 max-w-7xl mx-auto transition-all duration-500 ease-in-out">
         <a href="{{ url('/') }}" class="flex items-center gap-3">
-            <img src="{{ asset('puskesmas.png') }}" class="w-11 h-11 object-contain" alt="Logo Puskesmas Marunggi">
+            <img src="{{ $puskesmasSetting->logo ? asset($puskesmasSetting->logo) : asset('puskesmas.png') }}" class="w-11 h-11 object-contain" alt="Logo {{ $puskesmasSetting->nama_puskesmas }}">
             <span class="leading-tight">
-                <span class="block font-serif font-semibold text-secondary text-lg leading-none">Puskesmas Marunggi</span>
-                <span class="block text-[11px] uppercase tracking-[0.14em] text-muted font-semibold mt-0.5">Kota Pariaman</span>
+                <span class="block font-serif font-semibold text-secondary text-lg leading-none">{{ $puskesmasSetting->nama_puskesmas }}</span>
+                <span class="block text-[11px] uppercase tracking-[0.14em] text-muted font-semibold mt-0.5">{{ $puskesmasSetting->kabupaten_kota }}</span>
             </span>
         </a>
 

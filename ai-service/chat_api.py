@@ -10,9 +10,14 @@ os.chdir(str(BASE_DIR))
 sys.path.append(str(BASE_DIR))
 
 # Kita suppress stdout dari rich kalau ada error di main.py agar output tetap JSON bersih
+error_logs = []
 class DummyConsole:
     def print(self, *args, **kwargs):
-        pass
+        for arg in args:
+            if hasattr(arg, 'renderable'): # it's a rich Panel
+                error_logs.append(str(arg.renderable))
+            else:
+                error_logs.append(str(arg))
     def status(self, *args, **kwargs):
         class DummyStatus:
             def __enter__(self): pass
@@ -54,6 +59,7 @@ try:
 
 except SystemExit as e:
     # Error dari load_api_key dll yang panggil sys.exit
-    print(json.dumps({"status": "error", "message": "Setup AI Service tidak valid. Cek .env atau knowledge base. Code: " + str(e), "trace": traceback.format_exc()}))
+    err_detail = " | ".join(error_logs) if error_logs else "Unknown exit"
+    print(json.dumps({"status": "error", "message": f"Setup AI Service tidak valid. Detail: {err_detail} Code: {e}", "trace": traceback.format_exc()}))
 except Exception as e:
     print(json.dumps({"status": "error", "message": str(e), "trace": traceback.format_exc()}))

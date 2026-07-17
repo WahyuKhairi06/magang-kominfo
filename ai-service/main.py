@@ -207,7 +207,7 @@ def retrieve_context(query: str, corpus: list, top_k: int = 6) -> str:
 
 def load_api_key() -> str:
     """Memuat GEMINI_API_KEY dari file .env dan memvalidasi keberadaannya."""
-    load_dotenv(BASE_DIR / ".env")
+    load_dotenv(BASE_DIR / ".env", override=True)
     api_key = os.getenv("GEMINI_API_KEY", "").strip()
 
     if not api_key:

@@ -19,21 +19,25 @@
         <!-- Brand -->
         <div class="md:col-span-5 space-y-5">
             <div class="flex items-center gap-3">
-                <img src="{{ asset('puskesmas.png') }}" class="w-10 h-10 object-contain bg-white rounded-md p-1" alt="Logo">
-                <span class="font-serif text-xl font-medium">Puskesmas Marunggi</span>
+                <img src="{{ $puskesmasSetting->logo ? asset($puskesmasSetting->logo) : asset('puskesmas.png') }}" class="w-10 h-10 object-contain bg-white rounded-md p-1" alt="Logo">
+                <span class="font-serif text-xl font-medium">{{ $puskesmasSetting->nama_puskesmas }}</span>
             </div>
             <p class="text-white/70 text-sm leading-relaxed max-w-sm">
-                Jl. Puti Bungsu, Desa Marunggi, Kec. Pariaman Selatan, Kota Pariaman, Sumatera Barat.
-                Sahabat terbaik masyarakat dalam mewujudkan keluarga sehat, masyarakat sehat, dan mandiri.
+                {{ $puskesmasSetting->alamat }}
+                <br>Sahabat terbaik masyarakat dalam mewujudkan keluarga sehat, masyarakat sehat, dan mandiri.
             </p>
             <div class="flex gap-3 pt-2">
-                <a class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-primary hover:border-primary transition-colors" href="https://www.facebook.com/hcmarunggi/" target="_blank" aria-label="Facebook">
+                @if($puskesmasSetting->link_facebook)
+                <a class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-primary hover:border-primary transition-colors" href="{{ $puskesmasSetting->link_facebook }}" target="_blank" aria-label="Facebook">
                     <i class="bi bi-facebook"></i>
                 </a>
-                <a class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-primary hover:border-primary transition-colors" href="https://www.instagram.com/puskesmasmarunggi/" target="_blank" aria-label="Instagram">
+                @endif
+                @if($puskesmasSetting->link_instagram)
+                <a class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-primary hover:border-primary transition-colors" href="{{ $puskesmasSetting->link_instagram }}" target="_blank" aria-label="Instagram">
                     <i class="bi bi-instagram"></i>
                 </a>
-                <a class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-primary hover:border-primary transition-colors" href="mailto:info@puskesmasmarunggi.pariamankota.go.id" aria-label="Email">
+                @endif
+                <a class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-primary hover:border-primary transition-colors" href="mailto:{{ $puskesmasSetting->email }}" aria-label="Email">
                     <i class="bi bi-envelope"></i>
                 </a>
             </div>
@@ -56,20 +60,20 @@
         <div class="md:col-span-4 space-y-4">
             <h3 class="text-xs font-bold uppercase tracking-[0.14em] text-white/50">Jam Pelayanan</h3>
             <div class="text-sm text-white/80 space-y-2">
-                <div class="flex justify-between max-w-[220px]"><span>Senin - Kamis</span><span>08:00 - 14:00</span></div>
-                <div class="flex justify-between max-w-[220px]"><span>Jumat</span><span>08:00 - 11:00</span></div>
-                <div class="flex justify-between max-w-[220px]"><span>Sabtu</span><span>08:00 - 13:00</span></div>
+                <div class="flex justify-between max-w-[220px]"><span>Senin - Kamis</span><span>{{ $puskesmasSetting->jam_senin_kamis }}</span></div>
+                <div class="flex justify-between max-w-[220px]"><span>Jumat</span><span>{{ $puskesmasSetting->jam_jumat }}</span></div>
+                <div class="flex justify-between max-w-[220px]"><span>Sabtu</span><span>{{ $puskesmasSetting->jam_sabtu }}</span></div>
                 <div class="flex justify-between max-w-[220px] text-primary font-semibold"><span>UGD</span><span>24 Jam</span></div>
             </div>
             <p class="text-sm text-white/80 flex items-center gap-2 pt-2">
-                <span class="material-symbols-outlined text-base">call</span> (0751) 123-456
+                <span class="material-symbols-outlined text-base">call</span> {{ $puskesmasSetting->no_telp }}
             </p>
         </div>
     </div>
 
     <div class="border-t border-white/10">
         <div class="max-w-7xl mx-auto px-6 py-6 flex flex-col md:flex-row justify-between items-center gap-3 text-xs text-white/50">
-            <p>&copy; {{ date('Y') }} Puskesmas Marunggi &mdash; Dinas Kesehatan Kota Pariaman.</p>
+            <p>&copy; {{ date('Y') }} {{ $puskesmasSetting->nama_puskesmas }} &mdash; Dinas Kesehatan {{ $puskesmasSetting->kabupaten_kota }}.</p>
             <p>Dikelola oleh Dinas Komunikasi dan Informatika Kota Pariaman.</p>
         </div>
     </div>

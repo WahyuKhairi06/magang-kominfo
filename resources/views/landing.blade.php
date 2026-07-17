@@ -45,7 +45,7 @@ $totalDays = Carbon::create($year, $month)->daysInMonth;
             <div class="swiper-wrapper">
                 @foreach ($sliders as $slider)
                 <div class="swiper-slide">
-                    <img src="{{ asset('storage/' . $slider->gambar) }}" class="w-full h-full object-cover" alt="{{ $slider->judul ?? 'Puskesmas Marunggi' }}">
+                    <img src="{{ asset('storage/' . $slider->gambar) }}" class="w-full h-full object-cover" alt="{{ $slider->judul ?? $puskesmasSetting->nama_puskesmas }}">
                 </div>
                 @endforeach
             </div>
@@ -142,7 +142,7 @@ $totalDays = Carbon::create($year, $month)->daysInMonth;
             <div class="p-6 flex flex-col items-center text-center gap-1">
                 <span class="material-symbols-outlined text-primary text-2xl">schedule</span>
                 <span class="text-xs text-muted uppercase tracking-wide font-semibold mt-1">Jam Layanan</span>
-                <span class="text-sm font-bold text-secondary">08.00 &ndash; 14.00 WIB</span>
+                <span class="text-sm font-bold text-secondary">{{ $puskesmasSetting->jam_senin_kamis }} WIB</span>
             </div>
             <div class="p-6 flex flex-col items-center text-center gap-1">
                 <span class="material-symbols-outlined text-primary text-2xl">emergency</span>
@@ -152,12 +152,12 @@ $totalDays = Carbon::create($year, $month)->daysInMonth;
             <div class="p-6 flex flex-col items-center text-center gap-1">
                 <span class="material-symbols-outlined text-primary text-2xl">location_on</span>
                 <span class="text-xs text-muted uppercase tracking-wide font-semibold mt-1">Lokasi</span>
-                <span class="text-sm font-bold text-secondary">Marunggi, Pariaman Selatan</span>
+                <span class="text-sm font-bold text-secondary">{{ trim(str_ireplace('Puskesmas', '', $puskesmasSetting->nama_puskesmas)) }}, {{ $puskesmasSetting->kabupaten_kota }}</span>
             </div>
             <div class="p-6 flex flex-col items-center text-center gap-1">
                 <span class="material-symbols-outlined text-primary text-2xl">call</span>
                 <span class="text-xs text-muted uppercase tracking-wide font-semibold mt-1">Hubungi Kami</span>
-                <span class="text-sm font-bold text-secondary">(0751) 123-456</span>
+                <span class="text-sm font-bold text-secondary">{{ $puskesmasSetting->no_telp }}</span>
             </div>
         </div>
     </div>
@@ -169,7 +169,7 @@ $totalDays = Carbon::create($year, $month)->daysInMonth;
         <div class="grid md:grid-cols-12 gap-16 items-center">
             <div class="md:col-span-5 relative reveal-up">
                 <div class="aspect-[3/4] rounded-2xl overflow-hidden shadow-lg">
-                    <img alt="Kepala Puskesmas Marunggi" class="w-full h-full object-cover"
+                    <img alt="Kepala {{ $puskesmasSetting->nama_puskesmas }}" class="w-full h-full object-cover"
                          src="{{ $sambutan && $sambutan->foto ? asset('storage/'.$sambutan->foto) : asset('no-image.png') }}">
                 </div>
                 <div class="mt-4 sm:mt-0 sm:absolute sm:-bottom-6 sm:-right-6 bg-secondary p-6 sm:p-7 rounded-xl shadow-lg sm:max-w-[220px]">
@@ -182,7 +182,7 @@ $totalDays = Carbon::create($year, $month)->daysInMonth;
                     <h2 class="font-serif text-3xl md:text-4xl text-secondary">Kepala Puskesmas</h2>
                 </div>
                 <div class="prose prose-lg text-muted leading-relaxed max-w-none">
-                    {!! $sambutan->isi ?? '<p>Selamat datang di website resmi Puskesmas Marunggi. Kami berkomitmen memberikan pelayanan kesehatan yang profesional, ramah, dan mudah diakses oleh seluruh masyarakat Kota Pariaman.</p>' !!}
+                    {!! $sambutan->isi ?? '<p>Selamat datang di website resmi ' . $puskesmasSetting->nama_puskesmas . '. Kami berkomitmen memberikan pelayanan kesehatan yang profesional, ramah, dan mudah diakses oleh seluruh masyarakat ' . $puskesmasSetting->kabupaten_kota . '.</p>' !!}
                 </div>
                 <div class="pt-6 border-t border-border flex items-center gap-4">
                     <div class="w-12 h-12 rounded-full bg-surface flex items-center justify-center text-primary shrink-0">
@@ -190,7 +190,7 @@ $totalDays = Carbon::create($year, $month)->daysInMonth;
                     </div>
                     <div>
                         <p class="font-bold text-secondary">{{ $sambutan->nama ?? 'dr. Kepala Puskesmas' }}</p>
-                        <p class="text-sm text-muted">Kepala Puskesmas Marunggi</p>
+                        <p class="text-sm text-muted">Kepala {{ $puskesmasSetting->nama_puskesmas }}</p>
                     </div>
                 </div>
             </div>

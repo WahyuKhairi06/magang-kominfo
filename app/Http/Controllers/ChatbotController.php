@@ -29,10 +29,9 @@ class ChatbotController extends Controller
         $aiName = $chatbotSetting->ai_name ?? 'Asisten Puskesmas';
         $puskesmasName = $chatbotSetting->puskesmas_display_name ?? 'Puskesmas Marunggi';
 
-        // Execute python using Process
-        // On Windows, the python command might be 'python' or 'py'. 
-        // We will assume 'python' is in PATH since they already ran it before.
-        $process = new Process(['python', $scriptPath, $message, $aiName, $puskesmasName]);
+        // Use configurable python executable, default to 'python'
+        $pythonExec = env('PYTHON_EXECUTABLE', 'python');
+        $process = new Process([$pythonExec, $scriptPath, $message, $aiName, $puskesmasName]);
         $process->setTimeout(60); // Timeout up to 60 seconds for API call
         $process->run();
         

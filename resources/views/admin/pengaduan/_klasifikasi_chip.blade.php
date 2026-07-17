@@ -64,7 +64,13 @@
                 @if (str_contains(strtolower($pengaduan->alasan_ai), 'kata kunci') || str_contains(strtolower($pengaduan->alasan_ai), 'cadangan'))
                     <div class="mb-2 flex items-start gap-2 p-2.5 rounded-xl bg-amber-50 border border-amber-100 text-amber-800 text-[11px] leading-relaxed font-semibold">
                         <span class="material-symbols-outlined text-amber-600 text-sm leading-none">warning</span>
-                        <span>Klasifikasi otomatis gagal (kuota harian API gratis Gemini Anda habis). Sistem menggunakan klasifikasi cadangan berbasis kata kunci lokal. Silakan lakukan triage manual jika diperlukan.</span>
+                        @if (str_contains(strtolower($pengaduan->alasan_ai), 'koneksi') || str_contains(strtolower($pengaduan->alasan_ai), 'rest api'))
+                            <span>Klasifikasi otomatis gagal (masalah koneksi internet atau REST API Gemini terganggu). Sistem menggunakan klasifikasi cadangan berbasis kata kunci lokal. Silakan periksa koneksi internet Anda atau lakukan triage manual.</span>
+                        @elseif (str_contains(strtolower($pengaduan->alasan_ai), 'kuota') || str_contains(strtolower($pengaduan->alasan_ai), 'key'))
+                            <span>Klasifikasi otomatis gagal (kuota harian API gratis Gemini habis atau API Key tidak valid). Sistem menggunakan klasifikasi cadangan berbasis kata kunci lokal. Silakan lakukan triage manual jika diperlukan.</span>
+                        @else
+                            <span>Klasifikasi otomatis gagal (sistem cadangan berbasis kata kunci lokal diaktifkan). Silakan lakukan triage manual jika diperlukan.</span>
+                        @endif
                     </div>
                 @endif
                 <div class="flex items-center gap-1 text-slate-500 font-bold text-[10px] uppercase tracking-wider">
