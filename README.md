@@ -337,3 +337,4 @@ Praktik Kerja Lapangan (PKL)
 Dinas Komunikasi dan Informatika Kota Pariaman
 
 © 2026 Puskesmas — Dinas Kesehatan Kota Pariaman
+ 
