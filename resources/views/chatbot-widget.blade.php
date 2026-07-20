@@ -2,7 +2,7 @@
     $chatbotSetting = \Illuminate\Support\Facades\DB::table('chatbot_settings')->first();
     $aiName = $chatbotSetting->ai_name ?? 'Asisten Puskesmas';
     $puskesmasName = $chatbotSetting->puskesmas_display_name ?? 'Puskesmas Marunggi';
-    $defaultGreeting = "Halo! Saya adalah **" . $aiName . "**, asisten virtual resmi Puskesmas **" . $puskesmasName . "**. Saya siap membantu Anda mendapatkan informasi seputar layanan Puskesmas **" . $puskesmasName . "**.\n\nSebagai AI Assistant yang dikembangkan membantu masyarakat mencari informasi resmi seputar Puskesmas **" . $puskesmasName . "**. Saya bukan manusia dan bukan tenaga medis, sehingga tidak dapat melakukan diagnosis penyakit atau memberikan resep obat.\n\nAda yang bisa saya bantu terkait layanan Puskesmas **" . $puskesmasName . "**?";
+    $defaultGreeting = "Halo! Saya adalah **" . $aiName . "**, asisten virtual resmi Puskesmas **" . $puskesmasName . "**. Saya siap membantu Anda mendapatkan informasi seputar layanan Puskesmas **" . $puskesmasName . "**. Sebagai AI Assistant yang dikembangkan membantu masyarakat mencari informasi resmi seputar Puskesmas **" . $puskesmasName . "**. Saya bukan manusia dan bukan tenaga medis, sehingga tidak dapat melakukan diagnosis penyakit atau memberikan resep obat. Ada yang bisa saya bantu terkait layanan Puskesmas **" . $puskesmasName . "**?";
     $greeting = $chatbotSetting->greeting_message ?? $defaultGreeting;
     $primaryColor = $chatbotSetting->primary_color ?? '#2D6A4F';
     $logoChatbot = isset($chatbotSetting->logo_chatbot) && $chatbotSetting->logo_chatbot ? asset($chatbotSetting->logo_chatbot) : null;
