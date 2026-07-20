@@ -1,0 +1,6 @@
+GEMINI_API_KEY= 
+GEMINI_MODEL=gemini-2.5-flash
+
+INTERNAL_API_KEY=marunggi-ai-internal-key-12345
+GEMINI_CLASSIFY_MODEL=gemini-2.5-flash
+
