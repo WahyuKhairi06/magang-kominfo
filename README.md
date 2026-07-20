@@ -7,7 +7,7 @@ Website ini dirancang menggunakan konsep **Single Codebase**, sehingga satu basi
 ---
 
 ## 📖 Fitur Utama
-git 
+
 ### 1. ⚙️ Pengaturan Dinamis Identitas (Single Codebase)
 *   Mendukung penggunaan multi-puskesmas pada hosting terpisah dengan kode program yang sama.
 *   Admin dapat mengonfigurasi nama puskesmas, kabupaten/kota, logo, alamat, nomor telepon, email, jam operasional, dan link media sosial langsung dari panel kendali admin (`/admin/puskesmas-setting`).
@@ -67,12 +67,25 @@ sitariktageh/
 │       ├── ChatbotSetting.php
 │       └── Pengaduan.php
 │
+├── backups/                      # Folder arsip/backup lokal (diabaikan oleh Git)
+│   ├── docs.zip
+│   ├── pkk.zip
+│   └── resources.rar
+│
+├── config/
+│   └── services.php              # Pendaftaran konfigurasi API Key Gemini
+│
 ├── docs/                         # Berkas dokumentasi lengkap fitur
+│   ├── design.md                 # Spesifikasi visual & gaya desain Puskesmas
 │   ├── DOKUMENTASI-PENGATURAN-DINAMIS-PUSKESMAS.md # Dokumentasi multi-puskesmas
 │   ├── DOKUMENTASI-KLASIFIKASI-PENGADUAN.md       # Dokumentasi triage pengaduan
 │   └── DOKUMENTASI-SISTEM-LENGKAP.md              # Dokumentasi arsitektur sistem
 │
 ├── resources/views/              # Tampilan layout Blade Laravel
+│
+├── tests/                        # Folder pengujian otomatis & manual
+│   └── Manual/
+│       └── test_process.php      # Script uji manual integrasi chatbot
 │
 └── .env                          # Konfigurasi kunci API dan database
 ```
@@ -81,58 +94,71 @@ sitariktageh/
 
 ## ⚙️ Petunjuk Instalasi & Menjalankan Aplikasi
 
-1.  **Clone Repository:**
-    ```bash
-    git clone https://github.com/WahyuKhairi06/magang-kominfo.git
-    cd magang-kominfo
-    ```
-2.  **Instalasi Dependensi Laravel:**
-    ```bash
-    composer install
-    npm install
-    ```
-3.  **Setup Environment File:**
-    Salin file `.env.example` menjadi `.env` dan konfigurasikan koneksi database MySQL Anda.
-    ```bash
-    cp .env.example .env
-    php artisan key:generate
-    ```
-4.  **Konfigurasi API Key Gemini:**
-    Tambahkan token Gemini API resmi Anda pada file `.env` di direktori root dan folder `ai-service/`:
-    ```env
-    # Di file .env root Laravel
-    GEMINI_API_KEY=YOUR_GEMINI_API_KEY
-    QUEUE_CONNECTION=database
+1. **Clone Repository:**
+   ```bash
+   git clone https://github.com/WahyuKhairi06/magang-kominfo.git
+   cd magang-kominfo
+   ```
+2. **Instalasi Dependensi Laravel:**
+   ```bash
+   composer install
+   npm install
+   ```
+3. **Setup Environment File:**
+   Salin file `.env.example` menjadi `.env` dan konfigurasikan koneksi database MySQL Anda.
+   ```bash
+   cp .env.example .env
+   php artisan key:generate
+   ```
+4. **Konfigurasi API Key Gemini:**
+   Tambahkan token Gemini API resmi Anda (bisa didapatkan di [Google AI Studio](https://aistudio.google.com/apikey)) pada file `.env` di direktori root Laravel dan folder `ai-service/` (gunakan **satu API Key yang sama**):
+   ```env
+   # Di file .env root Laravel (untuk klasifikasi pengaduan)
+   GEMINI_API_KEY=YOUR_GEMINI_API_KEY
+   QUEUE_CONNECTION=database
 
-    # Di file ai-service/.env
-    GEMINI_API_KEY=YOUR_GEMINI_API_KEY
-    GEMINI_MODEL=gemini-2.5-flash
-    ```
-5.  **Migrasi Database:**
-    ```bash
-    php artisan migrate
-    ```
-6.  **Instalasi Dependensi Python (Modul AI):**
-    ```bash
-    cd ai-service
-    pip install -r requirements.txt
-    cd ..
-    ```
-7.  **Menjalankan Server Pengembangan Lokal:**
-    Jalankan tiga perintah berikut di terminal/tab terpisah:
-    *   **Server Web Laravel:**
-        ```bash
-        php artisan serve
-        ```
-    *   **Vite Compiler:**
-        ```bash
-        npm run dev
-        ```
-    *   **Queue Worker (Penting untuk memproses Klasifikasi AI):**
-        ```bash
-        php artisan queue:work
-        ```
-    Website dapat diakses di browser melalui tautan `http://127.0.0.1:8000`.
+   # Di file ai-service/.env (untuk chatbot asisten)
+   GEMINI_API_KEY=YOUR_GEMINI_API_KEY
+   GEMINI_MODEL=gemini-2.5-flash
+   ```
+5. **Migrasi Database:**
+   ```bash
+   php artisan migrate
+   ```
+6. **Instalasi Dependensi Python (Modul AI):**
+   Gunakan virtual environment (`.venv`) agar lingkungan library tetap terisolasi:
+   ```bash
+   # Masuk ke folder ai-service
+   cd ai-service
+
+   # Buat virtual environment (.venv)
+   python -m venv .venv
+
+   # Aktifkan virtual environment
+   # Windows (PowerShell/CMD):
+   .venv\Scripts\activate
+   # macOS/Linux:
+   source .venv/bin/activate
+
+   # Install library pendukung
+   pip install -r requirements.txt
+   cd ..
+   ```
+7. **Menjalankan Server Pengembangan Lokal:**
+   Jalankan tiga perintah berikut di terminal/tab terpisah:
+   * **Server Web Laravel:**
+     ```bash
+     php artisan serve
+     ```
+   * **Vite Compiler:**
+     ```bash
+     npm run dev
+     ```
+   * **Queue Worker (Penting untuk memproses Klasifikasi AI):**
+     ```bash
+     php artisan queue:work
+     ```
+   Website dapat diakses di browser melalui tautan `http://127.0.0.1:8000`.
 
 ---
 
