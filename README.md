@@ -32,11 +32,11 @@ git
 
 ## 🚀 Teknologi Utama
 
-*   **Backend Framework:** Laravel 10/11
+*   **Backend Framework:** Laravel 13
 *   **Runtime PHP:** PHP 8.3+
 *   **Runtime Python (AI):** Python 3.11+ (google-genai, python-dotenv, rich)
 *   **Frontend Engine:** HTML5, Alpine.js, Tailwind CSS, Vite, Vanilla CSS
-*   **Database:** MySQL / MariaDB
+*   **Database:** MySQL 
 *   **LLM API:** Google Gemini API (`gemini-2.5-flash`)
 
 ---

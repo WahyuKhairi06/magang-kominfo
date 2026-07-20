@@ -59,12 +59,19 @@ sitariktageh/
 │       ├── Pengaduan.php
 │       └── Admin/                # Model data Portal, PKK, dan Dasawisma
 │
+├── backups/                      # Folder arsip/backup lokal (diabaikan oleh Git)
+│   ├── docs.zip
+│   ├── pkk.zip
+│   └── resources.rar
+│
 ├── config/
 │   └── services.php              # Pendaftaran konfigurasi API Key Gemini
 │
 ├── database/migrations/          # Migrasi skema tabel MySQL
 │
 ├── docs/                         # Berkas dokumentasi proyek
+│   ├── design.md                 # Spesifikasi gaya visual & desain Puskesmas
+│   └── ...                       # Panduan & dokumen PRD lainnya
 │
 ├── resources/
 │   ├── views/                    # Tampilan Blade HTML
@@ -72,8 +79,13 @@ sitariktageh/
 │   │   │   ├── chatbot-setting/  # Panel pengaturan chatbot
 │   │   │   └── pengaduan/        # Tampilan kelola aduan (triage & chip)
 │   │   └── chatbot-widget.blade.php # Tampilan pop-up chatbot publik
+│   │
+│   └── .env                      # Konfigurasi utama Laravel & API Key Gemini
 │
-└── .env                          # Konfigurasi utama Laravel & API Key Gemini
+├── tests/                        # Folder pengujian otomatis & manual
+│   ├── Manual/
+│   │   └── test_process.php      # Script uji manual integrasi chatbot
+│   └── Feature / Unit / Pest.php
 ```
 
 ---
@@ -388,4 +400,26 @@ php artisan queue:work
 ```
 
 ---
-*Dokumentasi ini diperbarui secara otomatis setelah optimasi integrasi langsung API Gemini ke dalam sistem Laravel tanpa perantara FastAPI.*
+
+## 8. PEMELIHARAAN STRUKTUR & KEBERSIHAN PROYEK (CLEANUP - JULI 2026)
+
+Untuk menjaga keberlangsungan proyek (*maintainability*) dan kebersihan repositori Git, telah dilakukan standarisasi struktur direktori proyek:
+
+1. **Relokasi Berkas Dokumentasi:**
+   - Berkas `design.md` dipindahkan dari root ke [docs/design.md](file:///c:/laragon/www/marunggi/sitariktageh/docs/design.md) agar seluruh dokumentasi teknis tersimpan di satu folder.
+
+2. **Isolasi Berkas Arsip Sementara:**
+   - Membuat folder `backups/` di root untuk mengisolasi berkas arsip besar (seperti `pkk.zip`, `resources.rar`, `docs.zip`) agar tidak memenuhi root folder. Folder ini telah didaftarkan dalam `.gitignore` agar file biner besar tersebut tidak ter-commit ke repositori Git.
+
+3. **Relokasi Script Pengujian Manual:**
+   - Script uji chatbot [test_process.php](file:///c:/laragon/www/marunggi/sitariktageh/test_process.php) dipindahkan ke [tests/Manual/test_process.php](file:///c:/laragon/www/marunggi/sitariktageh/tests/Manual/test_process.php) dengan penyesuaian path autoload dan bootstrap agar tetap dapat dijalankan secara mandiri.
+
+4. **Pembersihan Modul Duplikat:**
+   - Folder `ai-service/blueprint-pengaduan-ai-kit` dihapus sepenuhnya karena fitur pengaduan AI telah diintegrasikan secara penuh ke dalam folder utama Laravel (`app/`, `resources/`, `routes/`) dan root `ai-service/`.
+
+5. **Optimalisasi Pengabaian Git (`.gitignore`):**
+   - Menambahkan aturan pengabaian virtual environment Python (`.venv/`, `venv/`), compiled cache Python (`**/__pycache__/`, `**/*.pyc`, dll.), serta folder `backups/` agar tidak ter-commit ke dalam repositori Git.
+
+---
+*Dokumentasi ini diperbarui secara otomatis setelah optimasi integrasi langsung API Gemini ke dalam sistem Laravel tanpa perantara FastAPI serta perapian struktur direktori.*
+
