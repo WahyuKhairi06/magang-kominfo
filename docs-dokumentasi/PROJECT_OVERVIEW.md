@@ -26,7 +26,7 @@ Selama program magang, pengembang menambahkan **modul kecerdasan buatan (AI)** y
 | Backend Web | Laravel | 13 | Orkestrasi, API, database, queue |
 | Runtime PHP | PHP | 8.3+ | Eksekusi Laravel |
 | AI Service | Python | 3.11+ | Komunikasi dengan Gemini, retrieval |
-| LLM Provider | Google Gemini API | `gemini-2.5-flash` | Model bahasa utama |
+| LLM Provider | Google Gemini API | `gemini-2.0-flash` | Model bahasa utama |
 | Database | MySQL | — | Penyimpanan data website & knowledge source |
 | Queue Driver | Laravel Queue (Database) | — | Async job klasifikasi pengaduan |
 | Frontend | HTML5, Alpine.js, Tailwind CSS, Vite | — | Antarmuka pengguna |

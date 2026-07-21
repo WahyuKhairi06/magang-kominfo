@@ -14,7 +14,7 @@ class ChatbotController extends Controller
     public function send(Request $request)
     {
         $request->validate([
-            'message' => 'required|string',
+            'message' => 'required|string|max:2000', // Batasi panjang pesan — cegah token abuse & DoS
         ]);
 
         $message = $request->input('message');
@@ -36,11 +36,14 @@ class ChatbotController extends Controller
         $process->run();
         
         if (!$process->isSuccessful()) {
+            // Catat error detail ke log server — JANGAN kirim ke browser (bisa bocor path/stack trace)
+            Log::error('Chatbot process failed', [
+                'stderr' => $process->getErrorOutput(),
+                'stdout' => $process->getOutput(),
+            ]);
             return response()->json([
                 'status' => 'error',
-                'message' => 'Terjadi kesalahan pada AI Service.',
-                'error' => $process->getErrorOutput(),
-                'output' => $process->getOutput()
+                'message' => 'Terjadi kesalahan pada AI Service. Silakan coba lagi.',
             ], 500);
         }
         
@@ -50,11 +53,11 @@ class ChatbotController extends Controller
         $result = json_decode($output, true);
         
         if (json_last_error() !== JSON_ERROR_NONE) {
-            // Fallback if not pure JSON
+            // Catat output mentah ke log server — JANGAN ekspos ke browser
+            Log::error('Chatbot invalid JSON output', ['raw' => $output]);
             return response()->json([
                 'status' => 'error',
-                'message' => 'Format balasan dari AI Service tidak valid.',
-                'raw_output' => $output
+                'message' => 'Format balasan dari AI Service tidak valid. Silakan coba lagi.',
             ], 500);
         }
         
@@ -70,7 +73,21 @@ class ChatbotController extends Controller
             $answerHTML = preg_replace('/\*([^\*]+)\*/', '<em>$1</em>', $answerHTML);
 
             // Basic markdown to html link
-            $answerHTML = preg_replace('/\[(.*?)\]\((.*?)\)/', '<a href="$2" class="text-primary hover:underline font-semibold" target="_blank">$1</a>', $answerHTML);
+            // Hanya izinkan URL http/https — cegah href="javascript:" atau href="data:" injection
+            $answerHTML = preg_replace_callback(
+                '/\[([^\]]*?)\]\(([^)]*?)\)/',
+                function ($matches) {
+                    $linkText = $matches[1];
+                    $url = $matches[2];
+                    // Validasi: hanya izinkan protokol http dan https
+                    if (preg_match('/^https?:\/\//i', $url)) {
+                        return '<a href="' . $url . '" class="text-primary hover:underline font-semibold" target="_blank" rel="noopener noreferrer">' . $linkText . '</a>';
+                    }
+                    // URL tidak valid — tampilkan teks saja tanpa link
+                    return $linkText;
+                },
+                $answerHTML
+            );
 
             $result['answer'] = $answerHTML;
         }

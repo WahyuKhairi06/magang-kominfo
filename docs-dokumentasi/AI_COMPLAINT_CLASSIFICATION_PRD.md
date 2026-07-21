@@ -68,15 +68,17 @@ sequenceDiagram
     Note over Q,J: Diproses secara asinkron oleh queue worker
 
     Q->>J: Eksekusi ClassifyPengaduanJob::handle()
-    J->>DB: Pengaduan::find($pengaduanId)
-    J->>J: Bangun prompt klasifikasi
-    J->>G: POST generativelanguage.googleapis.com/.../generateContent
+    J->>J: Panggil Python CLI (ai-service/classify_cli.py via Symfony Process)
+    J->>G: google-genai Client generate_content (gemini-2.0-flash)
     G-->>J: JSON {kategori, urgensi, alasan}
     J->>DB: UPDATE pengaduans SET kategori_ai, urgensi_ai, alasan_ai,\n kategori_final, urgensi_final, status_klasifikasi='selesai'
 
-    A->>L: GET /admin/pengaduan
-    L->>DB: SELECT pengaduans ORDER BY created_at DESC
-    L-->>A: Tampilkan daftar dengan badge kategori+urgensi
+    A->>L: GET /admin/pengaduan (Support ?per_page=10,25,50,100 & ?start_date & ?end_date)
+    L->>DB: SELECT pengaduans WHERE date_range ORDER BY created_at DESC PAGINATE
+    L-->>A: Tampilkan daftar dengan badge klasifikasi + kontrol paginasi
+    
+    A->>L: GET /admin/pengaduan/cetak-pdf (?start_date & ?end_date)
+    L-->>A: Stream File PDF Rekapitulasi Pengaduan (A4 Landscape)
 ```
 
 ### Alur Sinkron (Fallback untuk Admin)

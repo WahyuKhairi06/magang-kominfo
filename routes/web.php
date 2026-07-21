@@ -70,6 +70,9 @@ Route::post('/pengaduan', [LandingpageController::class, 'pengaduanStore'])->nam
 Route::get('/admin/pengaduan', [\App\Http\Controllers\Admin\PengaduanController::class, 'index'])
     ->name('pengaduan.index');
 
+Route::get('/admin/pengaduan/cetak-pdf', [\App\Http\Controllers\Admin\PengaduanController::class, 'cetakPdf'])
+    ->name('admin.pengaduan.cetak-pdf');
+
 Route::get('/admin/pengaduan/{id}/edit', [\App\Http\Controllers\Admin\PengaduanController::class, 'edit'])
     ->name('admin.pengaduan.edit');
 

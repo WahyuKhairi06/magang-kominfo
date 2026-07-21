@@ -11,6 +11,7 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
+use Symfony\Component\Process\Process;
 
 class ClassifyPengaduanJob implements ShouldQueue
 {
@@ -74,56 +75,39 @@ class ClassifyPengaduanJob implements ShouldQueue
                 "Subjek: $subjek\n" .
                 "Isi: $isi";
 
-            $response = Http::timeout(25)
-                ->post("https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=" . $apiKey, [
-                    'contents' => [
-                        [
-                            'parts' => [
-                                ['text' => $prompt]
-                            ]
-                        ]
-                    ],
-                    'generationConfig' => [
-                        'responseMimeType' => 'application/json',
-                        'responseSchema' => [
-                            'type' => 'OBJECT',
-                            'properties' => [
-                                'kategori' => [
-                                    'type' => 'STRING',
-                                    'enum' => $categories
-                                ],
-                                'urgensi' => [
-                                    'type' => 'STRING',
-                                    'enum' => array_keys($urgencyRubric)
-                                ],
-                                'alasan' => [
-                                    'type' => 'STRING'
-                                ]
-                            ],
-                            'required' => ['kategori', 'urgensi', 'alasan']
-                        ]
-                    ]
-                ]);
+            // Jalankan classification via Python CLI process agar menggunakan kredensial Google otomatis yang sama dengan chatbot
+            $pythonExec = env('PYTHON_EXECUTABLE', 'python');
+            $scriptPath = base_path('ai-service/classify_cli.py');
+            
+            $process = new Process([$pythonExec, $scriptPath, $subjek, $isi]);
+            $process->setTimeout(30);
+            $process->run();
 
-            if ($response->failed()) {
-                throw new \RuntimeException("Gemini REST API merespons error: " . $response->status() . ' - ' . $response->body());
+            if (!$process->isSuccessful()) {
+                throw new \RuntimeException("Python Service gagal: " . $process->getErrorOutput());
             }
 
-            $rawText = $response->json('candidates.0.content.parts.0.text');
-            if (!$rawText) {
-                throw new \RuntimeException("Respon dari Gemini API kosong atau formatnya salah.");
+            $output = $process->getOutput();
+            $result = json_decode($output, true);
+
+            if (json_last_error() !== JSON_ERROR_NONE || !isset($result['status'])) {
+                throw new \RuntimeException("Format output dari Python Service tidak valid: " . $output);
             }
 
-            $data = json_decode($rawText, true);
-            if (json_last_error() !== JSON_ERROR_NONE || !isset($data['kategori']) || !isset($data['urgensi']) || !isset($data['alasan'])) {
-                throw new \RuntimeException("Respon JSON dari Gemini API tidak valid atau properti tidak lengkap: " . $rawText);
+            if ($result['status'] === 'fallback' || $result['status'] === 'error') {
+                $err = $result['error'] ?? 'API Error';
+                throw new \RuntimeException("Python Service mengembalikan status gagal: " . $err);
+            }
+
+            $data = $result['data'] ?? [];
+            if (!isset($data['kategori']) || !isset($data['urgensi']) || !isset($data['alasan'])) {
+                throw new \RuntimeException("Skema data dari Python Service tidak lengkap.");
             }
 
             $pengaduan->update([
                 'kategori_ai' => $data['kategori'],
                 'urgensi_ai' => $data['urgensi'],
                 'alasan_ai' => $data['alasan'],
-                // AI suggestion langsung jadi nilai aktif sampai admin override manual
                 'kategori_final' => $data['kategori'],
                 'urgensi_final' => $data['urgensi'],
                 'status_klasifikasi' => 'selesai',

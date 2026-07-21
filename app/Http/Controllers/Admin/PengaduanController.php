@@ -10,13 +10,62 @@ use Illuminate\Support\Facades\DB;
 class PengaduanController extends Controller
 {
     // LIST ADMIN
-    public function index()
+    public function index(Request $request)
     {
-        $data = DB::table('pengaduans')
-            ->orderBy('created_at', 'desc')
-            ->get();
+        $perPage = in_array((int)$request->input('per_page'), [10, 25, 50, 100])
+            ? (int)$request->input('per_page')
+            : 10;
 
-        return view('admin.pengaduan.index', compact('data'));
+        $query = Pengaduan::query();
+
+        if ($request->filled('start_date')) {
+            $query->whereDate('created_at', '>=', $request->start_date);
+        }
+
+        if ($request->filled('end_date')) {
+            $query->whereDate('created_at', '<=', $request->end_date);
+        }
+
+        if ($request->filled('kategori')) {
+            $query->where(function($q) use ($request) {
+                $q->where('kategori_final', $request->kategori)
+                  ->orWhere('kategori_ai', $request->kategori);
+            });
+        }
+
+        $data = $query->orderBy('created_at', 'desc')->paginate($perPage)->withQueryString();
+
+        return view('admin.pengaduan.index', compact('data', 'perPage'));
+    }
+
+    // CETAK PDF WITH DATE RANGE
+    public function cetakPdf(Request $request)
+    {
+        $query = Pengaduan::query();
+
+        if ($request->filled('start_date')) {
+            $query->whereDate('created_at', '>=', $request->start_date);
+        }
+
+        if ($request->filled('end_date')) {
+            $query->whereDate('created_at', '<=', $request->end_date);
+        }
+
+        if ($request->filled('kategori')) {
+            $query->where(function($q) use ($request) {
+                $q->where('kategori_final', $request->kategori)
+                  ->orWhere('kategori_ai', $request->kategori);
+            });
+        }
+
+        $data = $query->orderBy('created_at', 'desc')->get();
+        $startDate = $request->start_date;
+        $endDate = $request->end_date;
+
+        $pdf = \Barryvdh\DomPDF\Facade\Pdf::loadView('admin.pengaduan.pdf', compact('data', 'startDate', 'endDate'))
+            ->setPaper('a4', 'landscape');
+
+        return $pdf->stream('laporan-pengaduan-' . date('Y-m-d') . '.pdf');
     }
 
     // DETAIL/EDIT ADMIN

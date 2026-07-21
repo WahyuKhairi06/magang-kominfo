@@ -53,6 +53,10 @@ Rilis pertama modul AI sebagai hasil pengembangan selama magang.
 - **[Added]** Mekanisme fallback classifier lokal berbasis keyword PHP murni dalam `ClassifyPengaduanJob`.
 - **[Added]** Endpoint `PATCH /admin/pengaduan/{id}/klasifikasi` untuk admin melakukan override kategori/urgensi via AJAX.
 - **[Added]** Mekanisme `dispatchSync` di `PengaduanController::edit()` — klasifikasi sinkron dijalankan otomatis saat admin membuka detail pengaduan yang masih `pending`.
+- **[Added]** Fitur Paginasi Dinamis pada halaman admin pengaduan (`10`, `25`, `50`, `100` data per halaman) via query string `per_page`.
+- **[Added]** Fitur Cetak Rekapitulasi PDF Pengaduan (`admin.pengaduan.cetak-pdf`) yang dilengkapi dengan filter rentang tanggal (Mulai s/d Sampai) menggunakan DomPDF (`pdf.blade.php`).
+- **[Changed]** `ClassifyPengaduanJob.php` kini mengeksekusi script Python CLI (`ai-service/classify_cli.py`) via `Symfony\Component\Process\Process` guna menyelaraskan arsitektur autentikasi Google GenAI dengan Chatbot (mem-bypass masalah kredensial GCP OAuth di PHP).
+- **[Changed]** Model Gemini diperbarui ke versi stabil `gemini-2.0-flash`.
 - **[Changed]** `LandingpageController::pengaduanStore()` diperbarui untuk dispatch `ClassifyPengaduanJob` setelah menyimpan pengaduan.
 - **[Changed]** `Pengaduan::$fillable` diperbarui untuk menyertakan semua kolom AI baru.
 
