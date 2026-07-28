@@ -38,7 +38,7 @@ try:
     from classify_complaint import router as complaint_router
     app = FastAPI(title="AI Healthcare Assistant Services")
     app.include_router(complaint_router)
-except ImportError:
+except Exception:
     app = None
 
 # ==================================================

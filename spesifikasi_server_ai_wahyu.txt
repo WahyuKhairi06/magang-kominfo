@@ -1,0 +1,70 @@
+====================================================================
+SPESIFIKASI ARSITEKTUR SERVER - AI SERVICE & SYSTEM
+Puskesmas, Kota Pariaman
+====================================================================
+
+1. RINGKASAN ARSITEKTUR SISTEM
+   ---------------------------
+   - Nama Sistem    : Sitariktageh (Sistem Informasi Puskesmas Marunggi)
+   - Framework Web  : Laravel 13.x (PHP 8.3+)
+   - AI Engine      : Google Gemini API Cloud (gemini-2.5-flash) via google-genai SDK
+   - AI Runtime     : Python 3.11+ (Virtual Environment: ai-service/venv)
+   - Pola Integrasi AI:
+     a. Chatbot Publik  : Symfony Process / proc_open (chat_api.py -> main.py)
+     b. OCR Knowledge   : Symfony Process / proc_open (extract_ocr.py)
+     c. Klasifikasi AI  : Laravel Queue Job + FastAPI HTTP Endpoint (classify_complaint.py :8001)
+   - GPU Hardware   : TIDAK memerlukan local GPU (Zero Local GPU Hardware Required).
+
+2. SPESIFIKASI HARDWARE SERVER (VPS / CLOUD SERVER)
+   ------------------------------------------------
+   A. Minimum (Development / Staging / Trafik Low):
+      - CPU       : 2 vCPU (x86_64)
+      - RAM       : 2 GB - 4 GB (Dianjurkan 4 GB agar lancar memproses proc_open Python)
+      - Storage   : 20 GB - 25 GB SSD
+      - Bandwidth : 1 TB/bulan (Internet Outbound Stabil ke Google Gemini API)
+
+   B. Rekomendasi Production (Trafik Sedang - Tinggi):
+      - CPU       : 4 vCPU
+      - RAM       : 4 GB - 8 GB
+      - Storage   : 40 GB - 50 GB NVMe SSD
+      - Bandwidth : 10 TB/bulan / Unlimited (Koneksi low latency < 50ms ke Google API)
+
+3. SOFTWARE STACK & ENVIRONMENTAL REQUIREMENTS
+   -------------------------------------------
+   - OS           : Ubuntu Server 22.04 LTS / 24.04 LTS (Rekomendasi Utama)
+   - Web Server   : NGINX (Reverse proxy ke PHP-FPM, serve static assets, SSL)
+   - PHP Runtime  : PHP 8.3+ (PHP-FPM & PHP-CLI)
+   - Extension PHP: pdo_mysql, mbstring, gd, zip, bcmath, intl, opcache, pcntl, exif
+   - Node.js      : Node.js 20.x + npm (untuk build assets Vite/Tailwind)
+   - Python       : Python 3.11+ (pip, venv)
+   - Python Deps  : google-genai>=0.3.0, python-dotenv>=1.0.1, rich, fastapi, uvicorn, pydantic
+   - Database     : MySQL 8.0+ (Collation utf8mb4_unicode_ci)
+   - Manager      : Supervisor (Running Laravel Queue Worker `queue:work` & Scheduler)
+
+4. KONFIGURASI JARINGAN & KEAMANAN (NETWORK & SECURITY)
+   -----------------------------------------------------
+   - Inbound Port  : 80 (HTTP), 443 (HTTPS)
+   - Outbound Port : 443 (HTTPS - Terbuka ke `generativelanguage.googleapis.com`)
+   - Internal Port : 8001 (FastAPI Uvicorn - Bind ke 127.0.0.1 / localhost)
+   - Security      : SSL/TLS (Certbot / Let's Encrypt), Internal API Key Header (X-Api-Key)
+
+5. SKEMA ARSITEKTUR & SINKRONISASI PROSES
+   --------------------------------------
+   [ Pengguna / Publik ] ──(HTTPS)──> [ NGINX Web Server ]
+                                             │
+                                             ▼
+                                [ Laravel 13 (PHP 8.3) ]
+                                             │
+         ┌───────────────────────────────────┼───────────────────────────────────┐
+         │ (proc_open synchronous)           │ (Queue Worker: queue:work)        │ (proc_open)
+         ▼                                   ▼                                   ▼
+   [ chat_api.py ]               [ ClassifyPengaduanJob ]               [ extract_ocr.py ]
+   (Chatbot Response)                        │                          (Knowledge OCR)
+         │                                   ▼ (HTTP POST :8001)                 │
+         │                        [ classify_complaint.py ]                      │
+         │                        (FastAPI Router Service)                       │
+         │                                   │                                   │
+         └───────────────────────────────────┼───────────────────────────────────┘
+                                             ▼ (HTTPS Outbound Port 443)
+                                  [ Google Gemini API Cloud ]
+====================================================================

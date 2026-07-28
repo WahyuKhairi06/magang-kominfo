@@ -84,7 +84,7 @@ User chat di website
         ▼
 ChatbotController::send()
   ├─ generateDatabaseKnowledge()   ← Query 9+ tabel → tulis JSON ke disk
-  └─ Symfony Process::run()        ← Spawn: python chat_api.py "pesan" "nama_ai" "nama_puskesmas"
+  └─ AiProcessService::createProcess() ← Spawn: python chat_api.py "pesan" "nama_ai" "nama_puskesmas"
                                            │
                                            ▼
                                    chat_api.py → main.py

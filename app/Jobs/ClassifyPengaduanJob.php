@@ -3,6 +3,7 @@
 namespace App\Jobs;
 
 use App\Models\Pengaduan;
+use App\Services\AiProcessService;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
@@ -76,11 +77,10 @@ class ClassifyPengaduanJob implements ShouldQueue
                 "Isi: $isi";
 
             // Jalankan classification via Python CLI process agar menggunakan kredensial Google otomatis yang sama dengan chatbot
-            $pythonExec = env('PYTHON_EXECUTABLE', 'python');
+            $pythonExec = AiProcessService::getPythonExecutable();
             $scriptPath = base_path('ai-service/classify_cli.py');
             
-            $process = new Process([$pythonExec, $scriptPath, $subjek, $isi]);
-            $process->setTimeout(30);
+            $process = AiProcessService::createProcess([$pythonExec, $scriptPath, $subjek, $isi], 30);
             $process->run();
 
             if (!$process->isSuccessful()) {

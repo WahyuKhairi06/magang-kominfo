@@ -29,7 +29,8 @@ Seluruh implementasi yang terdokumentasi di sini dapat diverifikasi langsung pad
 | 7 | Keputusan Desain Teknis | [`DESIGN_DECISIONS.md`](./DESIGN_DECISIONS.md) |
 | 8 | Pengujian | [`TESTING.md`](./TESTING.md) |
 | 9 | Riwayat Perubahan | [`CHANGELOG.md`](./CHANGELOG.md) |
-| 10 | Peta Jalan Pengembangan | [`ROADMAP.md`](./ROADMAP.md) |
+| 10 | Troubleshooting & Perbaikan AI Service | [`TROUBLESHOOTING_AI_SERVICE.md`](./TROUBLESHOOTING_AI_SERVICE.md) |
+| 11 | Peta Jalan Pengembangan | [`ROADMAP.md`](./ROADMAP.md) |
 
 ---
 

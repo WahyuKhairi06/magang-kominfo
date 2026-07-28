@@ -3,6 +3,16 @@
 Semua perubahan signifikan pada modul AI didokumentasikan di sini secara kronologis.
 Format mengikuti [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [1.0.1] — 28 Juli 2026
+
+### Perbaikan Infrastruktur & Runtime AI Service
+
+- **[Added]** Kelas layanan `App\Services\AiProcessService` untuk memusatkan logika pencarian executable Python dan instansiasi `Symfony\Component\Process\Process` di seluruh aplikasi secara *clean* dan DRY.
+- **[Fixed]** Bug `WinError 10106` saat Symfony `Process` mengeksekusi Python di Windows — diperbaiki dengan otomatis mempassing variabel environment sistem (`SystemRoot`, `WINDIR`, `PATH`) melalui `AiProcessService`.
+- **[Fixed]** Bug parsing `.env` yang membaca karakter petik ganda (`"`) secara literal pada `PYTHON_EXECUTABLE` dan spasi di awal `GEMINI_API_KEY`.
+- **[Fixed]** Penanganan exception pada `ai-service/main.py` yang sebelumnya menangkap `ImportError` saja — diperluas ke `except Exception:` agar kesalahan socket di lingkungan non-interaktif tidak memicu error *"Library google-genai belum terinstall"*.
+- **[Added]** Dokumen troubleshooting baru: [`TROUBLESHOOTING_AI_SERVICE.md`](./TROUBLESHOOTING_AI_SERVICE.md).
+
 ---
 
 ## [1.0.0] — Juli 2026

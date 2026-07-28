@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\AiProcessService;
 use Illuminate\Http\Request;
 use Symfony\Component\Process\Process;
 use Symfony\Component\Process\Exception\ProcessFailedException;
@@ -29,10 +30,9 @@ class ChatbotController extends Controller
         $aiName = $chatbotSetting->ai_name ?? 'Asisten Puskesmas';
         $puskesmasName = $chatbotSetting->puskesmas_display_name ?? 'Puskesmas Marunggi';
 
-        // Use configurable python executable, default to 'python'
-        $pythonExec = env('PYTHON_EXECUTABLE', 'python');
-        $process = new Process([$pythonExec, $scriptPath, $message, $aiName, $puskesmasName]);
-        $process->setTimeout(60); // Timeout up to 60 seconds for API call
+        // Resolve Python executable and launch process via AiProcessService
+        $pythonExec = AiProcessService::getPythonExecutable();
+        $process = AiProcessService::createProcess([$pythonExec, $scriptPath, $message, $aiName, $puskesmasName], 60);
         $process->run();
         
         if (!$process->isSuccessful()) {

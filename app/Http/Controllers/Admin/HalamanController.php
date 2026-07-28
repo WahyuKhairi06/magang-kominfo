@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Services\AiProcessService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -128,8 +129,8 @@ class HalamanController extends Controller
 
             if (file_exists($imagePath)) {
                 try {
-                    $process = new \Symfony\Component\Process\Process(['python', base_path('ai-service/extract_ocr.py'), $imagePath]);
-                    $process->setTimeout(60);
+                    $pythonExec = AiProcessService::getPythonExecutable();
+                    $process = AiProcessService::createProcess([$pythonExec, base_path('ai-service/extract_ocr.py'), $imagePath], 60);
                     $process->run();
 
                     if ($process->isSuccessful()) {
