@@ -15,7 +15,7 @@ Website ini dirancang menggunakan konsep **Single Codebase**, sehingga satu basi
 
 ### 2. 🤖 AI Chatbot Healthcare Assistant (Asisten Virtual 24/7)
 *   Widget chat interaktif di landing page untuk menjawab pertanyaan masyarakat seputar jadwal, layanan, poli, persyaratan BPJS, dan FAQ resmi puskesmas.
-*   Terintegrasi langsung dengan API Google Gemini melalui script Python (`ai-service/chat_api.py`) yang dijalankan secara *on-demand* (tanpa beban server FastAPI).
+*   Terintegrasi langsung dengan API Google Gemini melalui script Python (`ai-service/chat_api.py`) yang dijalankan secara *on-demand* via service PHP terpusat (`AiProcessService`).
 *   **Dynamic Knowledge Base:** Informasi disinkronkan secara otomatis dari database MySQL menjadi format JSON saat ada obrolan masuk agar data selalu mutakhir.
 *   **Guardrails Medis:** Diprogram secara ketat untuk menolak melakukan diagnosis penyakit, resep obat, atau memberikan nasihat medis mandiri demi keselamatan pasien.
 
@@ -25,7 +25,14 @@ Website ini dirancang menggunakan konsep **Single Codebase**, sehingga satu basi
 *   **Override & Triage Admin:** Admin dapat meninjau, menyetujui, atau mengubah hasil klasifikasi AI melalui panel triage admin.
 *   **Fallback Classifier:** Dilengkapi pendeteksi error kuota/jaringan API. Jika terjadi error, sistem secara otomatis beralih ke mesin pencocok kata kunci lokal (*local keyword matching*).
 
-### 4. 🗂️ Sistem PKK & Dasawisma
+### 4. 🔍 OCR (Optical Character Recognition) Otomatis
+*   Ekstraksi teks otomatis dari gambar flyer, poster, atau SOP bergambar yang diunggah pada modul Halaman Informasi.
+*   Menggunakan Gemini Vision untuk mengonversi teks gambar ke teks digital sehingga langsung tersimpan dan dapat dikonsumsi oleh AI Chatbot.
+
+### 5. 🛠️ Centralized Execution Service (`AiProcessService`)
+*   Manajemen proses Python terpusat pada PHP yang menangani path executable secara otomatis (`PYTHON_EXECUTABLE`), isolasi environment Windows/Linux, working directory, dan pencatatan error log yang handal.
+
+### 6. 🗂️ Sistem PKK & Dasawisma
 *   Sistem pendataan kependudukan komunitas, catatan data keluarga, catatan ibu hamil, kegiatan pokja (Kelompok Kerja 1-3), dan monitoring program inovasi desa.
 
 ---
@@ -36,7 +43,7 @@ Website ini dirancang menggunakan konsep **Single Codebase**, sehingga satu basi
 *   **Runtime PHP:** PHP 8.3+
 *   **Runtime Python (AI):** Python 3.11+ (google-genai, python-dotenv, rich)
 *   **Frontend Engine:** HTML5, Alpine.js, Tailwind CSS, Vite
-*   **Database:** MySQL
+*   **Database:** MySQL 8.0+
 *   **LLM API:** Google Gemini API (`gemini-2.5-flash`)
 
 ---
@@ -64,29 +71,33 @@ sitariktageh/
 │   │   └── Admin/
 │   │       ├── PuskesmasSettingController.php  # Pengaturan identitas dinamis
 │   │       ├── ChatbotSettingController.php    # Pengaturan widget chatbot
+│   │       ├── HalamanController.php           # Kelola halaman + OCR trigger
 │   │       └── PengaduanController.php         # Triage aduan admin
 │   ├── Jobs/
 │   │   └── ClassifyPengaduanJob.php       # Job asinkron klasifikasi Gemini
+│   ├── Services/
+│   │   └── AiProcessService.php           # Service terpusat pemanggilan Python process
 │   └── Models/
 │       ├── PuskesmasSetting.php
 │       ├── ChatbotSetting.php
 │       └── Pengaduan.php
 │
-├── docs-dokumentasi/             # Dokumentasi modul AI (lengkap)
-│   ├── README.md
-│   ├── PROJECT_OVERVIEW.md
-│   ├── AI_CHATBOT_PRD.md
-│   ├── AI_COMPLAINT_CLASSIFICATION_PRD.md
-│   ├── AI_SETTINGS_PRD.md
-│   ├── KNOWLEDGE_PIPELINE.md
-│   ├── OCR_PIPELINE.md
-│   ├── AI_GUARDRAILS.md
-│   ├── DESIGN_DECISIONS.md
-│   ├── TESTING.md
-│   ├── CHANGELOG.md
-│   └── ROADMAP.md
-│
-├── docs/                         # Berkas dokumentasi tambahan
+├── docs-dokumentasi/             # Dokumentasi modul AI (lengkap & SSOT)
+│   ├── README.md                          # Indeks & panduan membaca dokumentasi
+│   ├── AGENTS.md                          # Aturan untuk AI coding assistant
+│   ├── PROJECT_OVERVIEW.md                # Arsitektur sistem & inventaris file
+│   ├── AI_CHATBOT_PRD.md                  # PRD modul chatbot AI
+│   ├── AI_COMPLAINT_CLASSIFICATION_PRD.md # PRD klasifikasi pengaduan
+│   ├── AI_SETTINGS_PRD.md                 # PRD pengaturan AI & multi-puskesmas
+│   ├── KNOWLEDGE_PIPELINE.md              # Pipeline basis pengetahuan chatbot
+│   ├── OCR_PIPELINE.md                    # Pipeline ekstraksi OCR gambar
+│   ├── AI_GUARDRAILS.md                   # Batasan & keamanan AI
+│   ├── DESIGN_DECISIONS.md                # Keputusan desain teknis & arsitektur
+│   ├── SERVER_REQUIREMENTS.md             # Panduan server & deployment VPS
+│   ├── TROUBLESHOOTING_AI_SERVICE.md      # Panduan perbaikan & penanganan error
+│   ├── TESTING.md                         # Catatan & hasil pengujian
+│   ├── CHANGELOG.md                       # Riwayat perubahan
+│   └── ROADMAP.md                         # Peta jalan pengembangan
 │
 └── .env                          # Konfigurasi kunci API dan database
 ```
@@ -151,9 +162,9 @@ QUEUE_CONNECTION=database
 
 ### Langkah 4 — Konfigurasi API Key Gemini
 
-Dapatkan API Key gratis di [Google AI Studio](https://aistudio.google.com/apikey), lalu isi di **dua tempat**:
+Dapatkan API Key di [Google AI Studio](https://aistudio.google.com/apikey), lalu isi di **dua tempat**:
 
-**File `.env` (root Laravel) — untuk klasifikasi pengaduan:**
+**File `.env` (root Laravel):**
 ```env
 GEMINI_API_KEY=ISI_API_KEY_ANDA_DI_SINI
 PYTHON_EXECUTABLE=python
@@ -316,25 +327,30 @@ Seluruh dokumentasi teknis modul AI tersedia di folder [`docs-dokumentasi/`](./d
 
 | Dokumen | Isi |
 |:--------|:----|
+| [`README.md`](./docs-dokumentasi/README.md) | Indeks utama & panduan urutan membaca dokumentasi |
 | [`PROJECT_OVERVIEW.md`](./docs-dokumentasi/PROJECT_OVERVIEW.md) | Arsitektur sistem & inventaris file |
 | [`AI_CHATBOT_PRD.md`](./docs-dokumentasi/AI_CHATBOT_PRD.md) | Spesifikasi teknis chatbot |
 | [`AI_COMPLAINT_CLASSIFICATION_PRD.md`](./docs-dokumentasi/AI_COMPLAINT_CLASSIFICATION_PRD.md) | Spesifikasi klasifikasi pengaduan |
 | [`AI_SETTINGS_PRD.md`](./docs-dokumentasi/AI_SETTINGS_PRD.md) | Panduan pengaturan AI |
 | [`KNOWLEDGE_PIPELINE.md`](./docs-dokumentasi/KNOWLEDGE_PIPELINE.md) | Cara chatbot membangun basis pengetahuan |
-| [`OCR_PIPELINE.md`](./docs-dokumentasi/OCR_PIPELINE.md) | Pipeline ekstraksi gambar |
+| [`OCR_PIPELINE.md`](./docs-dokumentasi/OCR_PIPELINE.md) | Pipeline ekstraksi OCR gambar |
 | [`AI_GUARDRAILS.md`](./docs-dokumentasi/AI_GUARDRAILS.md) | Batasan keamanan AI |
-| [`DESIGN_DECISIONS.md`](./docs-dokumentasi/DESIGN_DECISIONS.md) | Alasan setiap keputusan teknis |
+| [`DESIGN_DECISIONS.md`](./docs-dokumentasi/DESIGN_DECISIONS.md) | Alasan setiap keputusan teknis & arsitektur |
+| [`SERVER_REQUIREMENTS.md`](./docs-dokumentasi/SERVER_REQUIREMENTS.md) | Kebutuhan server & panduan deployment production |
+| [`TROUBLESHOOTING_AI_SERVICE.md`](./docs-dokumentasi/TROUBLESHOOTING_AI_SERVICE.md) | Panduan perbaikan & analisa error AI service |
 | [`TESTING.md`](./docs-dokumentasi/TESTING.md) | Catatan & cara pengujian |
 | [`CHANGELOG.md`](./docs-dokumentasi/CHANGELOG.md) | Riwayat perubahan |
 | [`ROADMAP.md`](./docs-dokumentasi/ROADMAP.md) | Rencana pengembangan |
+| [`AGENTS.md`](./docs-dokumentasi/AGENTS.md) | Aturan teknis untuk AI coding assistant |
 
 ---
 
 ## 👨‍💻 Pengembang
 
-**Wahyu Khairi**
-Praktik Kerja Lapangan (PKL)
-Dinas Komunikasi dan Informatika Kota Pariaman
+**Wahyu Khairi**  
+Praktik Kerja Lapangan (PKL)  
+Dinas Komunikasi dan Informatika Kota Pariaman  
 
 © 2026 Puskesmas — Dinas Kesehatan Kota Pariaman
+
  
