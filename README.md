@@ -353,4 +353,7 @@ Dinas Komunikasi dan Informatika Kota Pariaman
 
 © 2026 Puskesmas — Dinas Kesehatan Kota Pariaman
 
+SELAMAT TINGGAL KERJA PRAKTEK
+
+
  
